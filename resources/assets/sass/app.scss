@@ -1,0 +1,82 @@
+// @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+.select_video_thumbnail{
+    margin-bottom: 5px;
+}
+
+.video_wrapper {
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 */
+	padding-top: 25px;
+	height: 0;
+}
+.video_wrapper iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.modal-body {
+    // max-height: calc(100vh - 210px);
+    overflow-y: auto;
+}
+
+.selected_video{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.selected_video_published{
+    font-size: 0.7em;
+}
+
+.selected_video_title{
+    font-size: 0.8em;
+}
+
+.selected_disable{
+    opacity: 0.4;
+    filter: alpha(opacity=40); /* msie */
+}
+
+.header-icon {
+    display: inline-block;
+    position: relative;
+    top: 4px;
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    vertical-align: baseline;
+}
+
+.user-profile-image{
+  height: 23px;
+  width: 23px;
+  background-position: 50% 7px;
+}
+
+.media-photo {
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
+    position: relative;
+    display: inline-block;
+    vertical-align: bottom;
+    overflow: hidden;
+    background-color: #cacccd;
+}
+
+.img-round, .media-round{
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+
+.playlist_videos_row{
+  margin-top: 10px;
+  margin-bottom: 10px;  
+}
