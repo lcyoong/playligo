@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\PlayList;
+use App\Playlist;
 use App\PlaylistVideo;
 use Auth;
 use Session;
@@ -15,7 +15,7 @@ class PlaylistController extends Controller
     protected $plRepo;
     protected $plvRepo;
 
-    public function __construct(PlayList $plRepo, PlaylistVideo $plvRepo)
+    public function __construct(Playlist $plRepo, PlaylistVideo $plvRepo)
     {
         $this->plRepo = $plRepo;
         $this->plvRepo = $plvRepo;
@@ -39,7 +39,7 @@ class PlaylistController extends Controller
         return back()->with('status', trans('messages.playlist_create_successful'));
     }
 
-    public function delete(PlayList $playlist)
+    public function delete(Playlist $playlist)
     {
         return view('playlist.delete', compact('playlist'));
     }
@@ -51,7 +51,7 @@ class PlaylistController extends Controller
         return back()->with('status', trans('messages.delete_successful'));
     }
 
-    public function edit(PlayList $playlist)
+    public function edit(Playlist $playlist)
     {
         // $this->authorize('update', $prop);
 
