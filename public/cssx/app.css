@@ -65,7 +65,7 @@
   margin-top: 10px;
   margin-bottom: 10px; }
 
-body #home-layout {
+body {
   background-image: url("../../img/santorini-bg-blue.png");
   background-repeat: no-repeat;
   background-color: #00006E;

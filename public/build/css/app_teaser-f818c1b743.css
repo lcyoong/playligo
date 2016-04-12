@@ -1,0 +1,22 @@
+body {
+  background-image: url("../../img/santorini-bg-blue.png");
+  background-color: #00006E;
+  background-size: 100%; }
+
+.homepage h1 {
+  color: #ffffff; }
+
+.homepage h2 {
+  color: #ff9900; }
+
+.homepage h3 {
+  color: #ffffff; }
+
+img.img-center {
+  margin-left: auto;
+  margin-right: auto; }
+
+.button-homepage {
+  background-color: #ff6600; }
+
+/*# sourceMappingURL=app_teaser.css.map */
