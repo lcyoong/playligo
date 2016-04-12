@@ -69,7 +69,7 @@
   background-image: url("../../img/santorini-bg-blue.png");
   background-repeat: no-repeat;
   background-color: #00006E;
-  background-size: 100%; }
+  background-size: cover; }
 
 .homepage {
   margin-top: 50px; }
