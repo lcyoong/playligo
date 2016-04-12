@@ -1,1 +1,0 @@
-{"version":3,"sources":["app0.scss"],"names":[],"mappings":"AAAA;EACI,gEAAqB;EACrB,0BAA0B,EAC7B","file":"app0.css","sourcesContent":["body {\n    background-image: url(\"../../public/img/santorini-bg-blue.png\");\n    background-color: #cccccc;\n}\n"],"sourceRoot":"/source/"}

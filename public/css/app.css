@@ -65,7 +65,7 @@
   margin-top: 10px;
   margin-bottom: 10px; }
 
-body #home-layout {
+#home-layout {
   background-image: url("../../img/santorini-bg-blue.png");
   background-repeat: no-repeat;
   background-color: #00006E;
@@ -93,7 +93,8 @@ img.img-center {
   margin-right: auto; }
 
 .button-homepage {
-  background-color: #ff6600; }
+  background-color: #ff6600;
+  width: 100%; }
 
 .form-homepage {
   margin-top: 60px; }
