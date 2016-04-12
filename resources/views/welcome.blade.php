@@ -12,7 +12,7 @@
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
-        {{ Form::text('email', '', ['class'=>'form-control input-lg']) }}
+        {{ Form::email('email', '', ['class'=>'form-control input-lg', 'placeholder'=>'Your Email']) }}
         </div>
       </div>
       <div class="col-md-6">
