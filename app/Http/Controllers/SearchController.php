@@ -43,38 +43,40 @@ class SearchController extends Controller
 
         $videos = $this->vcRepo->whereIn('vc_id', $selected)->get();
 
-        $default_playlist_title = $location . ' video destination playlist by ' . auth()->user()->name;
-
         session()->forget('search_keywords');
 
-        $result = $this->fetchVideos($location, $keys);
+        $result = $this->fetchVideos($location, $keys, false, $keys_used);
+
+        $default_playlist_title = $location . ' ' . implode(' , ', $keys_used) . ' video playlist by ' . auth()->user()->name;
 
         return view('search.result', compact('result', 'selected', 'videos', 'location', 'default_playlist_title'));
 
         // return redirect->route('results');
     }
 
-    public function fetchVideos($location, $keys, $more = false)
+    public function fetchVideos($location, $keys, $more = false, &$keys_used = [])
     {
         $result = [];
+
         $keys = array_filter($keys);
 
         // User keywords
         foreach ($keys as $key) {
             if (!empty($key)) {
                 $result = array_merge($result, $this->fetchVideosByKeyword($location, $key, config('youtube.user_key_weight'), $more));
+                $keys_used[] = $key;
             }
         }
 
         // Generic keywords
         if (count($keys) < config('youtube.key_quota')) {
-            $generic_keys = config('youtube.generic_keywords');
 
-            $generic_keys = array_slice($generic_keys, 0, config('youtube.key_quota') - count($keys));
+            $generic_keys = array_slice(config('youtube.generic_keywords'), 0, config('youtube.key_quota') - count($keys));
 
             foreach ($generic_keys as $key) {
                 if (!empty($key)) {
                     $result = array_merge($result, $this->fetchVideosByKeyword($location, $key, config('youtube.generic_key_weight'), $more));
+                    $keys_used[] = $key;
                 }
             }
         }
