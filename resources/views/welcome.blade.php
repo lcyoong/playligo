@@ -5,7 +5,7 @@
 <div class="row">
   <div class="col-md-6">
     <img src="{{ asset('img/logo.png') }}">
-    <h1>Watch destination video playlists before you go for your next trip.</h1>
+    <h1>Revolutionize the way you travel! Watch curated destination video playlists before you go.</h1>
     <h2>Be inspired. Decide with confidence.</h2>
     <h4>Sign up for the pre-launch sneak preview now!</h4>
     {{ Form::open(['action'=>'post', 'url'=>'', 'class'=>'form-homepage']) }}

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class VideoCache extends Model
 {
     //
+    public $incrementing = false;
     protected $primaryKey = 'vc_id';
     protected $table = 'video_caches';
     protected $fillable = ['vc_id', 'vc_etag', 'vc_kind', 'vc_snippet'];

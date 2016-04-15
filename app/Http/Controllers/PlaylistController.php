@@ -21,16 +21,29 @@ class PlaylistController extends Controller
         $this->plvRepo = $plvRepo;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $playlists = $this->plRepo->getPaginated();
+        $playlists = $this->plRepo->filterOwner($request->user()->id)->getPaginated();
 
         return view('playlist.list', compact('playlists'));
     }
 
     public function store(Request $request)
     {
-        $playlist = $this->plRepo->create(['pl_user' => Auth::user()->id, 'pl_description' => $request->input('pl_description')]);
+        $playlist = $this->plRepo->create(['pl_user' => Auth::user()->id, 'pl_title' => $request->input('pl_title')]);
+
+        $this->plvRepo->massCreate($playlist->pl_id, Session::get('selected', []));
+
+        Session::forget('selected');
+
+        return redirect('playlist/successful/'.$playlist->pl_id)->with('status', trans('messages.playlist_create_successful'));
+
+        // return back()->with('status', trans('messages.playlist_create_successful'));
+    }
+
+    public function store2(Request $request)
+    {
+        $playlist = $this->plRepo->create(['pl_user' => Auth::user()->id, 'pl_title' => $request->input('pl_title')]);
 
         $this->plvRepo->massCreate($playlist->pl_id, Session::get('selected', []));
 
@@ -66,5 +79,17 @@ class PlaylistController extends Controller
 
         return redirect()->back()->with('status', trans('common.save_successful'));
     }
+
+    public function successful(Playlist $playlist)
+    {
+        return view('playlist.successful');
+    }
+
+    public function sortItem(Request $request)
+  	{
+          $input = $request->input();
+
+  		    $this->plvRepo->reorder($input['id'], $input['pl_id'], $input['start_pos'], $input['end_pos']);
+  	}
 
 }

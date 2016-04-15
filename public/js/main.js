@@ -27,4 +27,19 @@ $(document).ready(function () {
         $('#basicModal').find('.modal-content').load($(this).attr('href'));
     });
 
+    $('html').on('submit', '.submit-ajax', function (event) {
+        event.preventDefault();
+        $.ajax({
+            url: $(this).closest('form').attr('action'),
+            type: 'POST',
+            dataType: 'json',
+            data: {_token: $("input[name='_token']").val()},
+            success: function (data) {
+                $('#basicModal').find('.modal-content').html('');
+                $('#basicModal').modal('show');
+                $('#basicModal').find('.modal-content').load($(this).attr('href'));
+            }
+        });
+    });
+
 });
