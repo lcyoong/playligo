@@ -61,6 +61,7 @@
                         <li><a href="{{ url('/register') }}">Register</a></li>
                     @else
                         <li><a href="{{ url('/playlist') }}"><i class="fa fa-list"></i> Playlists</a></li>
+                        <li><a href="{{ url('/poll') }}"><i class="fa fa-bar-chart"></i> Polls</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 {{ Auth::user()->name }} <div class="media-photo media-round user-profile-image header-icon icon-profile-alt-white"><img width="24" height="24" src="{{ Auth::user()->avatar }}"></div>
@@ -81,6 +82,11 @@
       @include('layouts.partials.messagebag')
     </div>
     @yield('content')
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted">Playligo.com {{ date('Y') }}</p>
+      </div>
+    </footer>
     @include('layouts.partials.modal')
 
     <!-- JavaScripts -->
@@ -89,6 +95,14 @@
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
     <script type="text/javascript" src="{{ URL::asset('js/main.js')}}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/jquery-ui.min.js')}}"></script>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=266649633362050";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
     @yield('script')
 </body>
 </html>

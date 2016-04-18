@@ -1,7 +1,8 @@
 @extends('layouts.list')
 @section('content_list')
 <div class="page-header page-heading">
-		<h2><i class="fa fa-list"></i> {{ trans('playlist.list') }}</h2>
+		<h2><i class="fa fa-list"></i> {{ trans('playlist.list') }}
+		<a href="{{ url('search') }}" class="btn btn-default  pull-right"><span class="fa fa-plus"></span> @lang('playlist.new')</a></h2>
 </div>
 <div class="row">
 	<div class="col-md-12">
@@ -23,6 +24,8 @@
           <td>
               <a href="{{ url('playlist/edit/' . $pl->pl_id) }}" title="{{ trans('form.action_edit') }}"><i class="fa fa-edit"></i></a>
               <a href="{{ url('playlist/delete/' . $pl->pl_id) }}" title="{{ trans('form.action_delete') }}" class="btn-modal"><i class="fa fa-trash"></i></a>
+							<a href="{{ url('poll/add/' . $pl->pl_id) }}" title="{{ trans('form.action_add_poll') }}" class="btn-modal"><i class="fa fa-plus-square"></i></a>
+							<a href="{{ url('public_playlist/' . $pl->pl_id) }}" title="{{ trans('form.action_view') }}"><i class="fa fa-eye"></i></a>
           </td>
 			</tr>
 			@endforeach

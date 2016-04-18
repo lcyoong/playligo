@@ -44,7 +44,7 @@ class CreatePlaylistsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('playlists');
         Schema::drop('playlist_videos');
+        Schema::drop('playlists');
     }
 }

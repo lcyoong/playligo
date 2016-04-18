@@ -1,7 +1,7 @@
 @foreach(array_chunk($result, 4) as $item_set)
     <div class="row">
     @foreach($item_set as $item)
-        <div class="col-md-3 col-sm-3 select_video_thumbnail">
+        <div class="col-md-3 col-sm-3 col-xs-3 select_video_thumbnail">
             <a href="{{ url('search/preview/' . $item->id->videoId) }}" class="btn-modal"><img id="thumb{{ $item->id->videoId }}" src="{{ $item->snippet->thumbnails->medium->url }}" class="img-rounded @if (key_exists($item->id->videoId, $selected)) selected_disable @endif" width="100%"></a>
             <div class="select_video_control">
                 @if (key_exists($item->id->videoId, $selected))

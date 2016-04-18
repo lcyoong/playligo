@@ -3,7 +3,7 @@ namespace app\Traits;
 
 trait ModelTrait
 {
-    public function scopeGetPaginated($query, $perPage = 15)
+    public function scopeGetPaginated($query, $perPage = 10)
     {
         return $query->paginate($perPage);
     }
@@ -18,4 +18,10 @@ trait ModelTrait
             return null;
         }
     }
+
+    public function scopeToDropDown($query, $key_col, $value_col)
+    {
+        return [''=> trans('form.select_any') ] + array_column($query->get()->toArray(), $value_col, $key_col);
+    }
+
 }

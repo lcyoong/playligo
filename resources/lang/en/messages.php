@@ -16,5 +16,9 @@ return [
     'playlist_create_successful'              => 'Yay! Playlist Created.',
     'delete_confirm'                          => 'Are you sure you want to delete?',
     'delete_successful'                       => 'Deleted.',
+    'poll_create_add_successful'              => 'Poll created and playlist added successfully!',
+    'poll_add_successful'                     => 'Added to poll successfully!',
+    'store_successful'                        => 'Saved successfully!',
+    'vote_successful'                         => 'Your vote is counted. Thanks!',
 
 ];

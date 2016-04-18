@@ -14,5 +14,6 @@ return [
     'pl_description'        => 'Description',
     'list'                  => 'Playlists',
     'edit_title'            => 'Edit Playlist',
+    'new'                   => 'New Playlist',
 
 ];

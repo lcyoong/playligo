@@ -4,12 +4,12 @@
 <div class="container">
 		<div class="page-header page-heading">
 				<h2><i class="fa fa-edit"></i> {{ trans('playlist.edit_title') }} - {{$playlist->pl_title}}
-					<a href="{{ url('playlist') }}" class="btn btn-default  pull-right"><span class="fa fa-angle-double-left"></span></a></h2>
+					<a href="{{ url('playlist') }}" class="btn btn-default  pull-right"><span class="fa fa-angle-double-left"></span> @lang('form.back_to_list')</a></h2>
 		</div>
-		{{ Form::open(['url'=>url('/'), 'method'=>'post', 'class'=>'form-horizontal']) }}
+		{{ Form::open(['url'=>url('playlist/edit'), 'method'=>'post', 'class'=>'form-horizontal']) }}
 		{{ Form::hidden('pl_id', $playlist->pl_id, ['id'=>'pl_id']) }}
 		<div class="row">
-				<div class="col-md-4">
+				<div class="col-md-6">
 					<div class="row">
 						<div class="form-group">
 	          	{{ Form::label('pl_title', trans('playlist.pl_title'), ['class'=>'col-md-4 control-label']) }}
@@ -38,22 +38,28 @@
 							{{ Form::label('pl_title', $playlist->updated_at, ['class'=>'col-md-8 control-label']) }}
 						</div>
 					</div>
+					<div class="form-group">
+							{{ Form::button(trans('form.btn_submit'), ['type'=>'submit', 'class'=>'btn btn-primary']) }}
+					</div>
 				</div>
-				<div class="col-md-8">
+				<div class="col-md-6">
 					<div id="sort_list">
-						<ul class="ui-sortable">
+						<ul class="ui-sortable list-group">
 							@foreach($playlist->videos as $video)
 							<?php $video_snippet = unserialize($video->cache->vc_snippet) ?>
-							<li class="row playlist_videos_row" id="{{ $video->plv_id }}">
+							<li class="list-group-item" id="{{ $video->plv_id }}">
+								<div class="row">
 									<div class="col-md-2">
 											<a href="{{ url('search/preview/' . $video->cache->vc_id) }}" class="btn-modal"><img src="{{ $video_snippet->thumbnails->medium->url }}" class="img-rounded" width="100%"></a>
 									</div>
-									<div class="col-md-9">
+									<div class="col-md-8">
 											{{ $video_snippet->title }}
 									</div>
-									<div class="col-md-1">
+									<div class="col-md-2">
 											<i class="fa fa-sort"></i>
+											<a href="{{ url('playlist/video/' . $video->plv_id . '/delete') }}" class="btn-modal"><i class="fa fa-times-circle"></i></a>
 									</div>
+								</div>
 							</li>
 							@endforeach
 						</ul>

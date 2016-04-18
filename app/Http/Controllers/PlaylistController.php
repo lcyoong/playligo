@@ -10,6 +10,8 @@ use App\PlaylistVideo;
 use Auth;
 use Session;
 
+use App\Http\Requests\EditPlaylist;
+
 class PlaylistController extends Controller
 {
     protected $plRepo;
@@ -71,18 +73,22 @@ class PlaylistController extends Controller
         return view('playlist.edit', compact('playlist'));
     }
 
-    public function update(Request $request)
+    public function update(EditPlaylist $request)
     {
         $input = $request->all();
 
-        $this->propertyRepo->find($request->input('pl_id'))->update($input);
+        $this->plRepo->find($request->input('pl_id'))->update($input);
 
-        return redirect()->back()->with('status', trans('common.save_successful'));
+        return redirect()->back()->with('status', trans('messages.store_successful'));
     }
 
     public function successful(Playlist $playlist)
     {
-        return view('playlist.successful');
+        $dd_polls = \App\Poll::filterActive()->toDropDown('pol_id', 'pol_title');
+
+        $disabled = \App\Poll::filterActive()->count() == 0 ? 'disabled' : '';
+
+        return view('playlist.successful', compact('playlist', 'dd_polls', 'disabled'));
     }
 
     public function sortItem(Request $request)
@@ -91,5 +97,11 @@ class PlaylistController extends Controller
 
   		    $this->plvRepo->reorder($input['id'], $input['pl_id'], $input['start_pos'], $input['end_pos']);
   	}
+
+    public function loadPlaylist(Playlist $playlist)
+    {
+        return view('playlist.poll_playlist_videos', compact('playlist'));
+
+    }
 
 }

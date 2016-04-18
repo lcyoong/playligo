@@ -39,7 +39,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
+        $this->middleware($this->guestMiddleware(), ['except' => ['logout', 'ajaxLogin']]);
     }
 
     /**
@@ -98,7 +98,12 @@ class AuthController extends Controller
 
             Auth::login($authUser, true);
 
-            return redirect($this->redirectTo);
+            if (session()->has('last_page')) {
+              return redirect(session()->pull('last_page'));
+            } else {
+              return redirect($this->redirectTo);
+            }
+
         } else {
             return 'something went wrong';
         }
@@ -123,6 +128,11 @@ class AuthController extends Controller
             'facebook_id' => $facebookUser->id,
             'avatar' => $facebookUser->avatar
         ]);
+    }
+
+    public function ajaxLogin()
+    {
+        return view('auth.login_ajax');
     }
 
 }

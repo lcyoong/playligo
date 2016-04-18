@@ -16,9 +16,10 @@ return [
     'btn_delete'                    => 'Delete',
     'btn_back'                      => 'Back',
     'btn_load_more'                 => 'Load More',
-    'btn_add_to_poll'               => 'Add to poll',
-    'btn_create_add_to_poll'        => 'Create and add to poll',
+    'btn_add_to_poll'               => 'Add to a current poll',
+    'btn_create_add_to_poll'        => 'Add the playlist to a new poll',
     'btn_another_playlist'          => 'Add another playlist',
+    'select_any'                    => '-- Select --',
 
     'search_description'            => 'Start Your Next Journey....',
     'enter_first_destination'       => 'Please enter your first destination...',
@@ -26,7 +27,8 @@ return [
     'add_to_playlist'               => 'Add to playlist',
     'selected_videos'               => 'Selected videos',
     'playlist_title_placeholder'    => 'My awesome playlist',
-    'facebook_login'        => 'Log in with Facebook',
+    'facebook_login'                => 'Log in with Facebook',
+    'back_to_list'                  => 'Back to list',
 
     'created_at'            => 'Created At',
     'updated_at'            => 'Updated At',
@@ -34,5 +36,6 @@ return [
 
     'action_edit'           => 'Edit',
     'action_delete'         => 'Delete',
+    'action_add_poll'               => 'Add to Poll',
 
 ];

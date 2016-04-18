@@ -16,7 +16,7 @@ class Playlist extends Model
 
     public function videos()
     {
-        return $this->hasMany('App\PlaylistVideo', 'plv_playlist', 'pl_id')->orderBy('plv_order', 'asc');
+        return $this->hasMany('App\PlaylistVideo', 'plv_playlist', 'pl_id')->leftJoin('video_caches', 'vc_id', '=', 'plv_video_id')->orderBy('plv_order', 'asc');
     }
 
     public function scopeFilterOwner($query, $owner = null)
@@ -24,6 +24,11 @@ class Playlist extends Model
         if (!is_null($owner)) {
             $query->where('pl_user', '=', $owner);
         }
+    }
+
+    public function scopeWithPicture($query)
+    {
+        return $query->leftJoin('playlist_videos', 'plv_playlist', '=', 'pl_id')->groupBy('plv_playlist');
     }
 
 }
