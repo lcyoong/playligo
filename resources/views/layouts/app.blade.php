@@ -84,11 +84,11 @@
       @include('layouts.partials.messagebag')
     </div>
     @yield('content')
-    <footer class="footer">
+    <!-- <footer class="footer">
       <div class="container">
         <p class="text-muted">Playligo.com {{ date('Y') }}</p>
       </div>
-    </footer>
+    </footer> -->
     @include('layouts.partials.modal')
 
     <!-- JavaScripts -->
