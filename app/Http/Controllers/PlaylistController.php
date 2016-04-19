@@ -84,9 +84,9 @@ class PlaylistController extends Controller
 
     public function successful(Playlist $playlist)
     {
-        $dd_polls = \App\Poll::filterActive()->filterOwner($request->user()->id)->toDropDown('pol_id', 'pol_title');
+        $dd_polls = \App\Poll::filterActive()->filterOwner(auth()->user()->id)->toDropDown('pol_id', 'pol_title');
 
-        $disabled = \App\Poll::filterActive()->filterOwner($request->user()->id)->count() == 0 ? 'disabled' : '';
+        $disabled = \App\Poll::filterActive()->filterOwner(auth()->user()->id)->count() == 0 ? 'disabled' : '';
 
         return view('playlist.successful', compact('playlist', 'dd_polls', 'disabled'));
     }
