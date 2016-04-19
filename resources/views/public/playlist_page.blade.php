@@ -38,3 +38,11 @@
 
 @section('script')
 @endsection
+
+@section('meta')
+  <meta property="og:url"           content="{{ Request::url() }}" />
+	<meta property="og:type"          content="website" />
+	<meta property="og:title"         content="{{ $playlist->pl_title }}" />
+	<meta property="og:description"   content="{{ $playlist->pl_description }}" />
+	<!-- <meta property="og:image"         content="http://www.your-domain.com/path/image.jpg" /> -->
+@endsection
