@@ -15,6 +15,7 @@ class CreatePollsTable extends Migration
         Schema::create('polls', function (Blueprint $table) {
             $table->increments('pol_id');
             $table->integer('pol_user')->unsigned();
+            $table->integer('pol_view')->unsigned()->default(0);
             $table->string('pol_title');
             $table->text('pol_description');
             $table->string('pol_status')->default('active');

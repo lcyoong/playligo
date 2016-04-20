@@ -31,11 +31,15 @@ class HomeController extends Controller
 
     public function poll(Poll $poll)
     {
+        $poll->increment('pol_view');
+
         return view('public.poll_page', compact('poll'));
     }
 
     public function playlist(Playlist $playlist)
     {
+        $playlist->increment('pl_view');
+
         return view('public.playlist_page', compact('playlist'));
     }
 

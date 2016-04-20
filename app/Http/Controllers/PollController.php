@@ -19,7 +19,7 @@ class PollController extends Controller
     public function __construct(Poll $polRepo, PollPlaylist $polpRepo)
     {
         $this->polRepo = $polRepo;
-        $this->polpRepo = $polpRepo;        
+        $this->polpRepo = $polpRepo;
     }
 
     public function index(Request $request)
@@ -79,7 +79,7 @@ class PollController extends Controller
 
     public function addPlaylist(Playlist $playlist)
     {
-        $dd_polls = $this->polRepo->filterActive()->toDropDown('pol_id', 'pol_title');
+        $dd_polls = $this->polRepo->filterActive()->filterOwner(auth()->user()->id)->toDropDown('pol_id', 'pol_title');
 
         return view('poll.add_playlist', compact('playlist', 'dd_polls'));
     }

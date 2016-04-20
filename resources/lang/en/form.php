@@ -16,9 +16,9 @@ return [
     'btn_delete'                    => 'Delete',
     'btn_back'                      => 'Back',
     'btn_load_more'                 => 'Load More',
-    'btn_add_to_poll'               => 'Add to a current poll',
-    'btn_create_add_to_poll'        => 'Add the playlist to a new poll',
-    'btn_another_playlist'          => 'Add another playlist',
+    'btn_add_to_poll'               => 'Add current playlist to an existing poll',
+    'btn_create_add_to_poll'        => 'Add current playlist to a new poll',
+    'btn_another_playlist'          => 'Create another playlist',
     'select_any'                    => '-- Select --',
 
     'search_description'            => 'Start Your Next Journey....',

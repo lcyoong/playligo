@@ -16,6 +16,6 @@ return [
     'edit_title'             => 'Edit Poll',
     'new_title'              => 'New Poll',
     'new'                    => 'New Poll',
-    'add_playlist'           => 'Add Playlis to Poll',
+    'add_playlist'           => 'Add Playlist to Poll',
 
 ];
