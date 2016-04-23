@@ -26,7 +26,7 @@ class SearchController extends Controller
 
     public function searchKeywords(SearchLocation $request)
     {
-        session()->put('search_location', $request->input('location'));
+        session()->put('search_location', ucwords($request->input('location')));
 
         $location = session()->get('search_location');
 
