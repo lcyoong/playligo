@@ -2,11 +2,17 @@
 
 @section('content')
 <div class="container">
-		<div class="page-header page-heading">
-				<h2><i class="fa fa-edit"></i> {{ trans('playlist.edit_title') }} - {{$playlist->pl_title}}
-					<a href="{{ url('playlist') }}" class="btn btn-default  pull-right"><span class="fa fa-angle-double-left"></span> @lang('form.back_to_list')</a></h2>
+	<div class="page-breadcrumbs">
+		<h1 class="section-title">{{ trans('playlist.edit_title') }}</h1>
+		<div class="world-nav cat-menu">
+			<ul class="list-inline">
+				<li class="active"><a href="{{ url('playlist') }}" class=""><span class="fa fa-angle-double-left"></span> @lang('form.back_to_list')</a></li>
+			</ul>
 		</div>
-		{{ Form::open(['url'=>url('playlist/edit'), 'method'=>'post', 'class'=>'form-horizontal']) }}
+	</div>
+
+	<div class="section">
+		{{ Form::open(['url'=>url('playlist/edit'), 'method'=>'post', 'class'=>'']) }}
 		{{ Form::hidden('pl_id', $playlist->pl_id, ['id'=>'pl_id']) }}
 		<div class="row">
 				<div class="col-md-6">
@@ -67,6 +73,7 @@
 				</div>
 		</div>
 		{{ Form::close() }}
+	</div>
 </div>
 @endsection
 

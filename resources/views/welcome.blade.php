@@ -1,10 +1,10 @@
 @extends('layouts.teaser')
 
 @section('content')
-<div class="container homepage">
+<div class="container homepage-main">
 <div class="row">
   <div class="col-md-6">
-    <img src="{{ asset('img/logo.png') }}">
+    <img src="{{ asset('img/logo-main.png') }}">
     <h1>Revolutionize the way you travel! Watch curated destination video playlists before you go.</h1>
     <h2>Be inspired. Decide with confidence.</h2>
     <h4>Sign up for the pre-launch sneak preview now!</h4>

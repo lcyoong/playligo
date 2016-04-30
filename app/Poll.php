@@ -31,4 +31,9 @@ class Poll extends Model
       $query->where('pol_status', '=', 'active');
   }
 
+  public function owner()
+  {
+      return $this->belongsTo('App\User', 'pol_user');
+  }
+
 }

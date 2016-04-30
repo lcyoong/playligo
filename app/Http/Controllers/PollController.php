@@ -95,7 +95,9 @@ class PollController extends Controller
 
     public function edit(Poll $poll)
     {
-        return view('poll.edit', compact('poll'));
+        $owner = $poll->owner;
+
+        return view('poll.edit', compact('poll', 'owner'));
     }
 
     public function update(EditPoll $request)

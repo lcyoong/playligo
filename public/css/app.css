@@ -86,26 +86,46 @@
 .text-muted {
   color: #777; }
 
+.facebook-login, .twitter-login {
+  font-size: 16px; }
+
+.ragister-account {
+  margin-top: 25px; }
+
+.page-breadcrumbs {
+  margin-top: 20px; }
+
+.section-title {
+  margin-bottom: 30px; }
+
+.form-control {
+  height: 45px;
+  border-radius: 5px; }
+
+.modal-confirm {
+  text-align: center;
+  margin: 100px 0px; }
+
 #home-layout {
   background-image: url("../../img/santorini-bg-blue.png");
   background-repeat: no-repeat;
   background-color: #00006E;
   background-size: cover; }
 
-.homepage {
+.homepage-main {
   margin-top: 50px; }
 
-.homepage h1 {
+.homepage-main h1 {
   margin-bottom: 40px;
   color: #ffffff;
   text-shadow: 2px 2px 2px #333333; }
 
-.homepage h2 {
+.homepage-main h2 {
   margin-bottom: 40px;
   color: #ff9900;
   text-shadow: 2px 2px 2px #333333; }
 
-.homepage h4 {
+.homepage-main h4 {
   color: #ffffff;
   text-shadow: 2px 2px 2px #333333; }
 
