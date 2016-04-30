@@ -2,16 +2,16 @@
 
 @section('content')
 <div class="container">
-    <div class="jumbotron">
-      <h2>
-        {{ $playlist->pl_title }} <span class="label label-success">{{ $playlist->pl_view }} hits</span>
-        <br/><div class="fb-like" data-href="{{ Request::url() }}" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
-        <div class="pull-right">
-          <a class="btn btn-sm btn-default btn-transparent--border btn-hoverWhite ct-u-text--white" href="https://www.facebook.com/sharer/sharer.php?u={{ Request::url() }}" target=_blank><i class="fa fa-facebook"></i></a>
-          <a class="btn btn-sm btn-default btn-transparent--border btn-hoverWhite ct-u-text--white" href="http://twitter.com/home?status={{ Request::url() }}" target=_blank><i class="fa fa-twitter"></i></a>
-        </div>
-      </h2>
-    </div>
+  <div class="page-breadcrumbs">
+    <h1 class="section-title">{{ $playlist->pl_title }}</h1>
+  </div>
+  <div class="section">
+    <!-- <div class="fb-like" data-href="{{ Request::url() }}" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+    <div class="pull-right">
+      <a class="btn btn-sm btn-default btn-transparent--border btn-hoverWhite ct-u-text--white" href="https://www.facebook.com/sharer/sharer.php?u={{ Request::url() }}" target=_blank><i class="fa fa-facebook"></i></a>
+      <a class="btn btn-sm btn-default btn-transparent--border btn-hoverWhite ct-u-text--white" href="http://twitter.com/home?status={{ Request::url() }}" target=_blank><i class="fa fa-twitter"></i></a>
+    </div> -->
+  </div>
 
     <div class="row">
       <div class="col-md-8">

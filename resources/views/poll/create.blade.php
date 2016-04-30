@@ -2,36 +2,35 @@
 
 @section('content')
 <div class="container">
-		<div class="page-header page-heading">
-				<h2><i class="fa fa-edit"></i> {{ trans('poll.new_title') }}
-					<a href="{{ url('poll') }}" class="btn btn-default  pull-right"><span class="fa fa-angle-double-left"></span> @lang('form.back_to_list')</a></h2>
+	<div class="page-breadcrumbs">
+		<h1 class="section-title">{{ trans('poll.new_title') }}</h1>
+		<div class="world-nav cat-menu">
+			<ul class="list-inline">
+				<li class="active"><a href="{{ url('poll') }}" class=""><span class="fa fa-angle-double-left"></span> @lang('form.back_to_list')</a></li>
+			</ul>
 		</div>
-		{{ Form::open(['url'=>url('poll/create'), 'method'=>'post', 'class'=>'form-horizontal']) }}
+	</div>
+
+	<div class="section">
+		{{ Form::open(['url'=>url('poll/create'), 'method'=>'post', 'class'=>'']) }}
 		{{ Form::hidden('pol_user', auth()->user()->id) }}
 		<div class="row">
 				<div class="col-md-6">
-					<div class="row">
 						<div class="form-group">
-	          	{{ Form::label('pol_title', trans('poll.pol_title'), ['class'=>'col-md-4 control-label']) }}
-	          	<div class="col-md-8">
-	          		{{ Form::text('pol_title', old('pol_title'), ['class'=>'form-control']) }}
-	          	</div>
+	          	{{ Form::label('pol_title', trans('poll.pol_title'), ['class'=>'control-label']) }}
+          		{{ Form::text('pol_title', old('pol_title'), ['class'=>'form-control']) }}
           	</div>
-					</div>
-					<div class="row">
 						<div class="form-group">
-	          	{{ Form::label('pol_description', trans('poll.pol_description'), ['class'=>'col-md-4 control-label']) }}
-	          	<div class="col-md-8">
-	          		{{ Form::textarea('pol_description', old('pol_description'), ['class'=>'form-control', 'rows'=>5]) }}
-	          	</div>
+	          	{{ Form::label('pol_description', trans('poll.pol_description'), ['class'=>'control-label']) }}
+          		{{ Form::textarea('pol_description', old('pol_description'), ['class'=>'form-control', 'rows'=>5]) }}
           	</div>
-					</div>
-					<div class="form-group">
-						{{ Form::button(trans('form.btn_submit'), ['type'=>'submit', 'class'=>'btn btn-primary']) }}
-					</div>
+						<div class="form-group">
+							{{ Form::button(trans('form.btn_submit'), ['type'=>'submit', 'class'=>'btn btn-primary']) }}
+						</div>
 				</div>
 		</div>
 		{{ Form::close() }}
+	</div>
 </div>
 @endsection
 

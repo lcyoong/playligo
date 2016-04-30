@@ -1,18 +1,24 @@
 @extends('layouts.list')
 @section('content_list')
-<div class="page-header page-heading">
-		<h2><i class="fa fa-list"></i> {{ trans('poll.list') }}
-		<a href="{{ url('poll/create') }}" class="btn btn-default  pull-right"><span class="fa fa-plus"></span> @lang('poll.new')</a></h2>
+<div class="page-breadcrumbs">
+	<h1 class="section-title">{{ trans('poll.list') }}</h1>
+	<div class="world-nav cat-menu">
+		<ul class="list-inline">
+			<li class="active"><a href="{{ url('poll/create') }}" class=""><span class="fa fa-plus"></span> @lang('poll.new')</a></li>
+		</ul>
+	</div>
 </div>
+
+<div class="section">
 <div class="row">
 	<div class="col-md-12">
 		<table class="table table-striped table-hover">
 			<thead>
 				<tr>
-					<td>{{ trans('poll.pol_id') }}</td>
-					<td>{{ trans('poll.pol_title') }}</td>
-          <td>{{ trans('form.created_at') }}</td>
-					<td>{{ trans('form.action_column') }}</td>
+					<th>{{ trans('poll.pol_id') }}</th>
+					<th>{{ trans('poll.pol_title') }}</th>
+          <th>{{ trans('form.created_at') }}</th>
+					<th>{{ trans('form.action_column') }}</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -32,5 +38,6 @@
 		</table>
 		{{ $polls->links() }}
 	</div>
+</div>
 </div>
 @endsection

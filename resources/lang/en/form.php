@@ -19,6 +19,9 @@ return [
     'btn_add_to_poll'               => 'Add current playlist to an existing poll',
     'btn_create_add_to_poll'        => 'Add current playlist to a new poll',
     'btn_another_playlist'          => 'Create another playlist',
+    'btn_reset_password'            => 'Send password reset link',
+    'btn_login'                     => 'Login',
+
     'select_any'                    => '-- Select --',
 
     'search_description'            => 'Start Your Next Journey....',

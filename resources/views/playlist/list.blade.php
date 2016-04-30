@@ -1,24 +1,28 @@
 @extends('layouts.list')
 @section('content_list')
-<div class="page-header page-heading">
-		<h2><i class="fa fa-list"></i> {{ trans('playlist.list') }}
-		<a href="{{ url('search') }}" class="btn btn-default  pull-right"><span class="fa fa-plus"></span> @lang('playlist.new')</a></h2>
+<div class="page-breadcrumbs">
+	<h1 class="section-title">{{ trans('playlist.list') }}</h1>
+	<div class="world-nav cat-menu">
+		<ul class="list-inline">
+			<li class="active"><a href="{{ url('search') }}" class=""><span class="fa fa-plus"></span> @lang('playlist.new')</a></li>
+		</ul>
+	</div>
 </div>
+
+<div class="section">
 <div class="row">
 	<div class="col-md-12">
 		<table class="table table-striped table-hover">
 			<thead>
 				<tr>
-					<td>{{ trans('playlist.pl_id') }}</td>
-					<td>{{ trans('playlist.pl_title') }}</td>
-          <td>{{ trans('form.created_at') }}</td>
-					<td>{{ trans('form.action_column') }}</td>
+					<th>{{ trans('playlist.pl_title') }}</th>
+          <th>{{ trans('form.created_at') }}</th>
+					<th>{{ trans('form.action_column') }}</th>
 				</tr>
 			</thead>
 			<tbody>
 			@foreach ($playlists as $pl)
 			<tr>
-          <td>{{ $pl->pl_id }}</td>
           <td>{{ $pl->pl_title }}</td>
           <td>{{ $pl->created_at }}</td>
           <td>
@@ -33,5 +37,6 @@
 		</table>
 		{{ $playlists->links() }}
 	</div>
+</div>
 </div>
 @endsection
