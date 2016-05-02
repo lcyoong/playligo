@@ -16,7 +16,7 @@
     <link href="{{ elixir('css/app.css') }}" rel="stylesheet">
     @yield('style')
 
-    <script src="//load.sumome.com/" data-sumo-site-id="0d14bc5520d75e27f26cb007f46360306e6a4ec80ac62230d67232201688ceb7" async="async"></script>
+    <script src="//load.sumome.com/" data-sumo-site-id="12f06233c59661b6520eb33ff694b42a0caa863dcc1b7c72527912614ad97be2" async="async"></script>
 </head>
 <body id="home-layout">
 
