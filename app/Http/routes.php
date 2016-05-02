@@ -44,6 +44,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('public_playlist/{playlist}', 'HomeController@playlist');
     Route::get('login_ajax', 'Auth\AuthController@ajaxLogin');
     Route::get('/search/preview/{id}', 'SearchController@preview');
+    Route::post('/susbcribe', 'HomeController@subscribe');
 
     Route::group(['middleware' => 'auth'], function () {
 

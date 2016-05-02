@@ -43,4 +43,11 @@ class HomeController extends Controller
         return view('public.playlist_page', compact('playlist'));
     }
 
+    public function subscribe(Request $request)
+    {
+      $input = $request->all();
+
+      
+    }
+
 }

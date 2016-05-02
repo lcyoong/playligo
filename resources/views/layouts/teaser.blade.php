@@ -15,6 +15,8 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ elixir('css/app.css') }}" rel="stylesheet">
     @yield('style')
+
+    <script src="//load.sumome.com/" data-sumo-site-id="0d14bc5520d75e27f26cb007f46360306e6a4ec80ac62230d67232201688ceb7" async="async"></script>
 </head>
 <body id="home-layout">
 
