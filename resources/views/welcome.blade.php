@@ -3,7 +3,7 @@
 @section('content')
 <div class="container homepage-main">
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-7">
     <img src="{{ asset('img/logo-main.png') }}">
     <h1>Revolutionize the way you travel! Watch short curated destination video playlists before you go.</h1>
     <h2>Be inspired. Decide with confidence.</h2>
@@ -28,7 +28,7 @@
     </div>
     {{ Form::close() }}
   </div>
-  <div class="col-md-6">
+  <div class="col-md-5">
     <img src="{{ asset('img/phone-mockup.png') }}" class="img-responsive img-center">
   </div>
 </div>
