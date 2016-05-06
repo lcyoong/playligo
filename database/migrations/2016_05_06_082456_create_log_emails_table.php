@@ -18,7 +18,7 @@ class CreateLogEmailsTable extends Migration
             $table->string('loem_email');
             $table->string('loem_title');
             $table->text('loem_content');
-            $table->datetime('loem_dt_sent')->default(0);
+            $table->datetime('loem_dt_sent')->default('0000-00-00 00:00:00');
             $table->string('loem_status');
             $table->integer('loem_priority')->default(1);
             $table->string('loem_recipient_name');
