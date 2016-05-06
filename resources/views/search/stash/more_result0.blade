@@ -9,7 +9,7 @@
                   @if (key_exists($item->id->videoId, $selected))
                       <a href="#"><i class="fa fa-check-circle fa-3"></i> Added</a>
                   @else
-                      <a id="{{ $item->id->videoId }}" href="{{ url('playlist/video/add') }}" class="add_video_button"><i class="fa fa-plus-circle fa-3"></i> {{ trans('form.add_to_playlist') }}</a>
+                      <a id="{{ $item->id->videoId }}" href="{{ url('search/add_video') }}" class="add_video_button"><i class="fa fa-plus-circle fa-3"></i> {{ trans('form.add_to_playlist') }}</a>
                   @endif
               </div>
           </div>
@@ -18,4 +18,4 @@
   @endforeach
 </div>
 @endforeach
-<a href="{{ url('/edit_playlist/'.$playlist->pl_id.'/more?search_key=' . $key) }}">{{ Form::button(trans('form.btn_load_more'), ['type'=>'button', 'class'=>'form-control btn btn-primary']) }}</a>
+<a href="{{ url('/results/more?' . Request::getQueryString()) }}">{{ Form::button(trans('form.btn_load_more'), ['type'=>'button', 'class'=>'form-control btn btn-primary']) }}</a>

@@ -11,9 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +33,10 @@ Route::model('playlist_video', 'App\PlaylistVideo');
 Route::model('poll_playlist', 'App\PollPlaylist');
 
 Route::group(['middleware' => 'web'], function () {
+    Route::get('/', function () {
+        return view('welcome');
+    });
+
     Route::auth();
     Route::get('/login/{provider}', 'Auth\AuthController@getSocialAuth');
     Route::get('/login/callback/{provider}', 'Auth\AuthController@getSocialAuthCallback');
@@ -44,31 +45,39 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('public_playlist/{playlist}', 'HomeController@playlist');
     Route::get('login_ajax', 'Auth\AuthController@ajaxLogin');
     Route::get('/search/preview/{id}', 'SearchController@preview');
-    Route::post('/susbcribe', 'HomeController@subscribe');
+    Route::post('/subscribe', 'HomeController@subscribe');
 
     Route::group(['middleware' => 'auth'], function () {
 
       Route::get('/search', 'SearchController@index');
       Route::get('/search_keywords', 'SearchController@searchKeywords');
-      Route::get('/results', 'SearchController@results');
-      Route::post('/sort_selected', 'SearchController@sortSelected');
+      Route::get('/autogen', 'SearchController@autoGen');
+      Route::get('/edit_playlist/{playlist}', 'SearchController@editPlaylist');
+      Route::get('/edit_playlist/{playlist}/more', 'SearchController@editPlaylistMore');
+      Route::get('/edit_playlist/load_selected/{playlist}', 'SearchController@getSelected');
       Route::get('/results/more', 'SearchController@resultsMore');
+      // Route::get('/results', 'SearchController@results');
+      // Route::get('/results/more', 'SearchController@resultsMore');
+      Route::post('/sort_selected', 'SearchController@sortSelected');
 
       Route::post('/search/add_video', 'SearchController@add_video');
       Route::post('/search/selected/remove', 'SearchController@remove_video');
-      Route::get('/search/load_selected', 'SearchController@getSelected');
+      // Route::get('/search/load_selected', 'SearchController@getSelected');
 
       Route::get('/playlist', 'PlaylistController@index');
       Route::post('/playlist/create', 'PlaylistController@store');
       Route::get('/playlist/delete/{playlist}', 'PlaylistController@delete');
       Route::post('/playlist/delete', 'PlaylistController@destroy');
-      Route::get('/playlist/edit/{playlist}', 'PlaylistController@edit');
+      Route::get('/playlist/edit/{playlist}', 'SearchController@editPlaylist');
   		Route::post('/playlist/edit', 'PlaylistController@update');
       Route::get('/playlist/successful/{playlist}', 'PlaylistController@successful');
       Route::post('/playlist/sort_item', 'PlaylistController@sortItem');
+      Route::get('/playlist/preview/{playlist}', 'PlaylistController@preview');
 
       Route::get('/playlist/video/{playlist_video}/delete', 'PlaylistVideoController@delete');
       Route::post('/playlist/video/delete', 'PlaylistVideoController@destroy');
+      Route::post('/playlist/video/instant_delete', 'PlaylistVideoController@instantDestroy');
+      Route::post('/playlist/video/add', 'PlaylistVideoController@store');
 
       Route::get('/poll', 'PollController@index');
       Route::get('/poll/create', 'PollController@create');

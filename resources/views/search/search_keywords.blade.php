@@ -5,8 +5,8 @@
     <h1><span class="label label-success">Destination: {{ $location }}</span></h1>
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <h1>Any specific places to visit? Specific food and things to do?<br/>How would you describe this trip? Enter each keyword/phase in a box below...</h1>
-            {{ Form::open(['url'=>'results', 'method'=>'get']) }}
+            <h1>Do you have specific places to visit? Any specific food and things to do? How would you describe this trip? Enter each keyword/phase in a box below...</h1>
+            {{ Form::open(['url'=>'autogen', 'method'=>'get']) }}
             {{ Form::hidden('location', $location) }}
             <div class="row">
                 <div class="col-md-12">

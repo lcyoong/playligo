@@ -16,6 +16,7 @@ class CreatePlaylistsTable extends Migration
             $table->increments('pl_id');
             $table->integer('pl_user')->unsigned();
             $table->string('pl_title');
+            $table->string('pl_location');
             $table->integer('pl_view')->unsigned()->default(0);
             $table->string('pl_description');
             $table->string('pl_status');

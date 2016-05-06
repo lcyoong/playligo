@@ -21,11 +21,13 @@ return [
     'btn_another_playlist'          => 'Create another playlist',
     'btn_reset_password'            => 'Send password reset link',
     'btn_login'                     => 'Login',
+    'btn_save_playlist'             => 'Save Playlist',
+    'btn_preview_playlist'          => 'Preview Playlist',
 
     'select_any'                    => '-- Select --',
 
     'search_description'            => 'Start Your Next Journey....',
-    'enter_first_destination'       => 'Please enter your first destination...',
+    'enter_first_destination'       => 'Please enter a destination...',
     'eg_destination'                => 'e.g. Hanoi',
     'add_to_playlist'               => 'Add to playlist',
     'selected_videos'               => 'Selected videos',

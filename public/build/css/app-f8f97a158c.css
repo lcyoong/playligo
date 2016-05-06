@@ -106,6 +106,15 @@
   text-align: center;
   margin: 100px 0px; }
 
+.pop_message ul {
+  list-style-type: none; }
+
+.pop_message li {
+  font-size: 1.3em; }
+
+#messageModal .modal-content {
+  padding: 50px 20px; }
+
 #home-layout {
   background-image: url("../../img/santorini-bg-blue.png");
   background-repeat: no-repeat;

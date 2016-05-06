@@ -16,7 +16,8 @@ class PlaylistVideo extends Model
         foreach ($videos as $key => $video_id) {
             $this->create(['plv_playlist' => $playlist_id,
                             'plv_video_id' => $video_id,
-                            'plv_order' => $key]);
+                            // 'plv_order' => $key
+                          ]);
         }
     }
 
@@ -42,5 +43,12 @@ class PlaylistVideo extends Model
     private function lastOrder($pl_id)
     {
         return $this->where('plv_playlist', '=', $pl_id)->max('plv_order') + 1;
+    }
+
+    public static function boot()
+    {
+        PlaylistVideo::creating(function ($post) {
+          $post['plv_order'] = $post->lastOrder($post['plv_playlist']);
+        });
     }
 }

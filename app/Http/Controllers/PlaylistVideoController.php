@@ -21,6 +21,16 @@ class PlaylistVideoController extends Controller
         $this->plvRepo = $plvRepo;
     }
 
+    public function store(Request $request)
+    {
+        $input = $request->input();
+
+        $created = $this->plvRepo->create(['plv_playlist' => array_get($input, 'pl_id'), 'plv_video_id' => array_get($input, 'id')]);
+
+        return response()->json(['created' => $created]);
+    }
+
+
     public function delete(PlaylistVideo $video)
     {
         return view('playlistvideo.delete', compact('video'));
@@ -32,4 +42,12 @@ class PlaylistVideoController extends Controller
 
         return back()->with('status', trans('messages.delete_successful'));
     }
+
+    public function instantDestroy(Request $request)
+    {
+        $deleted = $this->plvRepo->find($request->input('plv_id'))->delete();
+
+        return response()->json(['deleted' => $deleted]);
+    }
+
 }

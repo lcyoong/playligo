@@ -20,5 +20,6 @@ return [
     'poll_add_successful'                     => 'Added to poll successfully!',
     'store_successful'                        => 'Saved successfully!',
     'vote_successful'                         => 'Your vote is counted. Thanks!',
+    'subscribe_successful'                    => 'You are now subscribed to Playligo!',
 
 ];

@@ -2,10 +2,9 @@
 
 @section('content')
 <div class="container">
-    <h1><span class="label label-success">Destination: {{ $location }}</span></h1>
+    <h1><span class="label label-success">Destination: {{ $playlist->pl_location }}</span></h1>
     <div class="row">
         <div class="col-md-8">
-            {{ Form::open(['url'=>'search', 'action'=>'post']) }}
               @foreach($resultsets as $key => $result)
               <div class="scroll">
                 <h5><span class="label label-danger">{{ $key }}</span></h5>
@@ -15,35 +14,36 @@
                           <div class="col-md-3 col-sm-3 col-xs-3 select_video_thumbnail">
                               <a href="{{ url('search/preview/' . $item->id->videoId) }}" class="btn-modal"><img id="thumb{{ $item->id->videoId }}" src="{{ $item->snippet->thumbnails->medium->url }}" class="img-rounded @if (in_array($item->id->videoId, $selected)) selected_disable @endif" width="100%"></a>
                               <div class="select_video_control">
-                                  @if (key_exists($item->id->videoId, $selected))
+                                  @if (in_array($item->id->videoId, $selected))
                                       <a href="#"><i class="fa fa-check-circle fa-3"></i> Added</a>
                                   @else
-                                      <a id="{{ $item->id->videoId }}" href="{{ url('search/add_video') }}" class="add_video_button"><i class="fa fa-plus-circle fa-3"></i> {{ trans('form.add_to_playlist') }}</a>
+                                      <a id="{{ $item->id->videoId }}" href="{{ url('playlist/video/add') }}" class="add_video_button"><i class="fa fa-plus-circle fa-3"></i> {{ trans('form.add_to_playlist') }}</a>
                                   @endif
                               </div>
                           </div>
                       @endforeach
                       </div>
                   @endforeach
-                  <a href="{{ url('/results/more?' . $query_str[$key]) }}">{{ Form::button(trans('form.btn_load_more'), ['type'=>'button', 'class'=>'form-control btn btn-primary']) }}</a>
+                  <a href="{{ url('/edit_playlist/'.$playlist->pl_id.'/more?search_key=' . $key) }}">{{ Form::button(trans('form.btn_load_more'), ['type'=>'button', 'class'=>'form-control btn btn-primary']) }}</a>
               </div>
               @endforeach
-            {{ Form::close() }}
         </div>
 
         <div class="col-md-4">
-          {{ Form::open(['url'=>url('playlist/create'), 'action'=>'post']) }}
+          {{ Form::open(['url'=>url('playlist/edit'), 'action'=>'post']) }}
+          {{ Form::hidden('pl_id', $playlist->pl_id, ['id'=>'pl_id']) }}
           <div id="selected_videos">
           </div>
           <div class="row">
               <div class="col-md-12">
                   <div class="form-group">
                       {{ Form::label('pl_title', trans('playlist.pl_title'), ['class'=>'control-label']) }}
-                      {{ Form::text('pl_title', $default_playlist_title, ['class'=>'form-control']) }}
+                      {{ Form::text('pl_title', $playlist->pl_title, ['class'=>'form-control']) }}
                   </div>
               </div>
           </div>
-          {{ Form::button( trans('form.btn_create_playllist'), ['type'=>'submit', 'class'=>'btn btn-primary']) }}
+          {{ Form::button( trans('form.btn_save_playlist'), ['type'=>'submit', 'class'=>'btn btn-primary']) }}
+          <a href="{{ url('playlist/preview/' . $playlist->pl_id) }}">{{ Form::button( trans('form.btn_preview_playlist'), ['class'=>'btn btn-primary']) }}</a>
           {{ Form::close() }}
         </div>
     </div>
@@ -64,11 +64,12 @@ $(document).ready(function() {
 	$('body').on('click', '.add_video_button', function (event) {
 			event.preventDefault();
       var id = $(this).attr('id');
+      var pl_id = $('#pl_id').val();
 			$.ajax({
 					url: $(this).attr('href'),
 					type: 'POST',
 					dataType: 'json',
-					data: {id: id, _token: "{{ csrf_token() }}"},
+					data: {pl_id: pl_id, id: id, _token: "{{ csrf_token() }}"},
 					success: function (data) {
               // Update selected videos section
               $('#selected_videos').hide().fadeIn('fast');
@@ -89,12 +90,13 @@ $(document).ready(function() {
   // Remove video from selected list
   $('body').on('click', '.remove_video_button', function (event) {
 			event.preventDefault();
+      var plv_id = $(this).attr('plv_id');
       var id = $(this).attr('id');
 			$.ajax({
 					url: $(this).attr('href'),
 					type: 'POST',
 					dataType: 'json',
-					data: {id: id, _token: "{{ csrf_token() }}"},
+					data: {plv_id: plv_id, _token: "{{ csrf_token() }}"},
 					success: function (data) {
               // Update selected videos section
               $('#selected_videos').hide().fadeIn('fast');
@@ -118,7 +120,7 @@ $(document).ready(function() {
 function getLatestSelected()
 {
   $.ajax({
-      url: "{{ url('/search/load_selected') }}",
+      url: "{{ url('/edit_playlist/load_selected/' . $playlist->pl_id) }}",
       type: 'GET',
       // dataType: 'json',
       // data: {_token: "{{ csrf_token() }}"},

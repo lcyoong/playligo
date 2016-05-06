@@ -2,55 +2,73 @@
 
 @section('content')
 <div class="container">
-    <h1><span class="label label-success">Destination: {{ $location }}</span></h1>
+    <h1><span class="label label-success">{{ $default_playlist_title }}</span></h1>
     <div class="row">
         <div class="col-md-8">
-            {{ Form::open(['url'=>'search', 'action'=>'post']) }}
-              @foreach($resultsets as $key => $result)
-              <div class="scroll">
-                <h5><span class="label label-danger">{{ $key }}</span></h5>
-                  @foreach(array_chunk($result, 4) as $item_set)
-                      <div class="row">
-                      @foreach($item_set as $item)
-                          <div class="col-md-3 col-sm-3 col-xs-3 select_video_thumbnail">
-                              <a href="{{ url('search/preview/' . $item->id->videoId) }}" class="btn-modal"><img id="thumb{{ $item->id->videoId }}" src="{{ $item->snippet->thumbnails->medium->url }}" class="img-rounded @if (in_array($item->id->videoId, $selected)) selected_disable @endif" width="100%"></a>
-                              <div class="select_video_control">
-                                  @if (key_exists($item->id->videoId, $selected))
-                                      <a href="#"><i class="fa fa-check-circle fa-3"></i> Added</a>
-                                  @else
-                                      <a id="{{ $item->id->videoId }}" href="{{ url('search/add_video') }}" class="add_video_button"><i class="fa fa-plus-circle fa-3"></i> {{ trans('form.add_to_playlist') }}</a>
-                                  @endif
-                              </div>
-                          </div>
-                      @endforeach
-                      </div>
-                  @endforeach
-                  <a href="{{ url('/results/more?' . $query_str[$key]) }}">{{ Form::button(trans('form.btn_load_more'), ['type'=>'button', 'class'=>'form-control btn btn-primary']) }}</a>
-              </div>
-              @endforeach
-            {{ Form::close() }}
+          <div class="video_wrapper">
+            <div id="player"></div>
+          </div>
+          <!-- <div class="video_wrapper">
+      				<iframe src="https://www.youtube.com/embed/{{ $auto_playlist[0]->id->videoId }}" frameborder="0" allowfullscreen></iframe>
+      		</div> -->
         </div>
 
-        <div class="col-md-4">
-          {{ Form::open(['url'=>url('playlist/create'), 'action'=>'post']) }}
-          <div id="selected_videos">
-          </div>
-          <div class="row">
-              <div class="col-md-12">
-                  <div class="form-group">
-                      {{ Form::label('pl_title', trans('playlist.pl_title'), ['class'=>'control-label']) }}
-                      {{ Form::text('pl_title', $default_playlist_title, ['class'=>'form-control']) }}
-                  </div>
-              </div>
-          </div>
-          {{ Form::button( trans('form.btn_create_playllist'), ['type'=>'submit', 'class'=>'btn btn-primary']) }}
-          {{ Form::close() }}
+        <div class="col-md-4" class="">
+          <a href="{{ url('edit_playlist/' . $playlist->pl_id . '?' . $_SERVER['QUERY_STRING']) }}">{{ Form::button('Edit playlist', ['class'=>'btn btn-primary']) }}</a>
+          <a href="{{ url('search') }}">{{ Form::button(trans('form.btn_another_playlist'), ['class'=>'btn btn-primary']) }}</a>
         </div>
     </div>
 </div>
 @endsection
 
 @section('script')
+<script src="http://www.youtube.com/player_api"></script>
+<script>
+
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    var player;
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('player', {
+        playerVars: { 'autoplay': 1, 'controls': 2, 'showinfo': 1},
+        // videoId: '{{ $auto_playlist[0]->id->videoId }}',
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    }
+
+
+    function onPlayerReady(event) {
+      <?php $videos = [] ?>
+      @foreach ($auto_playlist as $item)
+      <?php $videos[] = $item->id->videoId; ?>
+      @endforeach
+      var videos = {!! json_encode($videos) !!};
+      event.target.loadPlaylist(videos);
+      event.target.playVideo();
+    }
+
+    var done = false;
+    function onPlayerStateChange(event) {
+      if (event.data == YT.PlayerState.PLAYING && !done) {
+        // setTimeout(stopVideo, 6000);
+        done = true;
+      }
+    }
+
+    function stopVideo() {
+      player.stopVideo();
+    }
+
+    function loadVideo() {
+      player.loadVideoById("bHQqvYy5KYo", 5, "large");
+    }
+
+</script>
 <script src="{{ asset('/js/jquery.jscroll.min.js') }}"></script>
 <script>
 $('.scroll').jscroll({
@@ -59,7 +77,15 @@ $('.scroll').jscroll({
 });
 
 $(document).ready(function() {
-  getLatestSelected();
+  // getLatestSelected();
+
+  $('body').on('click', '.play_video', function (event) {
+			event.preventDefault();
+      var id = $(this).attr('id');
+      player.loadVideoById(id, 5, "large");
+
+			return false;
+	});
 
 	$('body').on('click', '.add_video_button', function (event) {
 			event.preventDefault();

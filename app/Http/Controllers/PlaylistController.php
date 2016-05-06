@@ -104,4 +104,12 @@ class PlaylistController extends Controller
 
     }
 
+    public function preview(Playlist $playlist)
+    {
+      $videos = $playlist->videos;
+
+      return view('playlist.preview', compact('videos', 'playlist'));
+      // return view('playlist.preview', compact('playlist'));
+    }
+
 }
