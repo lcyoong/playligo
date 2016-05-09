@@ -94,13 +94,11 @@ class AuthController extends Controller
     public function getSocialAuthCallback($provider=null)
     {
         if ($user = Socialite::with($provider)->user()) {
-
             $authUser = $this->findOrCreateUser($user);
 
             if (!empty($authUser)) {
               Auth::login($authUser, true);
             }
-
 
             if (session()->has('last_page')) {
               return redirect(session()->pull('last_page'));
