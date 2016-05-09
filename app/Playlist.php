@@ -36,4 +36,11 @@ class Playlist extends Model
         return $query->leftJoin('playlist_videos', 'plv_playlist', '=', 'pl_id')->groupBy('plv_playlist');
     }
 
+    public function updateRating($pl_id)
+    {
+        $repoPlr = new PlaylistRating;
+
+        return $this->find($pl_id)->update(['pl_rating'=>$repoPlr->latestRating($pl_id)]);
+    }
+
 }
