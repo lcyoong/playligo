@@ -94,9 +94,13 @@ class AuthController extends Controller
     public function getSocialAuthCallback($provider=null)
     {
         if ($user = Socialite::with($provider)->user()) {
+
             $authUser = $this->findOrCreateUser($user);
 
-            Auth::login($authUser, true);
+            if (!empty($authUser)) {
+              Auth::login($authUser, true);
+            }
+
 
             if (session()->has('last_page')) {
               return redirect(session()->pull('last_page'));
@@ -122,12 +126,14 @@ class AuthController extends Controller
             return $authUser;
         }
 
-        return User::create([
+        $input = [
             'name' => $facebookUser->name,
             'email' => $facebookUser->email,
             'facebook_id' => $facebookUser->id,
             'avatar' => $facebookUser->avatar
-        ]);
+        ];
+
+        return User::create($input);
     }
 
     public function ajaxLogin()

@@ -40,6 +40,12 @@
     $.src="//v2.zopim.com/?3tJY4ySCgNDah77yIJSnKlD2M8YviqKH";z.t=+new Date;$.
     type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
     </script>
+    <script>
+    $zopim(function(){
+    $zopim.livechat.button.setPosition('tr');
+    });
+
+    </script>
     <!--End of Zopim Live Chat Script-->
 
     <!--Start of Google Analytics Script-->
