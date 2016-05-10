@@ -73,6 +73,7 @@
               <ul class="nav navbar-nav">
                   <li><a href="{{ url('/home') }}">Home</a></li>
                   <li><a href="{{ url('/search') }}"><i class="fa fa-search"></i> Search</a></li>
+                  <li><a href="{{ url('/suggest_location') }}"><i class="fa fa-lightbulb-o"></i> Suggest</a></li>
               </ul>
 
               <ul class="nav navbar-nav navbar-right">

@@ -9,4 +9,5 @@ return array(
     'email_subscriber'                          => 'subscriber@playligo.com',
 
     'email_subscribe_subject'                   => 'Thanks for subscribing to Playligo',
+    'min_significant_hotel'                     => 150,
 );

@@ -10,6 +10,8 @@ use App\VideoCache;
 use App\Playlist;
 use App\PlaylistVideo;
 use App\PlaylistKey;
+use App\Country;
+use App\City;
 use Auth;
 use Session;
 
@@ -327,4 +329,23 @@ class SearchController extends Controller
       return $playlist;
 
     }
+
+    public function suggestRegion(Request $request)
+    {
+      $repoCoun = new Country;
+
+      $continents = $repoCoun->continents();
+
+      return view('search.suggest_continent', compact('continents'));
+    }
+
+    public function suggestLocation(Request $request, $region)
+    {
+      $repoCit = new City;
+
+      $cities = $repoCit->byContinent($region)->get();
+
+      return view('search.suggest_location', compact('cities'));
+    }
+
 }

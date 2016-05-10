@@ -50,6 +50,8 @@ Route::group(['middleware' => 'web'], function () {
     Route::group(['middleware' => 'auth'], function () {
 
       Route::get('/search', 'SearchController@index');
+      Route::get('/suggest_location', 'SearchController@suggestRegion');
+      Route::get('/suggest_location/{region}', 'SearchController@suggestLocation');
       Route::get('/search_keywords', 'SearchController@searchKeywords');
       Route::get('/autogen', 'SearchController@autoGen');
       Route::get('/edit_playlist/{playlist}', 'SearchController@editPlaylist');
