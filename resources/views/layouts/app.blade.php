@@ -11,27 +11,19 @@
 
     <!-- Fonts -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
-    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
+    <!-- <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'> -->
+    <link href='https://fonts.googleapis.com/css?family=Signika+Negative:400,300,600,700' rel='stylesheet' type='text/css'>
 
     <!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.1.1/jquery.rateyo.min.css">
     <link href="{{ asset('css/jquery-ui.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('css/presets/preset1.css') }}" rel="stylesheet">
     <link href="{{ asset('css/responsive.css') }}" rel="stylesheet">
     <link href="{{ elixir('css/app.css') }}" rel="stylesheet">
-
-    <style>
-        body {
-            font-family: 'Lato';
-        }
-
-        .fa-btn {
-            margin-right: 6px;
-        }
-    </style>
     @yield('style')
-    <script src="//load.sumome.com/" data-sumo-site-id="12f06233c59661b6520eb33ff694b42a0caa863dcc1b7c72527912614ad97be2" async="async"></script>
+    <!-- <script src="//load.sumome.com/" data-sumo-site-id="12f06233c59661b6520eb33ff694b42a0caa863dcc1b7c72527912614ad97be2" async="async"></script> -->
 </head>
 <body>
   <div id="main-wrapper" class="homepage">
@@ -155,76 +147,6 @@
 				</ul>
 			</div>
 		</div>
-		<div class="bottom-widgets">
-			<div class="container">
-				<div class="col-sm-4">
-					<div class="widget">
-						<h2>Category</h2>
-						<ul>
-							<li><a href="#">Business</a></li>
-							<li><a href="#">Politics</a></li>
-							<li><a href="#">Sports</a></li>
-							<li><a href="#">World</a></li>
-							<li><a href="#">Technology</a></li>
-						</ul>
-						<ul>
-							<li><a href="#">Environment</a></li>
-							<li><a href="#">Health</a></li>
-							<li><a href="#">Entertainment</a></li>
-							<li><a href="#">Lifestyle</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-sm-2">
-					<div class="widget">
-						<h2>Editions</h2>
-						<ul>
-							<li><a href="#">United States</a></li>
-							<li><a href="#">China</a></li>
-							<li><a href="#">India</a></li>
-							<li><a href="#">Maxico</a></li>
-							<li><a href="#">Middle East</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-sm-4">
-					<div class="widget">
-						<h2>Tag</h2>
-						<ul>
-							<li><a href="#">Gallery</a></li>
-							<li><a href="#">Sports</a></li>
-							<li><a href="#">Featured</a></li>
-							<li><a href="#">World</a></li>
-							<li><a href="#">Fashion</a></li>
-						</ul>
-						<ul>
-							<li><a href="#">Environment</a></li>
-							<li><a href="#">Health</a></li>
-							<li><a href="#">Entertainment</a></li>
-							<li><a href="#">Lifestyle</a></li>
-							<li><a href="#">Business</a></li>
-						</ul>
-						<ul>
-							<li><a href="#">Tech</a></li>
-							<li><a href="#">Movie</a></li>
-							<li><a href="#">Music</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-sm-2">
-					<div class="widget">
-						<h2>Products</h2>
-						<ul>
-							<li><a href="#">Ebook</a></li>
-							<li><a href="#">Baby Product</a></li>
-							<li><a href="#">Magazine</a></li>
-							<li><a href="#">Sports Elements</a></li>
-							<li><a href="#">Technology</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
 	<div class="footer-bottom">
 		<div class="container text-center">
 			<p><a href="#">Playligo </a>&copy; 2015 </p>
@@ -241,6 +163,7 @@
     <!-- JavaScripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.1.1/jquery.rateyo.min.js"></script>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
     <script type="text/javascript" src="{{ URL::asset('js/playligo-main.js')}}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/main.js')}}"></script>

@@ -25,7 +25,7 @@ class PlaylistController extends Controller
 
     public function index(Request $request)
     {
-        $playlists = $this->plRepo->filterOwner($request->user()->id)->getPaginated();
+        $playlists = $this->plRepo->filterOwner($request->user()->id)->orderBy('pl_id', 'desc')->getPaginated();
 
         return view('playlist.list', compact('playlists'));
     }

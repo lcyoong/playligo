@@ -9,7 +9,7 @@
       </div>
       <div class="col-md-6 col-sm-8 col-xs-6">
           <div class="selected_video_title">{{ $video_snippet->title }}</div>
-          <div class="selected_video_published"><i class="fa fa-clock-o"></i> {{ $video_snippet->publishedAt }}</div>
+          <!-- <div class="selected_video_published"><i class="fa fa-clock-o"></i> {{ $video_snippet->publishedAt }}</div> -->
       </div>
       <div class="col-md-2 col-sm-2 col-xs-2">
           <a plv_id="{{ $video->plv_id }}" id="{{ $video->vc_id }}" class="remove_video_button" href="{{ url('playlist/video/instant_delete') }}"><i class="fa fa-times-circle fa-4"></i></a>

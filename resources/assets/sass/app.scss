@@ -2,6 +2,7 @@
 
 .select_video_thumbnail{
     margin-bottom: 5px;
+    position:relative;
 }
 
 .video_wrapper {
@@ -144,4 +145,29 @@
 
 #messageModal .modal-content{
   padding: 50px 20px;
+}
+
+.action_column .fa{
+  font-size: 1.3em;
+}
+
+
+.pagination>li:first-child>a, .pagination>li:first-child>span{
+  padding:12px 30px;
+}
+
+div.description {
+    display: none;
+    position: absolute;
+    // left: 0;
+    top: 0;
+    background: #000000;
+    background: rgba(0,0,0,0.9);
+    color: #ffffff;
+    font-size: 12px;
+    text-align:justify;;
+}
+
+div.description_content{
+    padding:10px;
 }

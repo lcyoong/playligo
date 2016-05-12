@@ -25,7 +25,7 @@
 			<tr>
           <td>{{ $pl->pl_title }}</td>
           <td>{{ $pl->created_at }}</td>
-          <td>
+          <td class="action_column">
               <a href="{{ url('playlist/edit/' . $pl->pl_id) }}" title="{{ trans('form.action_edit') }}"><i class="fa fa-edit"></i></a>
               <a href="{{ url('playlist/delete/' . $pl->pl_id) }}" title="{{ trans('form.action_delete') }}" class="btn-modal"><i class="fa fa-trash"></i></a>
 							<a href="{{ url('poll/add/' . $pl->pl_id) }}" title="{{ trans('form.action_add_poll') }}" class="btn-modal"><i class="fa fa-plus-square"></i></a>
@@ -35,7 +35,9 @@
 			@endforeach
 			</tbody>
 		</table>
-		{{ $playlists->links() }}
+		<div class="pagination-wrapper">
+			{{ $playlists->links() }}
+		</div>
 	</div>
 </div>
 </div>

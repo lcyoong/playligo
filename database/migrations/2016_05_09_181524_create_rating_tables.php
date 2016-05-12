@@ -40,10 +40,12 @@ class CreateRatingTables extends Migration
 
       Schema::table('playlists', function ($table) {
         $table->decimal('pl_rating', 3, 1)->default(0);
+        $table->integer('pl_rating_count')->unsigned()->default(0);
       });
 
       Schema::table('polls', function ($table) {
         $table->decimal('pol_rating', 3, 1)->default(0);
+        $table->integer('pol_rating_count')->unsigned()->default(0);
       });
 
     }

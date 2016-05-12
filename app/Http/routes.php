@@ -81,6 +81,8 @@ Route::group(['middleware' => 'web'], function () {
       Route::post('/playlist/video/instant_delete', 'PlaylistVideoController@instantDestroy');
       Route::post('/playlist/video/add', 'PlaylistVideoController@store');
 
+      Route::post('/playlist/rating/add', 'PlaylistRatingController@store');
+
       Route::get('/poll', 'PollController@index');
       Route::get('/poll/create', 'PollController@create');
       Route::post('/poll/create', 'PollController@store');

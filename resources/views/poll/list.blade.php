@@ -15,7 +15,6 @@
 		<table class="table table-striped table-hover">
 			<thead>
 				<tr>
-					<th>{{ trans('poll.pol_id') }}</th>
 					<th>{{ trans('poll.pol_title') }}</th>
           <th>{{ trans('form.created_at') }}</th>
 					<th>{{ trans('form.action_column') }}</th>
@@ -24,10 +23,9 @@
 			<tbody>
 			@foreach ($polls as $pol)
 			<tr>
-          <td>{{ $pol->pol_id }}</td>
           <td>{{ $pol->pol_title }}</td>
           <td>{{ $pol->created_at }}</td>
-          <td>
+          <td class="action_column">
               <a href="{{ url('poll/edit/' . $pol->pol_id) }}" title="{{ trans('form.action_edit') }}"><i class="fa fa-edit"></i></a>
               <a href="{{ url('poll/delete/' . $pol->pol_id) }}" title="{{ trans('form.action_delete') }}" class="btn-modal"><i class="fa fa-trash"></i></a>
 							<a href="{{ url('public_poll/' . $pol->pol_id) }}" title="{{ trans('form.action_view') }}"><i class="fa fa-eye"></i></a>
@@ -36,7 +34,9 @@
 			@endforeach
 			</tbody>
 		</table>
-		{{ $polls->links() }}
+		<div class="pagination-wrapper">
+			{{ $polls->links() }}
+		</div>
 	</div>
 </div>
 </div>

@@ -12,7 +12,9 @@
                       <div class="row">
                       @foreach($item_set as $item)
                           <div class="col-md-3 col-sm-3 col-xs-3 select_video_thumbnail">
-                              <a href="{{ url('search/preview/' . $item->id->videoId) }}" class="btn-modal"><img id="thumb{{ $item->id->videoId }}" src="{{ $item->snippet->thumbnails->medium->url }}" class="img-rounded @if (in_array($item->id->videoId, $selected)) selected_disable @endif" width="100%"></a>
+                              <a href="{{ url('search/preview/' . $item->id->videoId) }}" class="btn-modal"><img id="thumb{{ $item->id->videoId }}" src="{{ $item->snippet->thumbnails->medium->url }}" class="video_thumbnail @if (in_array($item->id->videoId, $selected)) selected_disable @endif" width="100%">
+                                <div class="description"><div class='description_content'>{{ $item->snippet->title }}</div></div>
+                              </a>
                               <div class="select_video_control">
                                   @if (in_array($item->id->videoId, $selected))
                                       <a href="#"><i class="fa fa-check-circle fa-3"></i> Added</a>
@@ -113,6 +115,20 @@ $(document).ready(function() {
 
 			return false;
 	});
+
+  // Video thumbs description hover
+  $(document).on({
+    mouseenter: function(){
+        $('div.description').css('width', $('.video_thumbnail').width());
+
+        $('div.description').css('height', $('.video_thumbnail').height());
+
+        $(this).children('.description').stop().fadeTo(500, 0.7);
+    },
+    mouseleave: function(){
+        $(this).children('.description').stop().fadeTo(500, 0);
+    }
+  }, '.select_video_thumbnail a');
 
 });
 

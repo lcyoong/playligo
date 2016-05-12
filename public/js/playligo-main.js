@@ -27,6 +27,11 @@ $(document).ready(function () {
         $('#basicModal').find('.modal-content').load($(this).attr('href'));
     });
 
+    $("#basicModal").on('hidden.bs.modal', function () {
+      // $(this).data('bs.modal', null);
+      $("#previewVideo").attr("src","");
+    });
+
     $('html').on('submit', '.submit-ajax', function (event) {
         event.preventDefault();
         $.ajax({

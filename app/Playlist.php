@@ -12,7 +12,7 @@ class Playlist extends Model
 
     protected $table = 'playlists';
     protected $primaryKey = 'pl_id';
-    protected $fillable = ['pl_user', 'pl_title', 'pl_description', 'pl_status', 'pl_location'];
+    protected $fillable = ['pl_user', 'pl_title', 'pl_description', 'pl_status', 'pl_location', 'pl_rating', 'pl_rating_count'];
 
     public function videos()
     {
@@ -40,7 +40,7 @@ class Playlist extends Model
     {
         $repoPlr = new PlaylistRating;
 
-        return $this->find($pl_id)->update(['pl_rating'=>$repoPlr->latestRating($pl_id)]);
+        return $this->find($pl_id)->update(['pl_rating'=>$repoPlr->latestRating($pl_id), 'pl_rating_count'=> $repoPlr->latestCount($pl_id)]);
     }
 
 }

@@ -22,6 +22,8 @@
         <div class="video_wrapper">
           <div id="player"></div>
         </div>
+        <div id="rating" class="pull-left"></div> <div class="pull-left">{{ $playlist->pl_rating }} ({{ $playlist->pl_rating_count }} @lang('playlist.pl_rating_count'))</div> <div id="newRating" class="pull-left" href="{{ url('playlist/rating/add') }}"></div>
+        <div class="clearfix"></div>
         <div class="fb-comments" data-href="{{ request()->url() }}" data-numposts="5" data-width="100%"></div>
       </div>
       <div class="col-md-4">
@@ -137,6 +139,33 @@ function getLatestSelected()
   });
 
 }
+
+
+$(function () {
+
+  $("#rating").rateYo({
+    starWidth: "20px",
+    rating    : {{ $playlist->pl_rating }},
+    readOnly: true
+  });
+
+  $("#newRating").rateYo({
+    starWidth: "20px",
+    halfStar: true,
+  }).on("rateyo.set", function (e, data) {
+    var rating = data.rating;
+    $.ajax({
+        url: $(this).attr('href'),
+        type: 'POST',
+        dataType: 'json',
+        data: {plr_playlist: {{ $playlist->pl_id }}, plr_rating:rating, _token: "{{ csrf_token() }}"},
+        success: function (data) {
+            location.reload();
+        }
+    });
+  });
+
+});
 </script>
 @endsection
 

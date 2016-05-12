@@ -15,6 +15,11 @@ class PlaylistRating extends Model
         return $this->where('plr_playlist', '=', $pl_id)->where('plr_status', '=', 'active')->avg('plr_rating');
     }
 
+    public function latestCount($pl_id)
+    {
+        return $this->where('plr_playlist', '=', $pl_id)->where('plr_status', '=', 'active')->count('plr_id');
+    }
+
     public static function boot()
     {
         parent::boot();
@@ -22,7 +27,7 @@ class PlaylistRating extends Model
         {
             $repoPl = new Playlist;
 
-            $rating = $repoPl->updateRating($post->plr_playlist);
+            $repoPl->updateRating($post->plr_playlist);
         });
     }
 
