@@ -11,6 +11,7 @@ return [
 
     'btn_submit'                    => 'Submit',
     'btn_search'                    => 'Search',
+    'btn_clear_search'              => 'Clear',
     'btn_create_playllist'          => 'Create Playlist',
     'btn_cancel'                    => 'Cancel',
     'btn_delete'                    => 'Delete',

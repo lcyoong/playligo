@@ -4,10 +4,12 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
+use App\Traits\ModelTrait;
 
 class User extends Authenticatable
 {
     use EntrustUserTrait;
+    use ModelTrait;
     /**
      * The attributes that are mass assignable.
      *
@@ -25,4 +27,23 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function playlists()
+    {
+      return $this->hasMany('App\Playlist', 'pl_user', 'id');
+    }
+
+    public function polls()
+    {
+      return $this->hasMany('App\Poll', 'pol_user', 'id');
+    }
+
+    public function stat()
+    {
+      $playlist_count = $this->playlists()->count();
+
+      $poll_count = $this->polls()->count();
+
+      return compact('playlist_count', 'poll_count');
+    }
 }

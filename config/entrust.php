@@ -89,4 +89,6 @@ return [
     */
     'role_foreign_key' => 'role_id',
 
+    'member_role_id' => 2,
+
 ];

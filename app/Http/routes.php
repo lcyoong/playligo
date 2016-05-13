@@ -31,6 +31,7 @@ Route::model('playlist', 'App\Playlist');
 Route::model('poll', 'App\Poll');
 Route::model('playlist_video', 'App\PlaylistVideo');
 Route::model('poll_playlist', 'App\PollPlaylist');
+Route::model('user', 'App\User');
 
 Route::group(['middleware' => 'web'], function () {
     Route::get('/', function () {
@@ -99,6 +100,17 @@ Route::group(['middleware' => 'web'], function () {
 
       Route::get('/poll/playlist/{poll_playlist}/delete', 'PollPlaylistController@delete');
       Route::post('/poll/playlist/delete', 'PollPlaylistController@destroy');
+
+      Route::group(['middleware' => ['role:admin']], function () {
+        // dd('ss');
+        Route::get('/admin', 'AdminController@index');
+        Route::get('/admin/user', 'UserController@index');
+        Route::get('/admin/playlist', 'PlaylistController@adminList');
+        Route::post('/admin/playlist/search', 'PlaylistController@search');
+        Route::get('/admin/poll', 'PollController@adminList');
+
+        Route::get('/admin/user/popup/{user}', 'UserController@popUp');
+      });
 
     });
 

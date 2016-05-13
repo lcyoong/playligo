@@ -15,6 +15,7 @@ return [
     'list'                  => 'Playlists',
     'edit_title'            => 'Edit Playlist',
     'new'                   => 'New Playlist',
-    'pl_rating_count'       => 'ratings',
+    'pl_rating_count'       => 'Ratings',
+    'pl_user'               => 'Owner',
 
 ];

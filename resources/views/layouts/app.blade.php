@@ -74,8 +74,11 @@
                       <li><a href="{{ url('/login') }}">Login</a></li>
                       <li><a href="{{ url('/register') }}">Register</a></li>
                   @else
-                      <li><a href="{{ url('/playlist') }}"><i class="fa fa-list"></i> Playlists</a></li>
-                      <li><a href="{{ url('/poll') }}"><i class="fa fa-bar-chart"></i> Polls</a></li>
+                      <li><a href="{{ url('/playlist') }}"><i class="fa fa-list"></i> My Playlists</a></li>
+                      <li><a href="{{ url('/poll') }}"><i class="fa fa-bar-chart"></i> My Polls</a></li>
+                      @if (auth()->user()->hasRole('admin'))
+                      <li><a href="{{ url('/admin') }}"><i class="fa fa-gears"></i> Admin</a></li>
+                      @endif
                       <li class="dropdown">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                               {{ Auth::user()->name }}
@@ -91,40 +94,6 @@
               </ul>
 
   					</nav>
-  					<!-- <div class="searchNlogin">
-  						<ul>
-  							<li class="search-icon"><i class="fa fa-search"></i></li>
-  							<li class="dropdown user-panel"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i></a>
-  								<div class="dropdown-menu top-user-section">
-  									<div class="top-user-form">
-  										<form id="top-login" role="form">
-  											<div class="input-group" id="top-login-username">
-  												<span class="input-group-addon"><img src="images/others/user-icon.png" alt=""></span>
-  												<input type="text" class="form-control" placeholder="Username" required="">
-  											</div>
-  											<div class="input-group" id="top-login-password">
-  												<span class="input-group-addon"><img src="images/others/password-icon.png" alt=""></span>
-  												<input type="password" class="form-control" placeholder="Password" required="">
-  											</div>
-  											<div>
-  												<p class="reset-user">Forgot <a href="#">Password/Username?</a></p>
-  												<button class="btn btn-danger" type="submit">Login</button>
-  											</div>
-  										</form>
-  									</div>
-  									<div class="create-account">
-  										<a href="#">Create a New Account</a>
-  									</div>
-  								</div>
-  							</li>
-  						</ul>
-  						<div class="search">
-  							<form role="form">
-  								<input type="text" class="search-form" autocomplete="off" placeholder="Type &amp; Press Enter">
-  							</form>
-  						</div>
-  					</div> -->
-            <!-- searchNlogin -->
   				</div>
   			</div>
   		</header>

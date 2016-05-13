@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use Socialite;
 
 class AuthController extends Controller
@@ -72,6 +73,26 @@ class AuthController extends Controller
         ]);
     }
 
+    public function register(Request $request)
+    {
+        $validator = $this->validator($request->all());
+
+        if ($validator->fails()) {
+            $this->throwValidationException(
+                $request, $validator
+            );
+        }
+        // Create user
+        $user = $this->create($request->all());
+
+        // Attach role to user
+        $user->attachRole(config('entrust.member_role_id'));
+
+        Auth::guard($this->getGuard())->login($user);
+
+        return redirect($this->redirectPath());
+    }
+
     /**
      * Direct to social login
      *
@@ -131,7 +152,13 @@ class AuthController extends Controller
             'avatar' => $facebookUser->avatar
         ];
 
-        return User::create($input);
+        $user = User::create($input);
+
+        // Attach role to user
+        $authUser->attachRole(config('entrust.member_role_id'));
+
+        return $user;
+
     }
 
     public function ajaxLogin()

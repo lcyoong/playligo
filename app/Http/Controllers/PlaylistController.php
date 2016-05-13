@@ -9,18 +9,20 @@ use App\Playlist;
 use App\PlaylistVideo;
 use Auth;
 use Session;
-
 use App\Http\Requests\EditPlaylist;
+use App\Traits\ControllerTrait;
 
 class PlaylistController extends Controller
 {
     protected $plRepo;
     protected $plvRepo;
+    use ControllerTrait;
 
     public function __construct(Playlist $plRepo, PlaylistVideo $plvRepo)
     {
         $this->plRepo = $plRepo;
         $this->plvRepo = $plvRepo;
+        $this->parm['search'] = 'src_playlist';
     }
 
     public function index(Request $request)
@@ -28,6 +30,21 @@ class PlaylistController extends Controller
         $playlists = $this->plRepo->filterOwner($request->user()->id)->orderBy('pl_id', 'desc')->getPaginated();
 
         return view('playlist.list', compact('playlists'));
+    }
+
+    public function adminList(Request $request)
+    {
+      $search = session()->get($this->parm['search']);
+
+      $playlists = $this->plRepo->select('playlists.*')->filter($search)->withOwner()->orderBy('pl_id', 'desc')->getPaginated();
+
+      $filter = 'admin.playlist.filter';
+
+      $total_record = $playlists->total();
+
+      $page_title = trans('playlist.list');
+
+      return view('admin.playlist.list', compact('playlists', 'filter', 'search', 'total_record', 'page_title'));
     }
 
     public function store(Request $request)

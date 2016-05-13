@@ -29,6 +29,17 @@ class PollController extends Controller
         return view('poll.list', compact('polls'));
     }
 
+    public function adminList(Request $request)
+    {
+        $polls = $this->polRepo->withOwner()->getPaginated();
+
+        $total_record = $polls->total();
+
+        $page_title = trans('poll.list');
+
+        return view('admin.poll.list', compact('polls', 'total_record', 'page_title'));
+    }
+
     public function create()
     {
         return view('poll.create');

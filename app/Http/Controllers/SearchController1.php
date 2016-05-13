@@ -10,6 +10,8 @@ use App\VideoCache;
 use App\Playlist;
 use App\PlaylistVideo;
 use App\PlaylistKey;
+use App\Country;
+use App\City;
 use Auth;
 use Session;
 
@@ -39,9 +41,13 @@ class SearchController extends Controller
 
     public function autoGen(Request $request)
     {
-        $keys = $request->input('search_key');
+        $input = $request->input();
 
-        $location = session()->get('search_location');
+        $keys = array_get($input, 'search_key');
+
+        $location = array_get($input, 'location');
+
+        // $location = session()->get('search_location');
 
         $resultsets = $this->fetchVideos($location, $keys, false, 0.5, true, $keys_used);
 
@@ -64,7 +70,9 @@ class SearchController extends Controller
           $plk->create(['plk_playlist' => $playlist->pl_id, 'plk_key' => $key_used['value'], 'plk_weight'=> $key_used['weight'], 'plk_next_token'=> $key_used['next_token']]);
         }
 
-        return view('search.auto_playlist', compact('resultsets', 'location', 'default_playlist_title', 'auto_playlist', 'playlist'));
+        return redirect('playlist/preview/' . $playlist->pl_id)->with('status', trans('messages.store_successful'));;
+
+        // return view('search.auto_playlist', compact('resultsets', 'location', 'default_playlist_title', 'auto_playlist', 'playlist'));
     }
 
     public function editPlaylist(Playlist $playlist)
@@ -75,10 +83,17 @@ class SearchController extends Controller
 
         $selected = array_column($playlist->videos->toArray(), 'plv_video_id');
 
-        $keys = array_column($playlist->keys->toArray(), 'plk_key');
+        $pl_keys = $playlist->keys;
+
+        $keys = [];
+
+        foreach ($pl_keys as $pl_key) {
+          $keys[] = $pl_key->plk_key;
+
+          session()->put('search_keywords.' . $pl_key->plk_key, $pl_key->plk_next_token);
+        }
 
         // $videos = $this->vcRepo->whereIn('vc_id', $selected)->get();
-
         $resultsets = $this->fetchVideos($playlist->pl_location, $keys, false, 1, true, $keys_used);
 
         // foreach ($keys_used as $key => $value) {
@@ -98,34 +113,34 @@ class SearchController extends Controller
 
         $selected = array_column($playlist->videos->toArray(), 'plv_video_id');
 
-        $resultsets = $this->fetchVideos($playlist->pl_location, $keys, false, 1, false);
+        $resultsets = $this->fetchVideos($playlist->pl_location, $keys, true, 1, false);
 
         return view('search.more_result', compact('resultsets', 'selected', 'playlist'));
     }
 
 
-    public function results(Request $request)
-    {
-        $keys = $request->input('search_key');
-
-        $location = session()->get('search_location');
-
-        $selected = session()->get('selected', []);
-
-        $videos = $this->vcRepo->whereIn('vc_id', $selected)->get();
-
-        session()->forget('search_keywords');
-
-        $resultsets = $this->fetchVideos($location, $keys, false, 1, true, $keys_used);
-
-        foreach ($keys_used as $key => $value) {
-            $query_str[$value] = "location=" . $location . "&search_key[$key]=$value";
-        }
-
-        $default_playlist_title = $location . ' ' . implode(' , ', $keys_used) . ' video playlist by ' . auth()->user()->name;
-
-        return view('search.result', compact('resultsets', 'selected', 'videos', 'location', 'default_playlist_title', 'query_str'));
-    }
+    // public function results(Request $request)
+    // {
+    //     $keys = $request->input('search_key');
+    //
+    //     $location = session()->get('search_location');
+    //
+    //     $selected = session()->get('selected', []);
+    //
+    //     $videos = $this->vcRepo->whereIn('vc_id', $selected)->get();
+    //
+    //     session()->forget('search_keywords');
+    //
+    //     $resultsets = $this->fetchVideos($location, $keys, false, 1, true, $keys_used);
+    //
+    //     foreach ($keys_used as $key => $value) {
+    //         $query_str[$value] = "location=" . $location . "&search_key[$key]=$value";
+    //     }
+    //
+    //     $default_playlist_title = $location . ' ' . implode(' , ', $keys_used) . ' video playlist by ' . auth()->user()->name;
+    //
+    //     return view('search.result', compact('resultsets', 'selected', 'videos', 'location', 'default_playlist_title', 'query_str'));
+    // }
 
     public function fetchVideos($location, $keys, $more = false, $result_multiplier = 1, $use_default = true, &$keys_used = [])
     {
@@ -177,16 +192,19 @@ class SearchController extends Controller
                   'maxResults'=>$max_result];
 
             if ($more) {
-                $info = session()->get('search_keywords.' . $key);
-                $params['pageToken'] = $info['nextPageToken'];
+              $params['pageToken'] = session()->get('search_keywords.' . $key);
+                // $info = session()->get('search_keywords.' . $key);
+                // $params['pageToken'] = $info['nextPageToken'];
             }
 
             $key_result = Youtube::searchAdvanced($params, true);
 
-            session()->put('search_keywords.' . $key, $key_result['info']);
+            // session()->put('search_keywords.' . $key, $key_result['info']);
+            session()->put('search_keywords.' . $key, $key_result['info']['nextPageToken']);
 
             // return array_values($key_result['results']);
-            return array_values($key_result);
+            // return array_values($key_result);
+            return $key_result;
         }
     }
 
@@ -311,4 +329,23 @@ class SearchController extends Controller
       return $playlist;
 
     }
+
+    public function suggestRegion(Request $request)
+    {
+      $repoCoun = new Country;
+
+      $continents = $repoCoun->continents();
+
+      return view('search.suggest_continent', compact('continents'));
+    }
+
+    public function suggestLocation(Request $request, $region)
+    {
+      $repoCit = new City;
+
+      $cities = $repoCit->byContinent($region)->get();
+
+      return view('search.suggest_location', compact('cities'));
+    }
+
 }

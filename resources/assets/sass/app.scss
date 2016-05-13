@@ -171,3 +171,25 @@ div.description {
 div.description_content{
     padding:10px;
 }
+
+.admin_panel .navbar-default{
+  border: 0px;
+}
+
+.navbar{
+  margin-bottom: 0px;
+}
+
+#admin_panel .navbar{
+  margin-bottom: 20px;
+  border: 0px;
+}
+
+
+#admin_panel .navbar-brand{
+  height: auto;
+}
+
+#admin_panel{
+  font-size: 0.8em;
+}

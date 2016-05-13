@@ -24,6 +24,16 @@ class Playlist extends Model
         return $this->hasMany('App\PlaylistKey', 'plk_playlist', 'pl_id');
     }
 
+    public function scopeFilter($query, $filter = [])
+    {
+        if (array_get($filter, 'pl_title')) {
+            $query->where('pl_title', 'like', '%' . $filter['pl_title'] . '%');
+        }
+        if (array_get($filter, 'pl_user')) {
+            $query->where('name', 'like', '%' . $filter['pl_user'] . '%');
+        }
+    }
+
     public function scopeFilterOwner($query, $owner = null)
     {
         if (!is_null($owner)) {
@@ -34,6 +44,11 @@ class Playlist extends Model
     public function scopeWithPicture($query)
     {
         return $query->leftJoin('playlist_videos', 'plv_playlist', '=', 'pl_id')->groupBy('plv_playlist');
+    }
+
+    public function scopeWithOwner($query)
+    {
+        return $query->addSelect('name', 'email')->join('users', 'id', '=', 'pl_user');
     }
 
     public function updateRating($pl_id)

@@ -10,7 +10,7 @@
         "laravelcollective/html": "5.2.*",
         "intervention/image": "^2.3",
         "laravel/socialite": "^2.0",
-        "zizaco/entrust": "5.2.x-dev",
+        "zizaco/entrust": "dev-master",
         "alaouy/youtube": "dev-master"
     },
     "require-dev": {
