@@ -23,7 +23,7 @@
     <link href="{{ asset('css/responsive.css') }}" rel="stylesheet">
     <link href="{{ elixir('css/app.css') }}" rel="stylesheet">
     @yield('style')
-    <!-- <script src="//load.sumome.com/" data-sumo-site-id="12f06233c59661b6520eb33ff694b42a0caa863dcc1b7c72527912614ad97be2" async="async"></script> -->
+    <script src="//load.sumome.com/" data-sumo-site-id="12f06233c59661b6520eb33ff694b42a0caa863dcc1b7c72527912614ad97be2" async="async"></script>
 </head>
 <body>
   <div id="main-wrapper" class="homepage">
@@ -100,7 +100,9 @@
   <div class="container">
     @include('layouts.partials.messagebag')
   </div>
-  @yield('content')
+  <div id="content-wrapper">
+    @yield('content')
+  </div>
 </div><!--/#main-wrapper-->
   <footer id="footer">
 		<div class="footer-menu">
@@ -118,15 +120,10 @@
 		</div>
 	<div class="footer-bottom">
 		<div class="container text-center">
-			<p><a href="#">Playligo </a>&copy; 2015 </p>
+			<p><a href="#">Playligo </a>&copy; {{ date('Y') }} </p>
 		</div>
 	</div>
 </footer>
-    <!-- <footer class="footer">
-      <div class="container">
-        <p class="text-muted">Playligo.com {{ date('Y') }}</p>
-      </div>
-    </footer> -->
     @include('layouts.partials.modal')
 
     <!-- JavaScripts -->

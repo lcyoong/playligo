@@ -151,6 +151,9 @@ div.description_content {
 #admin_panel {
   font-size: 0.8em; }
 
+#content-wrapper {
+  min-height: 450px; }
+
 #home-layout {
   background-image: url("../../img/santorini-bg-blue.png");
   background-repeat: no-repeat;
