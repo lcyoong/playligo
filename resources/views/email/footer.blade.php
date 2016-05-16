@@ -1,3 +1,3 @@
 Caleb, Gerry, LC &amp; JM,<br/>
 Team Playligo<br/>
-<!-- <a href="mailto:{{ config('playligo.email') }}">{{ config('playligo.email') }}</a> -->
+P.S.: Like our website? <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.playligo.com" target=_blank>Spread the love!</a>
