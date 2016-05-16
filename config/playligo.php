@@ -10,4 +10,5 @@ return array(
 
     'email_subscribe_subject'                   => 'Welcome on board the Playligo revolution!',
     'min_significant_hotel'                     => 150,
+    'date_display_format'                       => 'M d, Y',
 );

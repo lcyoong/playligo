@@ -42,11 +42,13 @@ class HomeController extends Controller
 
   public function playlist(Playlist $playlist)
   {
+    $owner = $playlist->owner;
+
     $playlist->increment('pl_view');
 
     $videos = $playlist->videos;
 
-    return view('public.playlist_page', compact('playlist', 'videos'));
+    return view('public.playlist_page', compact('playlist', 'videos', 'owner'));
   }
 
   public function playlistPopUp(Playlist $playlist)

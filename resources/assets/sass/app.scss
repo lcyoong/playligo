@@ -214,3 +214,16 @@ div.description_content{
 .video-post-list .post, .widget .post-list .post{
   max-height: 120px;
 }
+
+.playlist-scroll{
+  height: 370px;
+  overflow-y: scroll;
+}
+
+h5 .section-title{
+  font-size: 16px;
+}
+
+.section-title.title h5{
+  margin-bottom: 0px;
+}

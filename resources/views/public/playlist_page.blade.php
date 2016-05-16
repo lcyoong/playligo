@@ -22,27 +22,55 @@
         <div class="video_wrapper">
           <div id="player"></div>
         </div>
-        <div id="rating" class="pull-left"></div> <div class="pull-left">{{ $playlist->pl_rating }} ({{ $playlist->pl_rating_count }} @lang('playlist.pl_rating_count'))</div> <div id="newRating" class="pull-left" href="{{ url('playlist/rating/add') }}"></div>
+        <div class="post">
+          <div class="post-content">
+            <div class="row">
+              <div class="col-md-2">
+                <img src="{{ url($owner->avatar) }}">
+                <div>{{ $owner->name }}</div>
+              </div>
+              <div class="col-md-10">
+                <div class="entry-meta">
+      						<ul class="list-inline">
+      							<li class="publish-date"><a href="#"><i class="fa fa-clock-o"></i> {{ date(config('playligo.date_display_format'), strtotime($playlist->created_at)) }} </a></li>
+      							<li class="views"><a href="#"><i class="fa fa-eye"></i>{{ $playlist->pl_view }} views</a></li>
+                    <li><div id="rating" class="pull-left"></div> <div class="pull-left">{{ $playlist->pl_rating }} ({{ $playlist->pl_rating_count }} @lang('playlist.pl_rating_count'))</div> <div id="newRating" class="pull-left" href="{{ url('playlist/rating/add') }}"></div></li>
+      						</ul>
+      					</div>
+      					<div class="entry-content">
+                  {{ $playlist->pl_description }}
+      					</div>
+              </div>
+            </div>
+  				</div>
+        </div>
         <div class="clearfix"></div>
         <div class="fb-comments" data-href="{{ request()->url() }}" data-numposts="5" data-width="100%"></div>
       </div>
       <div class="col-md-4">
-        <ul class="list-group">
-          @foreach ($videos as $video)
-            <?php $video_snippet = unserialize($video->vc_snippet) ?>
-            <li class="list-group-item">
-              <div class="row">
-              <div class="col-md-4 col-sm-4 col-xs-4">
-                  <!-- <a href="{{ url('search/preview/' . $video->vc_id) }}" class="btn-modal"><img src="{{ $video_snippet->thumbnails->medium->url }}" class="img-rounded" width="100%"></a> -->
-                  <a href="#" id="{{ $video->vc_id }}" class="play_video"><img src="{{ $video_snippet->thumbnails->medium->url }}" class="img-rounded" width="100%"></a>
+        <div class="section">
+          <h5 class="section-title title">Playlist</h5>
+          <ul class="list-group playlist-scroll">
+            @foreach ($videos as $video)
+              <?php $video_snippet = unserialize($video->vc_snippet) ?>
+              <li class="list-group-item">
+                <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <!-- <a href="{{ url('search/preview/' . $video->vc_id) }}" class="btn-modal"><img src="{{ $video_snippet->thumbnails->medium->url }}" class="img-rounded" width="100%"></a> -->
+                    <a href="#" id="{{ $video->vc_id }}" class="play_video"><img src="{{ $video_snippet->thumbnails->medium->url }}" class="img-rounded" width="100%"></a>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                    <div class="selected_video_title">{{ $video_snippet->title }}</div>
+                </div>
               </div>
-              <div class="col-md-6 col-sm-6 col-xs-6">
-                  <div class="selected_video_title">{{ $video_snippet->title }}</div>
-              </div>
-            </div>
-            </li>
-          @endforeach
-        </ul>
+              </li>
+            @endforeach
+          </ul>
+        </div>
+
+        <div class="section">
+          <h5 class="section-title title">Suggested Playlists</h5>
+        </div>
       </div>
     </div>
 </div>
@@ -144,13 +172,13 @@ function getLatestSelected()
 $(function () {
 
   $("#rating").rateYo({
-    starWidth: "20px",
+    starWidth: "14px",
     rating    : {{ $playlist->pl_rating }},
     readOnly: true
   });
 
   $("#newRating").rateYo({
-    starWidth: "20px",
+    starWidth: "14px",
     halfStar: true,
   }).on("rateyo.set", function (e, data) {
     var rating = data.rating;

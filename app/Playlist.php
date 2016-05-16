@@ -24,6 +24,11 @@ class Playlist extends Model
         return $this->hasMany('App\PlaylistKey', 'plk_playlist', 'pl_id');
     }
 
+    public function owner()
+    {
+        return $this->belongsTo('App\User', 'pl_user', 'id');
+    }
+
     public function scopeFilter($query, $filter = [])
     {
         if (array_get($filter, 'pl_title')) {
