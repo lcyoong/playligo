@@ -116,11 +116,8 @@
 #messageModal .modal-content {
   padding: 50px 20px; }
 
-.action_column .fa {
+.action_column {
   font-size: 1.3em; }
-
-.pagination > li:first-child > a, .pagination > li:first-child > span {
-  padding: 12px 30px; }
 
 div.description {
   display: none;
@@ -153,6 +150,19 @@ div.description_content {
 
 #content-wrapper {
   min-height: 450px; }
+
+.poll_playlist_group .progress {
+  height: 15px;
+  margin-bottom: 0px; }
+
+.poll_playlist_group .progress-bar {
+  line-height: 15px; }
+
+.video-post-list .post-content, .widget .post-list .post-content {
+  padding: 10px 15px; }
+
+.video-post-list .post, .widget .post-list .post {
+  max-height: 120px; }
 
 #home-layout {
   background-image: url("../../img/santorini-bg-blue.png");

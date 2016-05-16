@@ -12,7 +12,7 @@ class Poll extends Model
 
   protected $table = 'polls';
   protected $primaryKey = 'pol_id';
-  protected $fillable = ['pol_user', 'pol_title', 'pol_description', 'pol_status'];
+  protected $fillable = ['pol_user', 'pol_title', 'pol_description', 'pol_status', 'pol_votes', 'pol_expiry'];
 
   public function playlists()
   {
@@ -25,6 +25,17 @@ class Poll extends Model
           $query->where('pol_user', '=', $owner);
       }
   }
+
+  public function scopeFilter($query, $filter = [])
+  {
+      if (array_get($filter, 'pol_title')) {
+          $query->where('pol_title', 'like', '%' . $filter['pol_title'] . '%');
+      }
+      if (array_get($filter, 'pol_user')) {
+          $query->where('name', 'like', '%' . $filter['pol_user'] . '%');
+      }
+  }
+
 
   public function scopeFilterActive($query)
   {
@@ -41,4 +52,19 @@ class Poll extends Model
       return $this->belongsTo('App\User', 'pol_user');
   }
 
+  public function updateVotes($pol_id)
+  {
+    $total = PollPlaylist::where('polp_poll', '=', $pol_id)->sum('polp_vote');
+
+    return $this->find($pol_id)->update(['pol_votes' => $total ]);
+  }
+
+  public static function boot()
+  {
+      Poll::saving(function ($post) {
+        if(array_get($post, 'pol_expiry')) {
+          $post['pol_expiry'] = date('Y-m-d', strtotime($post['pol_expiry']));
+        }
+      });
+  }
 }

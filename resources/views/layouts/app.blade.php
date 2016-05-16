@@ -27,76 +27,7 @@
 </head>
 <body>
   <div id="main-wrapper" class="homepage">
-  <header id="navigation">
-  			<div class="navbar" role="banner">
-  				<div class="container">
-  					<a class="secondary-logo" href="{{ url('/') }}">
-  						<img class="img-responsive" src="{{ asset('img/logo.png') }}" alt="logo">
-  					</a>
-  				</div>
-  				<div class="topbar">
-  					<div class="container">
-  						<div id="topbar" class="navbar-header">
-  							<a class="navbar-brand" href="{{ url('/') }}">
-  								<img class="img-responsive" src="{{ asset('img/logo.png') }}" alt="logo">
-  							</a>
-  							<!-- <div id="topbar-right">
-  								<div class="dropdown language-dropdown">
-  									<a data-toggle="dropdown" href="#"><span class="change-text">En</span> <i class="fa fa-angle-down"></i></a>
-  									<ul class="dropdown-menu language-change">
-  										<li><a href="#">EN</a></li>
-  										<li><a href="#">FR</a></li>
-  										<li><a href="#">GR</a></li>
-  										<li><a href="#">ES</a></li>
-  									</ul>
-  								</div>
-  							</div> -->
-  							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-  								<span class="sr-only">Toggle navigation</span>
-  								<span class="icon-bar"></span>
-  								<span class="icon-bar"></span>
-  								<span class="icon-bar"></span>
-  							</button>
-  						</div>
-  					</div>
-  				</div>
-  				<div id="menubar" class="container">
-  					<nav id="mainmenu" class="collapse navbar-collapse">
-              <ul class="nav navbar-nav">
-                  <li><a href="{{ url('/home') }}">Home</a></li>
-                  <li><a href="{{ url('/search') }}"><i class="fa fa-search"></i> Search</a></li>
-                  <li><a href="{{ url('/suggest_location') }}"><i class="fa fa-lightbulb-o"></i> Suggest</a></li>
-              </ul>
-
-              <ul class="nav navbar-nav navbar-right">
-                  <!-- Authentication Links -->
-                  @if (Auth::guest())
-                      <li><a href="{{ url('/login') }}">Login</a></li>
-                      <li><a href="{{ url('/register') }}">Register</a></li>
-                  @else
-                      <li><a href="{{ url('/playlist') }}"><i class="fa fa-list"></i> My Playlists</a></li>
-                      <li><a href="{{ url('/poll') }}"><i class="fa fa-bar-chart"></i> My Polls</a></li>
-                      @if (auth()->user()->hasRole('admin'))
-                      <li><a href="{{ url('/admin') }}"><i class="fa fa-gears"></i> Admin</a></li>
-                      @endif
-                      <li class="dropdown">
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                              {{ Auth::user()->name }}
-                              <!-- {{ Auth::user()->name }} <div class="media-photo media-round user-profile-image header-icon icon-profile-alt-white"><img width="24" height="24" src="{{ Auth::user()->avatar }}"></div> -->
-                               <span class="caret"></span>
-                          </a>
-
-                          <ul class="dropdown-menu" role="menu">
-                              <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
-                          </ul>
-                      </li>
-                  @endif
-              </ul>
-
-  					</nav>
-  				</div>
-  			</div>
-  		</header>
+    @include('layouts.partials.menu')
   <div class="container">
     @include('layouts.partials.messagebag')
   </div>
@@ -130,10 +61,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.1.1/jquery.rateyo.min.js"></script>
+    <script type="text/javascript" src="{{ URL::asset('js/jquery-ui.min.js')}}"></script>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
     <script type="text/javascript" src="{{ URL::asset('js/playligo-main.js')}}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/main.js')}}"></script>
-    <script type="text/javascript" src="{{ URL::asset('js/jquery-ui.min.js')}}"></script>
     <div id="fb-root"></div>
     <script>(function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];

@@ -16,6 +16,7 @@ class PlaylistController extends Controller
 {
     protected $plRepo;
     protected $plvRepo;
+
     use ControllerTrait;
 
     public function __construct(Playlist $plRepo, PlaylistVideo $plvRepo)

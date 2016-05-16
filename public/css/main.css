@@ -1909,21 +1909,21 @@ img.mfp-img {
 	color:#fff;
 }
 
-.pagination li {
-
+.pagination li span{
+	padding:12px 15px;
 }
 
 .pagination li:first-child a,
 .pagination li:last-child a {
-	padding:12px 30px;
+	/*padding:12px 30px;*/
 }
 
 .pagination li:nth-child(2) a {
-	padding-left:92px;
+	/*padding-left:92px;*/
 }
 
 .pagination li:nth-child(11) a{
-	padding-right:92px;
+	/*padding-right:92px;*/
 }
 
 .pagination li a{

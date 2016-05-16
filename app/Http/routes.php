@@ -44,6 +44,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('public_poll/{poll}', 'HomeController@poll');
     Route::get('load_playlist/{playlist}', 'PlaylistController@loadPlaylist');
     Route::get('public_playlist/{playlist}', 'HomeController@playlist');
+    Route::get('public_playlist/popup/{playlist}', 'HomeController@playlistPopUp');
     Route::get('login_ajax', 'Auth\AuthController@ajaxLogin');
     Route::get('/search/preview/{id}', 'SearchController@preview');
     Route::post('/subscribe', 'HomeController@subscribe');
@@ -105,11 +106,15 @@ Route::group(['middleware' => 'web'], function () {
         // dd('ss');
         Route::get('/admin', 'AdminController@index');
         Route::get('/admin/user', 'UserController@index');
+        Route::get('/admin/user/popup/{user}', 'UserController@popUp');
+        Route::post('/admin/user/search', 'UserController@search');
+
         Route::get('/admin/playlist', 'PlaylistController@adminList');
         Route::post('/admin/playlist/search', 'PlaylistController@search');
-        Route::get('/admin/poll', 'PollController@adminList');
 
-        Route::get('/admin/user/popup/{user}', 'UserController@popUp');
+        Route::get('/admin/poll', 'PollController@adminList');
+        Route::post('/admin/poll/search', 'PollController@search');
+
       });
 
     });

@@ -17,6 +17,7 @@
 				<li class="posted-by"><i class="fa fa-user"></i> by <a href="#">{{ $owner->name }}</a></li>
 				<li class="publish-date"><a href="#"><i class="fa fa-clock-o"></i> {{ $poll->created_at }} </a></li>
 				<li class="views"><a href="#"><i class="fa fa-eye"></i> {{ $poll->pol_view }}</a></li>
+				<li class="views"><a href="#"><i class="fa fa-bar-chart"></i> {{ $poll->pol_votes }}</a></li>
 				<!-- <li class="loves"><a href="#"><i class="fa fa-heart-o"></i>278</a></li>
 				<li class="comments"><i class="fa fa-comment-o"></i><a href="#">189</a></li> -->
 			</ul>
@@ -30,61 +31,61 @@
           		{{ Form::text('pol_title', $poll->pol_title, ['class'=>'form-control']) }}
           	</div>
 						<div class="form-group">
+	          	{{ Form::label('pol_expiry', trans('poll.pol_expiry'), ['class'=>'control-label']) }}
+							<div class="input-group">
+	          		{{ Form::text('pol_expiry', date('d-m-Y', strtotime($poll->pol_expiry)), ['class'=>'form-control datepicker']) }}
+								<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+							</div>
+          	</div>
+						<div class="form-group">
 	          	{{ Form::label('pol_description', trans('poll.pol_description'), ['class'=>'control-label']) }}
           		{{ Form::textarea('pol_description', $poll->pol_description, ['class'=>'form-control', 'rows'=>5]) }}
           	</div>
-						<!-- <div class="form-group">
-							{{ Form::label('pol_description', trans('form.created_at'), ['class'=>'control-label']) }}
-							{{ Form::label('pol_description', $poll->created_at, ['class'=>'col-md-8 control-label']) }}
-						</div>
-						<div class="form-group">
-							{{ Form::label('pol_description', trans('form.updated_at'), ['class'=>'col-md-4 control-label']) }}
-							{{ Form::label('pol_description', $poll->updated_at, ['class'=>'col-md-8 control-label']) }}
-						</div> -->
 						<div class="form-group">
 								{{ Form::button(trans('form.btn_submit'), ['type'=>'submit', 'class'=>'btn btn-primary']) }}
 						</div>
 				</div>
 				<div class="col-md-6">
 					<div id="sort_list" class="video-post-list">
-						<h5>Playlists</h5>
+						<h5>Total votes: {{ $poll->pol_votes }}</h5>
 						<ul class="ui-sortable list-group">
-							@foreach($poll->playlists as $pl)
-							<li class="list-group-item" id="{{ $pl->polp_id }}">
+							@foreach($poll_playlists as $pl)
+							<?php $snippet = unserialize($pl->vc_snippet); ?>
+							<li class="poll_playlist_group" id="{{ $pl->polp_id }}">
 								<div class="post video-post small-post">
 									<div class="entry-header">
 										<div class="entry-thumbnail embed-responsive embed-responsive-16by9">
-											<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/-WlqrkXImsk" allowfullscreen=""></iframe>
+											<a href="{{ url('public_playlist/popup/' . $pl->pl_id) }}" class="btn-modal"><img src="{{ $snippet->thumbnails->medium->url }}" width="100%"></a>
 										</div>
 									</div>
 									<div class="post-content">
 										<!-- <div class="video-catagory"><a href="#">World</a></div> -->
 										<h2 class="entry-title pull-left">
-											{{ $pl->pl_title }}
-											<div>
-												<i class="fa fa-thumbs-o-up"></i> {{ $pl->polp_vote }}
+											<div class="row">
+												<div class="col-md-9">
+													<div>
+														<div class="progress">
+														  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40"
+														  aria-valuemin="0" aria-valuemax="100" style="width:{{ $poll->pol_votes > 0 ? round(($pl->polp_vote / $poll->pol_votes) * 100) : 0 }}%">
+														    {{ $poll->pol_votes > 0 ? round(($pl->polp_vote / $poll->pol_votes) * 100) : 0 }}%
+														  </div>
+														</div>
+													</div>
+													{{ $pl->pl_title }}
+												</div>
+												<div class="col-md-3 action_column">
+													<a href="{{ url('poll/playlist/' . $pl->polp_id . '/delete') }}" class="btn-modal"><i class="fa fa-times-circle"></i></a>
+												</div>
 											</div>
 										</h2>
-										<div class="pull-right">
-											<a href="{{ url('poll/playlist/' . $pl->polp_id . '/delete') }}" class="btn-modal"><i class="fa fa-times-circle"></i></a>
-										</div>
 									</div>
 								</div>
-								<div class="row">
-								<!-- <div class="col-md-2">
-										#{{ $pl->pl_id }}
-								</div> -->
-									<div class="col-md-8">
-											<i class="fa fa-list"></i> {{ $pl->pl_title }}
-									</div>
-									<div class="col-md-2 text-center">
-											{{ $pl->polp_vote }}
-									</div>
+								<!-- <div class="row">
 									<div class="col-md-2">
 											<i class="fa fa-sort"></i>
 											<a href="{{ url('poll/playlist/' . $pl->polp_id . '/delete') }}" class="btn-modal"><i class="fa fa-times-circle"></i></a>
 									</div>
-								</div>
+								</div> -->
 							</li>
 							@endforeach
 						</ul>

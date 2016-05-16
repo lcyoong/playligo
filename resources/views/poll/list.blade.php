@@ -16,6 +16,7 @@
 			<thead>
 				<tr>
 					<th>{{ trans('poll.pol_title') }}</th>
+					<th>{{ trans('poll.pol_votes') }}</th>
           <th>{{ trans('form.created_at') }}</th>
 					<th>{{ trans('form.action_column') }}</th>
 				</tr>
@@ -24,6 +25,7 @@
 			@foreach ($polls as $pol)
 			<tr>
           <td>{{ $pol->pol_title }}</td>
+					<td>{{ $pol->pol_votes }}</td>
           <td>{{ $pol->created_at }}</td>
           <td class="action_column">
               <a href="{{ url('poll/edit/' . $pol->pol_id) }}" title="{{ trans('form.action_edit') }}"><i class="fa fa-edit"></i></a>

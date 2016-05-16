@@ -17,8 +17,10 @@ class CreatePollsTable extends Migration
             $table->integer('pol_user')->unsigned();
             $table->integer('pol_view')->unsigned()->default(0);
             $table->string('pol_title');
+            $table->date('pol_expiry')->nullable();
             $table->text('pol_description');
             $table->string('pol_status')->default('active');
+            $table->integer('pol_votes')->unsigned()->default(0);
             $table->timestamps();
             $table->foreign('pol_user')->references('id')->on('users')
                 ->onUpdate('cascade')->onDelete('cascade');

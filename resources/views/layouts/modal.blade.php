@@ -6,4 +6,5 @@
 	<div @if(isset($height)) class="scrollable-y" style="height: {{$height}}px" @endif>
     @yield('content')
     </div>
+    @yield('script')
 </div>

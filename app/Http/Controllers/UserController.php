@@ -8,19 +8,32 @@ use Auth;
 use Session;
 use App\User;
 
+use App\Traits\ControllerTrait;
+
 class UserController extends Controller
 {
+  use ControllerTrait;
+
+  public function __construct()
+  {
+      $this->parm['search'] = 'src_user';
+  }
+
     public function index()
     {
       $repoUser = new User;
 
-      $users = $repoUser->getPaginated();
+      $search = session()->get($this->parm['search']);
+
+      $users = $repoUser->filter($search)->getPaginated();
 
       $total_record = $users->total();
 
       $page_title = trans('user.list');
 
-      return view('admin.user.list', compact('users', 'page_title', 'total_record'));
+      $filter = 'admin.user.filter';
+
+      return view('admin.user.list', compact('users', 'page_title', 'total_record', 'filter', 'search'));
     }
 
     public function popUp(User $user)

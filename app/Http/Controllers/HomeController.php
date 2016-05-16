@@ -49,6 +49,15 @@ class HomeController extends Controller
     return view('public.playlist_page', compact('playlist', 'videos'));
   }
 
+  public function playlistPopUp(Playlist $playlist)
+  {
+    $playlist->increment('pl_view');
+
+    $videos = $playlist->videos;
+
+    return view('public.playlist_popup', compact('playlist', 'videos'));
+  }
+
   public function subscribe(AddSubscriber $request)
   {
     $susbcriberObj = new Subscriber;
@@ -64,7 +73,7 @@ class HomeController extends Controller
     // Email notification
     $email = new LogEmail;
 
-    $email->sendNewSusbcriber($subscriber);    
+    $email->sendNewSusbcriber($subscriber);
 
     if ($request->ajax() || $request->wantsJson()) {
       return response()->json(['message' => trans('messages.subscribe_successful')]);

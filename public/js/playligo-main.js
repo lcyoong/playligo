@@ -1,5 +1,9 @@
 $(document).ready(function () {
 
+  $('.datepicker').datepicker({
+  	dateFormat: 'dd-mm-yy',
+  });
+
 	// Clear filter form
     $('form').on('click', '.btn-clear', function (event) {
         event.preventDefault();
@@ -22,14 +26,19 @@ $(document).ready(function () {
 
     $('html').on('click', '.btn-modal', function (event) {
         event.preventDefault();
+        var target = $(this).attr("href");
+
         $('#basicModal').find('.modal-content').html('');
         $('#basicModal').modal('show');
         $('#basicModal').find('.modal-content').load($(this).attr('href'));
     });
 
-    $("#basicModal").on('hidden.bs.modal', function () {
+    // $("#basicModal").on('hidden.bs.modal', function () {
+    $('body').on('hidden.bs.modal', '#basicModal', function () {
       // $(this).data('bs.modal', null);
-      $("#previewVideo").attr("src","");
+      // $(".modal-body").html("");
+      //  $(this).removeData('bs.modal');
+      // $("#previewVideo").attr("src","");
     });
 
     $('html').on('submit', '.submit-ajax', function (event) {

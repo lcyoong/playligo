@@ -25,6 +25,7 @@ class EditPoll extends Request
     {
         return [
             'pol_title' => 'required|max:255',
+            'pol_expiry' => 'sometimes|date_format:d-m-Y',
         ];
     }
 }

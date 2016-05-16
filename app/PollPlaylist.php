@@ -5,6 +5,7 @@ namespace App;
 use DB;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\ModelTrait;
+use App\Poll;
 
 class PollPlaylist extends Model
 {
@@ -36,7 +37,34 @@ class PollPlaylist extends Model
 
     public function addVote($polp_id)
     {
-        return $this->find($polp_id)->increment('polp_vote');
+      $polp = $this->find($polp_id);
+
+      $polp->increment('polp_vote');
+
+      $poll = new Poll;
+
+      $poll->updateVotes($polp->polp_poll);
+
+      return 1;
     }
+
+    public static function boot()
+    {
+        PollPlaylist::saved(function ($post) {
+
+          $poll = new Poll;
+
+          $poll->updateVotes($post->polp_poll);
+        });
+
+        PollPlaylist::deleted(function ($post) {
+
+          $poll = new Poll;
+
+          $poll->updateVotes($post->polp_poll);
+        });
+
+    }
+
 
 }

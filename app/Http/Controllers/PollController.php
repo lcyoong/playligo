@@ -10,16 +10,20 @@ use App\PollPlaylist;
 use App\Playlist;
 use App\Http\Requests\CreatePoll;
 use App\Http\Requests\EditPoll;
+use App\Traits\ControllerTrait;
 
 class PollController extends Controller
 {
     protected $polRepo;
     protected $polpRepo;
 
+    use ControllerTrait;
+
     public function __construct(Poll $polRepo, PollPlaylist $polpRepo)
     {
         $this->polRepo = $polRepo;
         $this->polpRepo = $polpRepo;
+        $this->parm['search'] = 'src_poll';
     }
 
     public function index(Request $request)
@@ -31,13 +35,17 @@ class PollController extends Controller
 
     public function adminList(Request $request)
     {
-        $polls = $this->polRepo->withOwner()->getPaginated();
+      $search = session()->get($this->parm['search']);
+
+        $polls = $this->polRepo->filter($search)->withOwner()->getPaginated();
 
         $total_record = $polls->total();
 
         $page_title = trans('poll.list');
 
-        return view('admin.poll.list', compact('polls', 'total_record', 'page_title'));
+        $filter = 'admin.poll.filter';
+
+        return view('admin.poll.list', compact('polls', 'total_record', 'page_title', 'filter', 'search'));
     }
 
     public function create()
@@ -108,7 +116,11 @@ class PollController extends Controller
     {
         $owner = $poll->owner;
 
-        return view('poll.edit', compact('poll', 'owner'));
+        $poll_playlists = $poll->playlists;
+
+        // $total_votes = $poll_playlists->sum('polp_vote');
+
+        return view('poll.edit', compact('poll', 'owner', 'poll_playlists'));
     }
 
     public function update(EditPoll $request)

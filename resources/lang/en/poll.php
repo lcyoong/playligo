@@ -13,6 +13,8 @@ return [
     'pol_title'              => 'Poll Title',
     'pol_description'        => 'Description',
     'pol_user'               => 'Owner',
+    'pol_votes'              => 'Votes',
+    'pol_expiry'              => 'Expiry Date',
 
     'list'                   => 'Polls',
     'edit_title'             => 'Edit Poll',

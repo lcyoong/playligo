@@ -28,6 +28,16 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function scopeFilter($query, $filter = [])
+    {
+        if (array_get($filter, 'name')) {
+            $query->where('name', 'like', '%' . $filter['name'] . '%');
+        }
+        if (array_get($filter, 'email')) {
+            $query->where('email', 'like', '%' . $filter['email'] . '%');
+        }
+    }
+
     public function playlists()
     {
       return $this->hasMany('App\Playlist', 'pl_user', 'id');
