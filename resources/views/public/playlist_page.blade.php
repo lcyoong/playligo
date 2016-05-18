@@ -37,7 +37,7 @@
                   <!-- <a href="{{ url('search/preview/' . $video->vc_id) }}" class="btn-modal"><img src="{{ $video_snippet->thumbnails->medium->url }}" class="img-rounded" width="100%"></a> -->
                   <a href="#" id="{{ $video->vc_id }}" vorder="{{ $key }}" class="play_video"><img src="{{ $video_snippet->thumbnails->medium->url }}" class="img-rounded" width="100%"></a>
               </div>
-              <div class="col-md-6 col-sm-6 col-xs-6">
+              <div class="col-md-8 col-sm-8 col-xs-8">
                   <div class="selected_video_title">{{ $video_snippet->title }}</div>
               </div>
             </div>
@@ -66,7 +66,7 @@
                 <!-- <a href="{{ url('search/preview/' . $video->vc_id) }}" class="btn-modal"><img src="{{ $video_snippet->thumbnails->medium->url }}" class="img-rounded" width="100%"></a> -->
                 <a href="{{ url('/public_playlist/' . $plmv->pl_id) }}"><img src="{{ $video_snippet->thumbnails->medium->url }}" class="img-rounded" width="100%"></a>
             </div>
-            <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="col-md-8 col-sm-8 col-xs-8">
                 <div class="selected_video_title">{{ $plmv->pl_title }}</div>
             </div>
           </div>
