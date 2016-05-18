@@ -6,6 +6,7 @@ use DB;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\ModelTrait;
 use App\Poll;
+use App\PollVoter;
 
 class PollPlaylist extends Model
 {
@@ -40,6 +41,8 @@ class PollPlaylist extends Model
       $polp = $this->find($polp_id);
 
       $polp->increment('polp_vote');
+
+      PollVoter::create(['pov_user' => auth()->user()->id, 'pov_poll' => $polp->polp_poll, 'pov_poll_playlist' => $polp_id]);
 
       $poll = new Poll;
 

@@ -227,3 +227,219 @@ h5 .section-title{
 .section-title.title h5{
   margin-bottom: 0px;
 }
+
+.img-circle {
+    border-radius: 50%;
+}
+
+.image-cropper {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.image-cropper img {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+}
+
+
+.text-center .image-cropper{
+    margin: 0 auto;
+}
+
+.homepage-container #navigation{
+  background: transparent;
+}
+
+.homepage-container .navbar{
+  border-bottom: 0px;
+}
+
+.homepage-container{
+  background-image: url("../../img/playligo_home_background_glacier.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  min-height: 600px;
+}
+
+.homepage-container{
+  color: #ffffff;
+}
+
+.homepage-container a{
+  color: #cfcfcf;
+}
+
+.homepage-container h1{
+  margin-bottom: 30px;
+  font-size: 60px;
+}
+
+.home-content{
+  padding-top: 150px;
+  width: 100%;
+  display: table;
+}
+
+.home-content-inner{
+  display: table-cell; vertical-align: middle;
+}
+
+.main-search{
+  background-image: url("../../img/playligo_search_background_traveller.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  display: table;
+  min-height: 500px;
+  width: 100%;
+  // padding-top: 100px;
+  color: #ffffff;
+}
+
+.main-search input{
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+}
+
+.main-search-inner{
+  display: table-cell; vertical-align: middle;
+}
+
+.suggest_region{
+  width: 100%;
+  min-height: 220px;
+  border-radius: 3px;
+  color: #ffffff;
+  margin-bottom: 20px;
+  display: table;
+}
+
+.suggest_region_gradient{
+  padding: 10px;
+  display: table-cell; vertical-align: bottom;
+  background: -webkit-linear-gradient(bottom, rgba(45,45,45,0), rgba(45,45,45,1));
+  background: -o-linear-gradient(bottom, rgba(45,45,45,0), rgba(45,45,45,1)); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom, rgba(45,45,45,0), rgba(45,45,45,1)); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom, rgba(45,45,45,0), rgba(45,45,45,1)); /* Standard syntax (must be last) */
+}
+
+.suggest_region_inner{
+  // position:absolute; bottom:0%; margin-bottom: 30px;
+}
+
+#suggest_weu{
+  background-image: url("../../img/playligo_region_western_europe.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+#suggest_sea{
+  background-image: url("../../img/playligo_region_south_east_asia.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+#suggest_nea{
+  background-image: url("../../img/playligo_region_north_east_asia.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+#suggest_sca{
+  background-image: url("../../img/playligo_region_south_central_asia.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+#suggest_eeu{
+  background-image: url("../../img/playligo_region_eastern_europe.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+#suggest_africa{
+  background-image: url("../../img/playligo_region_africa.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+#suggest_ocenia{
+  background-image: url("../../img/playligo_region_ocenia.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+#suggest_nam{
+  background-image: url("../../img/playligo_region_north_america.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+#suggest_scam{
+  background-image: url("../../img/playligo_region_south_central_america.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+#suggest_mide{
+  background-image: url("../../img/playligo_region_middle_east.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.suggest_heading{
+    border-bottom: 1px solid #cfcfcf;
+    margin-bottom: 20px;
+}
+
+.search-keywords{
+  display: table;
+  color: #ffffff;
+  min-height: 500px;
+  width: 100%;
+  background-image: url("../../img/playligo_search_background_sky.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.search-keywords-inner{
+  display: table-cell; vertical-align: middle;
+}
+
+.search-keywords input{
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+}
+
+
+.post{
+  margin-top: 0px;
+  // margin-bottom: 30px;
+}
+
+
+.voter_description{
+  font-size: 0.8em;
+}
+
+.date_time{
+  font-size: 0.8em;
+}

@@ -16,61 +16,69 @@
       <a class="btn btn-sm btn-default btn-transparent--border btn-hoverWhite ct-u-text--white" href="http://twitter.com/home?status={{ Request::url() }}" target=_blank><i class="fa fa-twitter"></i></a>
     </div> -->
   </div>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="video_wrapper">
+        <div id="player"></div>
+      </div>
+      <div class="visible-sm-block visible-xs-block">
+        @include('public.playlist.desc_column')
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="section">
+        <h5 class="section-title title">Playlist</h5>
+        <ul class="list-group playlist-scroll">
+          @foreach ($videos as $key => $video)
+            <?php $video_snippet = unserialize($video->vc_snippet) ?>
+            <li class="list-group-item">
+              <div class="row">
+              <div class="col-md-4 col-sm-4 col-xs-4">
+                  <!-- <a href="{{ url('search/preview/' . $video->vc_id) }}" class="btn-modal"><img src="{{ $video_snippet->thumbnails->medium->url }}" class="img-rounded" width="100%"></a> -->
+                  <a href="#" id="{{ $video->vc_id }}" vorder="{{ $key }}" class="play_video"><img src="{{ $video_snippet->thumbnails->medium->url }}" class="img-rounded" width="100%"></a>
+              </div>
+              <div class="col-md-6 col-sm-6 col-xs-6">
+                  <div class="selected_video_title">{{ $video_snippet->title }}</div>
+              </div>
+            </div>
+            </li>
+          @endforeach
+        </ul>
+      </div>
+    </div>
+  </div>
 
     <div class="row">
       <div class="col-md-8">
-        <div class="video_wrapper">
-          <div id="player"></div>
+        <div class="hidden-sm hidden-xs">
+          @include('public.playlist.desc_column')
         </div>
-        <div class="post">
-          <div class="post-content">
-            <div class="row">
-              <div class="col-md-2">
-                <img src="{{ url($owner->avatar) }}">
-                <div>{{ $owner->name }}</div>
-              </div>
-              <div class="col-md-10">
-                <div class="entry-meta">
-      						<ul class="list-inline">
-      							<li class="publish-date"><a href="#"><i class="fa fa-clock-o"></i> {{ date(config('playligo.date_display_format'), strtotime($playlist->created_at)) }} </a></li>
-      							<li class="views"><a href="#"><i class="fa fa-eye"></i>{{ $playlist->pl_view }} views</a></li>
-                    <li><div id="rating" class="pull-left"></div> <div class="pull-left">{{ $playlist->pl_rating }} ({{ $playlist->pl_rating_count }} @lang('playlist.pl_rating_count'))</div> <div id="newRating" class="pull-left" href="{{ url('playlist/rating/add') }}"></div></li>
-      						</ul>
-      					</div>
-      					<div class="entry-content">
-                  {{ $playlist->pl_description }}
-      					</div>
-              </div>
-            </div>
-  				</div>
-        </div>
-        <div class="clearfix"></div>
-        <div class="fb-comments" data-href="{{ request()->url() }}" data-numposts="5" data-width="100%"></div>
+        <div class="fb-comments hidden-sm hidden-xs" data-href="{{ request()->url() }}" data-numposts="5" data-width="100%"></div>
       </div>
       <div class="col-md-4">
         <div class="section">
-          <h5 class="section-title title">Playlist</h5>
-          <ul class="list-group playlist-scroll">
-            @foreach ($videos as $video)
-              <?php $video_snippet = unserialize($video->vc_snippet) ?>
-              <li class="list-group-item">
-                <div class="row">
-                <div class="col-md-4 col-sm-4 col-xs-4">
-                    <!-- <a href="{{ url('search/preview/' . $video->vc_id) }}" class="btn-modal"><img src="{{ $video_snippet->thumbnails->medium->url }}" class="img-rounded" width="100%"></a> -->
-                    <a href="#" id="{{ $video->vc_id }}" class="play_video"><img src="{{ $video_snippet->thumbnails->medium->url }}" class="img-rounded" width="100%"></a>
-                </div>
-                <div class="col-md-6 col-sm-6 col-xs-6">
-                    <div class="selected_video_title">{{ $video_snippet->title }}</div>
-                </div>
-              </div>
-              </li>
-            @endforeach
-          </ul>
+          <h5 class="section-title title">Top Playlists</h5>
+          @foreach ($mostViewed as $plmv)
+          <?php $video_snippet = unserialize($plmv->vc_snippet) ?>
+          <li class="list-group-item">
+            <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-4">
+                <!-- <a href="{{ url('search/preview/' . $video->vc_id) }}" class="btn-modal"><img src="{{ $video_snippet->thumbnails->medium->url }}" class="img-rounded" width="100%"></a> -->
+                <a href="{{ url('/public_playlist/' . $plmv->pl_id) }}"><img src="{{ $video_snippet->thumbnails->medium->url }}" class="img-rounded" width="100%"></a>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <div class="selected_video_title">{{ $plmv->pl_title }}</div>
+            </div>
+          </div>
+          </li>
+          @endforeach
         </div>
+      </div>
+    </div>
 
-        <div class="section">
-          <h5 class="section-title title">Suggested Playlists</h5>
-        </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="fb-comments visible-sm-block visible-xs-block" data-href="{{ request()->url() }}" data-numposts="5" data-width="100%"></div>
       </div>
     </div>
 </div>
@@ -141,7 +149,8 @@ $(document).ready(function() {
   $('body').on('click', '.play_video', function (event) {
 			event.preventDefault();
       var id = $(this).attr('id');
-      player.loadVideoById(id, 5, "large");
+      var vorder = $(this).attr('vorder');
+      player.playVideoAt(vorder);
 
 			return false;
 	});
@@ -171,14 +180,14 @@ function getLatestSelected()
 
 $(function () {
 
-  $("#rating").rateYo({
-    starWidth: "14px",
+  $(".plRating").rateYo({
+    starWidth: "18px",
     rating    : {{ $playlist->pl_rating }},
     readOnly: true
   });
 
-  $("#newRating").rateYo({
-    starWidth: "14px",
+  $(".plNewRating").rateYo({
+    starWidth: "18px",
     halfStar: true,
   }).on("rateyo.set", function (e, data) {
     var rating = data.rating;

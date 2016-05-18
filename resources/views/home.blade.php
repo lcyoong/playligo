@@ -1,17 +1,16 @@
-@extends('layouts.app')
+@extends('layouts.app_home')
 
 @section('content')
-<div class="container">
+<div class="text-center home-content">
+  <div class="home-content-inner">
+    <h1>Inspire Your Getaway</h1>
+    <h2>Watch travel playlists before going...</h2>
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
-
-                <div class="panel-body">
-                    You are logged in!
-                </div>
-            </div>
+          <a href="{{ url('search') }}#suggest">{{ Form::button('Show Me', ['class'=>'btn btn-primary']) }}</a>&nbsp;&nbsp;&nbsp;
+          <a href="{{ url('search') }}">{{ Form::button("I'm thinking of...", ['class'=>'btn btn-primary']) }}</a>
         </div>
     </div>
+  </div>
 </div>
 @endsection

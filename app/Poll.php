@@ -19,6 +19,11 @@ class Poll extends Model
       return $this->hasMany('App\PollPlaylist', 'polp_poll', 'pol_id')->withPlaylist()->orderBy('polp_order', 'asc');
   }
 
+  public function voters()
+  {
+      return $this->hasMany('App\PollVoter', 'pov_poll', 'pol_id')->select('poll_voters.*')->withUser()->orderBy('pov_id', 'desc');
+  }
+
   public function scopeFilterOwner($query, $owner = null)
   {
       if (!is_null($owner)) {

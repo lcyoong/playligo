@@ -37,7 +37,13 @@ class HomeController extends Controller
   {
     $poll->increment('pol_view');
 
-    return view('public.poll_page', compact('poll'));
+    $poll_playlists = $poll->playlists;
+
+    $voters = $poll->voters->take(5);
+
+    $pl_titles = array_column($poll_playlists->toArray(), 'pl_title', 'polp_id');
+
+    return view('public.poll_page', compact('poll', 'voters', 'poll_playlists', 'pl_titles'));
   }
 
   public function playlist(Playlist $playlist)
@@ -46,9 +52,11 @@ class HomeController extends Controller
 
     $playlist->increment('pl_view');
 
+    $mostViewed = $playlist->mostViewed([$playlist->pl_id]);
+
     $videos = $playlist->videos;
 
-    return view('public.playlist_page', compact('playlist', 'videos', 'owner'));
+    return view('public.playlist_page', compact('playlist', 'videos', 'owner', 'mostViewed'));
   }
 
   public function playlistPopUp(Playlist $playlist)

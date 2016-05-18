@@ -13,4 +13,12 @@ class City extends Model
                   ->where('cit_hotels', '>=', config('playligo.min_significant_hotel'))
                   ->where('coun_continent', '=', $continent)->orderBy('cit_hotels', 'desc');
     }
+
+    public function scopeByRegion($query, $region)
+    {
+      return $query->join('countries', 'coun_code', '=', 'cit_country')
+                  ->where('cit_hotels', '>=', config('playligo.min_significant_hotel'))
+                  ->where('coun_region', '=', $region)->orderBy('cit_hotels', 'desc');
+    }
+
 }

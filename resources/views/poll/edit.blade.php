@@ -64,6 +64,7 @@
 											<div class="row">
 												<div class="col-md-9">
 													<div>
+														{{ $pl->pl_title }}
 														<div class="progress">
 														  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40"
 														  aria-valuemin="0" aria-valuemax="100" style="width:{{ $poll->pol_votes > 0 ? round(($pl->polp_vote / $poll->pol_votes) * 100) : 0 }}%">
@@ -71,7 +72,6 @@
 														  </div>
 														</div>
 													</div>
-													{{ $pl->pl_title }}
 												</div>
 												<div class="col-md-3 action_column">
 													<a href="{{ url('poll/playlist/' . $pl->polp_id . '/delete') }}" class="btn-modal"><i class="fa fa-times-circle"></i></a>

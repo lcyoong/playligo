@@ -24,6 +24,7 @@ return [
     'btn_login'                     => 'Login',
     'btn_save_playlist'             => 'Save Playlist',
     'btn_preview_playlist'          => 'Preview Playlist',
+    'btn_skip'                      => 'Skip',
 
     'select_any'                    => '-- Select --',
 

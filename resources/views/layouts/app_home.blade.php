@@ -26,8 +26,8 @@
     <script src="//load.sumome.com/" data-sumo-site-id="12f06233c59661b6520eb33ff694b42a0caa863dcc1b7c72527912614ad97be2" async="async"></script>
 </head>
 <body>
-  <div id="main-wrapper" class="homepage">
-    @include('layouts.partials.menu')
+  <div class="homepage-container">
+    @include('layouts.partials.menu_home')
   <div class="container">
     @include('layouts.partials.messagebag')
   </div>

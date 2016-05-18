@@ -63,4 +63,15 @@ class Playlist extends Model
         return $this->find($pl_id)->update(['pl_rating'=>$repoPlr->latestRating($pl_id), 'pl_rating_count'=> $repoPlr->latestCount($pl_id)]);
     }
 
+    public function mostViewed($exclude = [], $limit = 5)
+    {
+      return $this->whereNotIn('pl_id', $exclude)->withVideo()->orderBy('pl_view', 'desc')->limit($limit)->get();
+    }
+
+    public function scopeWithVideo($query)
+    {
+        $query->leftJoin('playlist_videos', 'plv_playlist', '=', 'pl_id')->groupBy('plv_playlist')
+              ->leftJoin('video_caches', 'plv_video_id', '=', 'vc_id');
+    }
+
 }

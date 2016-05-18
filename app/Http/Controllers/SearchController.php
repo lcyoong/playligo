@@ -70,7 +70,7 @@ class SearchController extends Controller
           $plk->create(['plk_playlist' => $playlist->pl_id, 'plk_key' => $key_used['value'], 'plk_weight'=> $key_used['weight'], 'plk_next_token'=> $key_used['next_token']]);
         }
 
-        return redirect('playlist/preview/' . $playlist->pl_id)->with('status', trans('messages.store_successful'));;
+        return redirect('public_playlist/' . $playlist->pl_id)->with('status', trans('messages.store_successful'));;
 
         // return view('search.auto_playlist', compact('resultsets', 'location', 'default_playlist_title', 'auto_playlist', 'playlist'));
     }
@@ -343,7 +343,7 @@ class SearchController extends Controller
     {
       $repoCit = new City;
 
-      $cities = $repoCit->byContinent($region)->get();
+      $cities = $repoCit->byRegion($region)->get();
 
       return view('search.suggest_location', compact('cities'));
     }
