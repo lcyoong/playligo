@@ -345,7 +345,8 @@ h5 .section-title {
   filter: alpha(opacity=80); }
 
 .post {
-  margin-top: 0px; }
+  margin-top: 0px;
+  margin-bottom: 10px; }
 
 .voter_description {
   font-size: 0.8em; }

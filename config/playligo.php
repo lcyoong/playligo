@@ -11,4 +11,8 @@ return array(
     'email_subscribe_subject'                   => 'Welcome to the Playligo revolution!',
     'min_significant_hotel'                     => 200,
     'date_display_format'                       => 'M d, Y',
+
+    'title'                                     => 'Playligo',
+    'desc'                                      => 'Watch short curated destination video playlists before you travel',
+
 );

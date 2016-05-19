@@ -30,7 +30,11 @@ class HomeController extends Controller
    */
   public function index()
   {
-    return view('home');
+    $page_title = 'Inspire Your Getaway | Playligo';
+    $page_desc = 'Watch Travel Playlists Before Going...';
+    $page_img = asset('img/playligo_home_background_glacier.jpg');
+
+    return view('home', compact('page_title', 'page_desc', 'page_img'));
   }
 
   public function poll(Poll $poll)
@@ -100,7 +104,7 @@ class HomeController extends Controller
   public function welcome(Request $request)
   {
     $play = $request->input('play');
-    
+
     return view('welcome', compact('play'));
   }
 }
