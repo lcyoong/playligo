@@ -219,7 +219,8 @@ h5 .section-title {
 .home-content {
   padding-top: 150px;
   width: 100%;
-  display: table; }
+  display: table;
+  overflow: hidden; }
 
 .home-content-inner {
   display: table-cell;
@@ -231,6 +232,7 @@ h5 .section-title {
   background-size: cover;
   background-position: center center;
   display: table;
+  overflow: hidden;
   min-height: 500px;
   width: 100%;
   color: #ffffff; }
@@ -350,6 +352,36 @@ h5 .section-title {
 
 .date_time {
   font-size: 0.8em; }
+
+.region_name {
+  line-height: 30px;
+  height: 30px;
+  font-size: 18px; }
+
+.btn-small {
+  padding: 10px 15px; }
+
+#tags {
+  visibility: hidden; }
+
+#explainer_video_section {
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: center center;
+  width: 100%; }
+
+#explainer_video {
+  position: absolute; }
+
+#explainer_standin {
+  position: absolute;
+  top: 238px;
+  left: 50px;
+  width: 373px;
+  height: 226px; }
+
+.img-responsive {
+  margin: 0 auto; }
 
 #home-layout {
   background-image: url("../../img/santorini-bg-blue.png");

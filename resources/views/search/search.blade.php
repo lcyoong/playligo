@@ -18,7 +18,6 @@
 </div>
 
 <div class="container">
-  <a name="suggest">
     <div class="section">
       <div class="text-center suggest_heading">
         <h1 style="font-size: 60px;"><i class="fa fa-lightbulb-o"></i></h1>
@@ -30,11 +29,11 @@
           <div class="suggest_region" id="suggest_weu">
             <div class="suggest_region_gradient">
               <div class="suggest_region_inner">
-                <div class="pull-left">
-                  <h3>Western Europe</h3>
+                <div class="pull-left region_name">
+                  Western Europe
                   <!-- London . Barcelona . Lisbon . Frankfurt -->
                 </div>
-                <div class="pull-right"><a href="{{ url('/suggest_location/Western Europe') }}">{{ Form::button('Show Me', ['class'=>'btn btn-primary']) }}</a></div>
+                <div class="pull-right"><a href="{{ url('/suggest_location/Western Europe') }}">{{ Form::button('Show Me', ['class'=>'btn btn-primary btn-small']) }}</a></div>
               </div>
             </div>
           </div>
@@ -43,11 +42,11 @@
           <div class="suggest_region" id="suggest_nea">
             <div class="suggest_region_gradient">
               <div class="suggest_region_inner">
-                <div class="pull-left">
-                  <h3>North East Asia</h3>
+                <div class="pull-left region_name">
+                  North East Asia
                   <!-- Tokyo . Shanghai . Seoul . Hong Kong -->
                 </div>
-                <div class="pull-right"><a href="{{ url('/suggest_location/North East Asia') }}">{{ Form::button('Show Me', ['class'=>'btn btn-primary']) }}</a></div>
+                <div class="pull-right"><a href="{{ url('/suggest_location/North East Asia') }}">{{ Form::button('Show Me', ['class'=>'btn btn-primary btn-small']) }}</a></div>
               </div>
             </div>
           </div>
@@ -56,27 +55,24 @@
           <div class="suggest_region" id="suggest_sea">
             <div class="suggest_region_gradient">
               <div class="suggest_region_inner">
-                <div class="">
-                  <h3>South East Asia</h3>
+                <div class="pull-left region_name">
+                  South East Asia
                   <!-- Kuala Lumpur . Bangkok . Singapore -->
                 </div>
-                <div><a href="{{ url('/suggest_location/South East Asia') }}">{{ Form::button('Show Me', ['class'=>'btn btn-primary']) }}</a></div>
+                <div class="pull-right"><a href="{{ url('/suggest_location/South East Asia') }}">{{ Form::button('Show Me', ['class'=>'btn btn-primary btn-small']) }}</a></div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="row">
         <div class="col-md-4 col-xs-6">
           <div class="suggest_region" id="suggest_sca">
             <div class="suggest_region_gradient">
               <div class="suggest_region_inner">
-                <div class="">
-                  <h3>South &amp; Central Asia</h3>
+                <div class="pull-left region_name">
+                  South &amp; Central Asia
                   <!-- Mumbai . Bangalore . Kathmandu -->
                 </div>
-                <div><a href="{{ url('/suggest_location/South & Central Asia') }}">{{ Form::button('Show Me', ['class'=>'btn btn-primary']) }}</a></div>
+                <div class="pull-right"><a href="{{ url('/suggest_location/South & Central Asia') }}">{{ Form::button('Show Me', ['class'=>'btn btn-primary btn-small']) }}</a></div>
               </div>
             </div>
           </div>
@@ -85,11 +81,11 @@
           <div class="suggest_region" id="suggest_eeu">
             <div class="suggest_region_gradient">
               <div class="suggest_region_inner">
-                <div class="">
-                  <h3>Eastern Europe</h3>
+                <div class="pull-left region_name">
+                  Eastern Europe
                   <!-- Moscow . Budapest . Prague . Vienna -->
                 </div>
-                <div><a href="{{ url('/suggest_location/Eastern Europe') }}">{{ Form::button('Show Me', ['class'=>'btn btn-primary']) }}</a></div>
+                <div class="pull-right"><a href="{{ url('/suggest_location/Eastern Europe') }}">{{ Form::button('Show Me', ['class'=>'btn btn-primary btn-small']) }}</a></div>
               </div>
             </div>
           </div>
@@ -98,27 +94,24 @@
           <div class="suggest_region" id="suggest_africa">
             <div class="suggest_region_gradient">
               <div class="suggest_region_inner">
-                <div class="">
-                  <h3>Africa</h3>
+                <div class="pull-left region_name">
+                  Africa
                   <!-- Cape Town . Lagos -->
                 </div>
-                <div><a href="{{ url('/suggest_location/Africa') }}">{{ Form::button('Show Me', ['class'=>'btn btn-primary']) }}</a></div>
+                <div class="pull-right"><a href="{{ url('/suggest_location/Africa') }}">{{ Form::button('Show Me', ['class'=>'btn btn-primary btn-small']) }}</a></div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="row">
         <div class="col-md-4 col-xs-6">
           <div class="suggest_region" id="suggest_ocenia">
             <div class="suggest_region_gradient">
               <div class="suggest_region_inner">
-                <div class="">
-                  <h3>Oceania</h3>
+                <div class="pull-left region_name">
+                  Oceania
                   <!-- Melbourne . Sydney . Adelaide . Auckland -->
                 </div>
-                <div><a href="{{ url('/suggest_location/Oceania') }}">{{ Form::button('Show Me', ['class'=>'btn btn-primary']) }}</a></div>
+                <div class="pull-right"><a href="{{ url('/suggest_location/Oceania') }}">{{ Form::button('Show Me', ['class'=>'btn btn-primary btn-small']) }}</a></div>
               </div>
             </div>
           </div>
@@ -127,11 +120,11 @@
           <div class="suggest_region" id="suggest_nam">
             <div class="suggest_region_gradient">
               <div class="suggest_region_inner">
-                <div class="">
-                  <h3>North America</h3>
+                <div class="pull-left region_name">
+                  North America
                   <!-- New York . San Francisco . Toronto -->
                 </div>
-                <div><a href="{{ url('/suggest_location/North America') }}">{{ Form::button('Show Me', ['class'=>'btn btn-primary']) }}</a></div>
+                <div class="pull-right"><a href="{{ url('/suggest_location/North America') }}">{{ Form::button('Show Me', ['class'=>'btn btn-primary btn-small']) }}</a></div>
               </div>
             </div>
           </div>
@@ -140,11 +133,11 @@
           <div class="suggest_region" id="suggest_scam">
             <div class="suggest_region_gradient">
               <div class="suggest_region_inner">
-                <div class="">
-                  <h3>South & Central America</h3>
+                <div class="pull-left region_name">
+                  South & Central America
                   <!-- Sao Paulo . Bueno Aires -->
                 </div>
-                <div><a href="{{ url('/suggest_location/South & Central America') }}">{{ Form::button('Show Me', ['class'=>'btn btn-primary']) }}</a></div>
+                <div class="pull-right"><a href="{{ url('/suggest_location/South & Central America') }}">{{ Form::button('Show Me', ['class'=>'btn btn-primary btn-small']) }}</a></div>
               </div>
             </div>
           </div>
@@ -152,6 +145,5 @@
       </div>
 
     </div>
-  </a>
 </div>
 @endsection

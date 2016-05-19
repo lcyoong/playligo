@@ -1,9 +1,5 @@
 $(document).ready(function () {
 
-  $('.datepicker').datepicker({
-  	dateFormat: 'dd-mm-yy',
-  });
-
 	// Clear filter form
     $('form').on('click', '.btn-clear', function (event) {
         event.preventDefault();
@@ -38,7 +34,7 @@ $(document).ready(function () {
       // $(this).data('bs.modal', null);
       // $(".modal-body").html("");
       //  $(this).removeData('bs.modal');
-      // $("#previewVideo").attr("src","");
+      $("#previewVideo").attr("src","");
     });
 
     $('html').on('submit', '.submit-ajax', function (event) {

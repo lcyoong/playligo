@@ -285,6 +285,7 @@ h5 .section-title{
   padding-top: 150px;
   width: 100%;
   display: table;
+  overflow: hidden;
 }
 
 .home-content-inner{
@@ -297,6 +298,7 @@ h5 .section-title{
   background-size: cover;
   background-position: center center;
   display: table;
+  overflow: hidden;
   min-height: 500px;
   width: 100%;
   // padding-top: 100px;
@@ -442,4 +444,44 @@ h5 .section-title{
 
 .date_time{
   font-size: 0.8em;
+}
+
+.region_name{
+  line-height: 30px;
+  height: 30px;
+  font-size: 18px;
+}
+
+.btn-small{
+  padding: 10px 15px;
+}
+
+#tags{
+  visibility: hidden;
+}
+
+#explainer_video_section{
+  // background-image: url("../../img/phone-mockup-2.png");
+  // border:1px solid #ff0000;
+  background-repeat: no-repeat;
+  background-size:auto;
+  background-position: center center;
+  width: 100%;
+}
+
+#explainer_video{
+  position: absolute;
+}
+
+#explainer_standin{
+  position: absolute;
+  top: 238px;
+  left: 50px;
+  width: 373px;
+  height: 226px;
+  // background-color: #ffffff;
+}
+
+.img-responsive{
+  margin: 0 auto;
 }

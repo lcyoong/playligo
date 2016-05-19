@@ -34,11 +34,12 @@ Route::model('poll_playlist', 'App\PollPlaylist');
 Route::model('user', 'App\User');
 
 Route::group(['middleware' => 'web'], function () {
-    Route::get('/', function () {
-        return view('welcome');
-    });
+    // Route::get('/', function () {
+    //     return view('welcome');
+    // });
 
     Route::auth();
+    Route::get('/', 'HomeController@welcome');
     Route::get('/login/{provider}', 'Auth\AuthController@getSocialAuth');
     Route::get('/login/callback/{provider}', 'Auth\AuthController@getSocialAuthCallback');
     Route::get('public_poll/{poll}', 'HomeController@poll');
@@ -48,6 +49,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('login_ajax', 'Auth\AuthController@ajaxLogin');
     Route::get('/search/preview/{id}', 'SearchController@preview');
     Route::post('/subscribe', 'HomeController@subscribe');
+    Route::get('/explainer_popup', 'HomeController@explainerPopUp');
 
     Route::group(['middleware' => 'auth'], function () {
 

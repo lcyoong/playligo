@@ -99,6 +99,10 @@
 
 @section('script')
 <script>
+$('.datepicker').datepicker({
+	dateFormat: 'dd-mm-yy',
+});
+
 $("#sort_list ul").sortable({ opacity: 0.6, cursor: 'move',
 	start: function(event, ui) {
 				ui.item.startPos = ui.item.index();

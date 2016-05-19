@@ -25,7 +25,6 @@
             <ul class="nav navbar-nav">
                 <li><a href="{{ url('/home') }}">Home</a></li>
                 <li><a href="{{ url('/search') }}">Search</a></li>
-                <li><a href="{{ url('/suggest_location') }}">Suggest</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

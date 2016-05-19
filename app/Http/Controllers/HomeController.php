@@ -91,4 +91,16 @@ class HomeController extends Controller
       return back()->with('message', trans('messages.subscribe_successful'));
     }
   }
+
+  public function explainerPopUp()
+  {
+    return view('explainer_popup');
+  }
+
+  public function welcome(Request $request)
+  {
+    $play = $request->input('play');
+    
+    return view('welcome', compact('play'));
+  }
 }

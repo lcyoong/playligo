@@ -12,27 +12,13 @@
       <ul>
         <?php $divider = $cities[count($cities)-1]->cit_hotels; ?>
         @foreach($cities as $city)
-        <?php $size = ($city->cit_hotels/$divider) <= 6 ? $city->cit_hotels/$divider : 6 ?>
+        <?php $size = ($city->cit_hotels/$divider) <= 3 ? $city->cit_hotels/$divider : 2.5 ?>
         <li>
           <a data-weight="{{ $size*10 }}" href="{{ url('/search_keywords?location=' . $city->cit_name . ", " . $city->coun_name) }}">{{ $city->cit_name }}, {{ $city->coun_name }}</a>
         </li>
         @endforeach
-        <!-- <li><a href="http://www.google.com" target="_blank">Google</a></li>
-        <li><a href="/fish">Fish</a></li>
-        <li><a href="/chips">Chips</a></li>
-        <li><a href="/salt">Salt</a></li>
-        <li><a href="/vinegar">Vinegar</a></li> -->
       </ul>
     </div>
-    <!-- <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-          @foreach($cities as $city)
-          <div>
-            <a href="{{ url('/search_keywords?location=' . $city->cit_name . ", " . $city->coun_name) }}">{{ $city->cit_name }}, {{ $city->coun_name }} ({{ $city->cit_hotels }})</a>
-          </div>
-          @endforeach
-        </div>
-    </div> -->
   </div>
 
 </div>

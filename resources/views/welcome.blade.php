@@ -33,7 +33,16 @@
     {{ Form::close() }}
   </div>
   <div class="col-md-5">
-    <img src="{{ asset('img/phone-mockup.png') }}" class="img-responsive img-center">
+    <div id="explainer_video_section" class="text-center">
+      <!-- <a href="{{ url('home/video_popup') }}" class="btn-modal"><img src="{{ asset('img/playvideo.jpg') }}"></a> -->
+      <a href="{{ url('explainer_popup') }}" class="btn-modal"><div id="explainer_standin"></div></a>
+      <img class="img-responsive" src="{{ asset('img/phone-mockup-2.png') }}"/>
+    </div>
+    <!-- <div id="explainer_video_section" class="text-center">
+      <iframe id="explainer_video" width="373" height="240" src="https://www.youtube.com/embed/NDbsSGZB0hQ" frameborder="0" allowfullscreen></iframe>
+      <img src="{{ asset('img/phone-mockup.png') }}" style="visibility: hidden;" />
+    </div> -->
+    <!-- <img src="{{ asset('img/phone-mockup.png') }}" class="img-responsive img-center"> -->
   </div>
 </div>
 </div>
@@ -47,8 +56,19 @@
 
 @section('script')
 <script>
+$( window ).resize(function() {
+  offsetVideo();
+});
+
+@if(!empty($play))
+$('#basicModal').find('.modal-content').html('');
+$('#basicModal').modal('show');
+$('#basicModal').find('.modal-content').load('{{ url('explainer_popup') }}');
+@endif
+
 $(document).ready(function() {
 
+  offsetVideo();
 	$('body').on('submit', '.form-homepage', function (event) {
 			event.preventDefault();
 			$.ajax({
@@ -88,5 +108,15 @@ $(document).ready(function() {
 			return false;
 	});
 });
+
+function offsetVideo()
+{
+  // alert($("#explainer_video_section").width());
+  var leftpos = (($("#explainer_video_section").width() - 425) / 2) + 40;
+  if (leftpos <= 40) {
+    leftpos = 40;
+  }
+  $("#explainer_standin").css({left: leftpos});
+}
 </script>
 @endsection
