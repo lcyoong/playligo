@@ -16,7 +16,7 @@ class City extends Model
 
     public function scopeByRegion($query, $region)
     {
-      return $query->join('countries', 'coun_code', '=', 'cit_country')
+      $query->join('countries', 'coun_code', '=', 'cit_country')
                   ->where('cit_hotels', '>=', config('playligo.min_significant_hotel'))
                   ->where('coun_region', '=', $region)->orderBy('cit_hotels', 'desc');
     }

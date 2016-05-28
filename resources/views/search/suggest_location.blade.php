@@ -2,25 +2,39 @@
 
 @section('content')
 <div class="container">
-  <div class="section" id="canvasSection">
-    <div id="myCanvasContainer">
-     <canvas width="" height="500" id="myCanvas">
-      <p>Anything in here will be replaced on browsers that support the canvas element</p>
-     </canvas>
-    </div>
-    <div id="tags">
-      <ul>
-        <?php $divider = $cities[count($cities)-1]->cit_hotels; ?>
-        @foreach($cities as $city)
-        <?php $size = ($city->cit_hotels/$divider) <= 3 ? $city->cit_hotels/$divider : 2.5 ?>
-        <li>
-          <a data-weight="{{ $size*10 }}" href="{{ url('/search_keywords?location=' . $city->cit_name . ", " . $city->coun_name) }}">{{ $city->cit_name }}, {{ $city->coun_name }}</a>
-        </li>
-        @endforeach
-      </ul>
+  <div class="section">
+    <h1>Let's explore {{ $region }}!</h1>
+  </div>
+  {{ count($cities) }}
+  <?php $divider = $cities[count($cities)-1]->cit_hotels; ?>
+  @foreach($cities->chunk($chunk_size) as $index => $city_set)
+  <a class="switchSet" set="{{ $index }}" href="#">Set {{ $index + 1 }}</a>
+  <div id="tags{{ $index }}" class="tags">
+    <ul>
+      @foreach($city_set as $city)
+      <?php $size = ($city->cit_hotels/$divider) <= 3 ? $city->cit_hotels/$divider : 2.5 ?>
+      <?php $size = 3; ?>
+      <li>
+        <a data-weight="{{ $size*10 }}" href="{{ url('/search_keywords?location=' . $city->cit_name . ", " . $city->coun_name) }}">{{ $city->cit_name }}, {{ $city->coun_name }}</a>
+      </li>
+      @endforeach
+    </ul>
+  </div>
+  @endforeach
+
+  <div class="section">
+    <div class="row">
+      <div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+        <div id="canvasSection">
+          <div id="myCanvasContainer">
+           <canvas width="" height="400" id="myCanvas">
+            <p>Anything in here will be replaced on browsers that support the canvas element</p>
+           </canvas>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-
 </div>
 
 @endsection
@@ -30,27 +44,47 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-  $("#myCanvas").attr("width", $("#canvasSection").width());
-    if(!$('#myCanvas').tagcanvas({
-      textColour: '#333333',
-      outlineColour: '#cccccc',
-      reverse: true,
-      depth: 0.1,
-      maxSpeed: 0.05,
-      clickToFront: 100,
-      freezeDecel: true,
-      weight: true,
-      // weightMode: "colour",
-      weightMode: "size",
-      weightFrom: "data-weight",
-      weightSize: 1,
-      pinchZoom: true,
-      shape: "sphere",
-      shuffleTags: true,
-    },'tags')) {
-      // something went wrong, hide the canvas container
-      $('#myCanvasContainer').hide();
-    }
+
+  prepareCanvas('tags0');
+
+   $('body').on('click', '.switchSet', function (event) {
+     event.preventDefault();
+     var set = $(this).attr('set');
+     prepareCanvas('tags' + set);
+   });
+
+});
+
+
+
+function prepareCanvas(tagid)
+{
+  $('#myCanvasContainer').fadeIn(3000, function(){
+    $("#myCanvas").attr("width", $("#canvasSection").width());
+      if(!$('#myCanvas').tagcanvas({
+        textColour: '#333333',
+        outlineColour: '#cccccc',
+        bgOutline: '#6fa806',
+        reverse: true,
+        depth: 0.1,
+        maxSpeed: 0.05,
+        clickToFront: 100,
+        freezeDecel: true,
+        weight: true,
+        // weightMode: "colour",
+        weightMode: "size",
+        weightFrom: "data-weight",
+        weightSize: 1,
+        pinchZoom: true,
+        shape: "sphere",
+        shuffleTags: true,
+        initial: [0.1, 0.1],
+      }, tagid)) {
+        // something went wrong, hide the canvas container
+        $('#myCanvasContainer').hide();
+      }
   });
+
+}
 </script>
 @endsection

@@ -1,7 +1,7 @@
 @if (session('status'))
-	<div class="alert alert-success">
+	<!-- <div class="alert alert-success">
 		{{ session('status') }}
-	</div>
+	</div> -->
 @endif
 
 @if(isset($errors) && $errors->has())

@@ -19,6 +19,7 @@ class CreatePlaylistsTable extends Migration
             $table->string('pl_location');
             $table->integer('pl_view')->unsigned()->default(0);
             $table->string('pl_description');
+            $table->string('pl_thumb_path');
             $table->string('pl_status');
             $table->timestamps();
             $table->foreign('pl_user')->references('id')->on('users')
@@ -30,6 +31,7 @@ class CreatePlaylistsTable extends Migration
             $table->integer('plv_playlist')->unsigned();
             $table->string('plv_video_id');
             $table->string('plv_status');
+            $table->text('plv_snippet');
             $table->integer('plv_order')->default(0);
             $table->timestamps();
             $table->foreign('plv_playlist')->references('pl_id')->on('playlists')

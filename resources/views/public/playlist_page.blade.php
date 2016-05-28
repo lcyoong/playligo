@@ -1,28 +1,40 @@
 @extends('layouts.app')
 
-@section('meta')
-<meta property="fb:app_id" content="{{ env('FACEBOOK_CLIENT_ID') }}" />
-@endsection
-
 @section('content')
+@if(auth()->check() && $playlist->pl_user == auth()->user()->id)
+<div class="section action_section">
+  <div class="action_section_inner">
+    <div class="container">
+      <h3>What's Next?</h3>
+      <a href="{{ url('playlist/edit/' . $playlist->pl_id) }}">{{ Form::button(trans('form.btn_edit_playlist'), ['class'=>'btn btn-primary']) }}</a>&nbsp;&nbsp;
+      <a href="{{ url('poll/add/'. $playlist->pl_id) }}" class="btn-modal">{{ Form::button(trans('form.btn_add_to_poll'), ['class'=>'btn btn-primary']) }}</a>&nbsp;&nbsp;
+    </div>
+  </div>
+</div>
+@endif
+
 <div class="container">
   <div class="page-breadcrumbs">
     <h1 class="section-title">{{ $playlist->pl_title }}</h1>
   </div>
+
   <div class="section">
-    <!-- <div class="fb-like" data-href="{{ Request::url() }}" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
-    <div class="pull-right">
-      <a class="btn btn-sm btn-default btn-transparent--border btn-hoverWhite ct-u-text--white" href="https://www.facebook.com/sharer/sharer.php?u={{ Request::url() }}" target=_blank><i class="fa fa-facebook"></i></a>
-      <a class="btn btn-sm btn-default btn-transparent--border btn-hoverWhite ct-u-text--white" href="http://twitter.com/home?status={{ Request::url() }}" target=_blank><i class="fa fa-twitter"></i></a>
-    </div> -->
+    <div class="entry-meta">
+			<ul class="list-inline">
+				<li class="posted-by"><i class="fa fa-user"></i> by <a href="#">{{ $owner->name }}</a></li>
+				<li class="publish-date"><a href="#"><i class="fa fa-clock-o"></i> {{ $playlist->created_at }} </a></li>
+				<li class="views"><a href="#"><i class="fa fa-eye"></i> {{ $playlist->pl_view }} views</a></li>
+			</ul>
+		</div>
   </div>
+
   <div class="row">
     <div class="col-md-8">
       <div class="video_wrapper">
         <div id="player"></div>
       </div>
       <div class="visible-sm-block visible-xs-block">
-        @include('public.playlist.desc_column')
+        <!-- @include('public.playlist.desc_column') -->
       </div>
     </div>
     <div class="col-md-4">
@@ -30,18 +42,22 @@
         <h5 class="section-title title">Playlist</h5>
         <ul class="list-group playlist-scroll">
           @foreach ($videos as $key => $video)
-            <?php $video_snippet = unserialize($video->vc_snippet) ?>
+            <?php $video_snippet = unserialize($video->plv_snippet) ?>
             <li class="list-group-item">
+              <a href="#" id="{{ $video->plv_video_id }}" vorder="{{ $key }}" class="play_video">
               <div class="row">
               <div class="col-md-4 col-sm-4 col-xs-4">
-                  <!-- <a href="{{ url('search/preview/' . $video->vc_id) }}" class="btn-modal"><img src="{{ $video_snippet->thumbnails->medium->url }}" class="img-rounded" width="100%"></a> -->
-                  <a href="#" id="{{ $video->vc_id }}" vorder="{{ $key }}" class="play_video"><img src="{{ $video_snippet->thumbnails->medium->url }}" class="img-rounded" width="100%"></a>
+                <div class="play_image_container">
+                  <img src="{{ $video_snippet->thumbnails->medium->url }}" class="img-rounded" width="100%">
+                  <div class="play_button"><i class="fa fa-play-circle-o"></i></div>
+                </div>
               </div>
               <div class="col-md-8 col-sm-8 col-xs-8">
                   <div class="selected_video_title">{{ $video_snippet->title }}</div>
               </div>
             </div>
-            </li>
+            </a>
+          </li>
           @endforeach
         </ul>
       </div>
@@ -55,36 +71,116 @@
         </div>
         <div class="fb-comments hidden-sm hidden-xs" data-href="{{ request()->url() }}" data-numposts="5" data-width="100%"></div>
       </div>
+
       <div class="col-md-4">
         <div class="section">
           <h5 class="section-title title">Top Playlists</h5>
-          @foreach ($mostViewed as $plmv)
-          <?php $video_snippet = unserialize($plmv->vc_snippet) ?>
-          <li class="list-group-item">
-            <div class="row">
-            <div class="col-md-4 col-sm-4 col-xs-4">
-                <!-- <a href="{{ url('search/preview/' . $video->vc_id) }}" class="btn-modal"><img src="{{ $video_snippet->thumbnails->medium->url }}" class="img-rounded" width="100%"></a> -->
-                <a href="{{ url('/public_playlist/' . $plmv->pl_id) }}"><img src="{{ $video_snippet->thumbnails->medium->url }}" class="img-rounded" width="100%"></a>
+          <ul class="list-group poll_playlist_group">
+            @foreach ($mostViewed as $plmv)
+            <?php $video_snippet = unserialize($plmv->plv_snippet) ?>
+            <li class="list-group-item">
+              <div class="row">
+              <div class="col-md-4 col-sm-4 col-xs-4">
+                <div class="play_image_container">
+                  <a href="{{ url('/public_playlist/' . $plmv->pl_id) }}"><img src="{{ $plmv->pl_thumb_path or asset(config('playligo.video_thumb_default')) }}" class="img-rounded" width="100%"></a>
+                  <div class="play_button"><i class="fa fa-play-circle-o"></i></div>
+                </div>
+              </div>
+              <div class="col-md-8 col-sm-8 col-xs-8">
+                  <div class="selected_video_title">{{ $plmv->pl_title }}</div>
+              </div>
             </div>
-            <div class="col-md-8 col-sm-8 col-xs-8">
-                <div class="selected_video_title">{{ $plmv->pl_title }}</div>
-            </div>
+            </li>
+            @endforeach
+          </ul>
+          <a href="{{ url('public_playlist') }}">@lang('form.show_more')</a>
           </div>
-          </li>
-          @endforeach
+
+          <div class="section">
+            <h5 class="section-title title">Recent Poll Votes</h5>
+            <ul class="list-group">
+            @foreach ($recent_votes as $vote)
+            <li class="list-group-item">
+              <div class="row">
+              <div class="col-md-3 col-sm-3 col-xs-3">
+                <div class="image-cropper">
+                  <img class="rounded" src="{{ !empty($vote->avatar) ? $vote->avatar : asset(config('playligo.avatar_default')) }}" >
+                </div>
+              </div>
+              <div class="col-md-9 col-sm-9 col-xs-9">
+                {{ $vote->name }} voted for {{ $vote->pl_title }}
+              </div>
+            </div>
+            </li>
+            @endforeach
+            </ul>
+          </div>
+
         </div>
       </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="fb-comments visible-sm-block visible-xs-block" data-href="{{ request()->url() }}" data-numposts="5" data-width="100%"></div>
+        </div>
+      </div>
+
     </div>
 
-    <div class="row">
-      <div class="col-md-12">
-        <div class="fb-comments visible-sm-block visible-xs-block" data-href="{{ request()->url() }}" data-numposts="5" data-width="100%"></div>
-      </div>
-    </div>
-</div>
+<!-- </div> -->
+@endsection
+
+@section('style')
+<link rel="stylesheet" href="{{ asset('css/fontawesome-circle-o.css') }}">
+<link rel="stylesheet" href="{{ asset('css/fontawesome-stars-o.css') }}">
 @endsection
 
 @section('script')
+<script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"></script>
+<script src="{{ asset('js/jquery.barrating.min.js') }}"></script>
+<script type="text/javascript">
+   $(function() {
+
+     ratingEnable({{ $playlist->pl_rating }});
+
+      $('.newPlRating').barrating({
+        theme: 'fontawesome-circle-o',
+        initialRating: {{ $my_rating }},
+        showSelectedRating: true,
+        onSelect: function(value, text, event) {
+            if (typeof(event) !== 'undefined') {
+              $('#ratingPopUp').popup('hide');
+              $.ajax({
+        					url: "{{ url('playlist/rating/add') }}",
+        					type: 'POST',
+        					dataType: 'json',
+        					data: {plr_playlist: {{ $playlist->pl_id }}, plr_rating: value, _token: "{{ csrf_token() }}"},
+        					success: function (data) {
+                    sweetAlert("Yay!", data.message, "success");
+                    $('.plRating').barrating('destroy');
+                    ratingEnable(data.rating);
+        					}
+        			});
+            } else {
+              // rating was selected programmatically
+              // by calling `set` method
+            }
+          }
+      });
+
+   });
+
+   function ratingEnable(rating) {
+     $('.plRating').barrating('show', {
+       theme: 'fontawesome-circle-o',
+       initialRating: rating,
+       showSelectedRating: true,
+       readonly: true,
+     });
+
+   }
+</script>
+
 <!--FB comment plugin-->
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
@@ -118,7 +214,7 @@
     function onPlayerReady(event) {
       <?php $vid = [] ?>
       @foreach ($videos as $item)
-      <?php $vid[] = $item->vc_id; ?>
+      <?php $vid[] = $item->plv_video_id; ?>
       @endforeach
       var videos = {!! json_encode($vid) !!};
       event.target.loadPlaylist(videos);
@@ -141,10 +237,17 @@
       player.loadVideoById("bHQqvYy5KYo", 5, "large");
     }
 
-</script>
-<script>
 $(document).ready(function() {
   // getLatestSelected();
+
+  $('#ratingPopUp').popup({
+    transition: 'all 0.3s',
+    scrolllock: true,
+    blur: true,
+    openelement: '.ratingPopUp_open',
+    type: 'tooltip',
+    offsettop: -60,
+  });
 
   $('body').on('click', '.play_video', function (event) {
 			event.preventDefault();
@@ -177,36 +280,11 @@ function getLatestSelected()
 
 }
 
-
-$(function () {
-
-  $(".plRating").rateYo({
-    starWidth: "18px",
-    rating    : {{ $playlist->pl_rating }},
-    readOnly: true
-  });
-
-  $(".plNewRating").rateYo({
-    starWidth: "18px",
-    halfStar: true,
-  }).on("rateyo.set", function (e, data) {
-    var rating = data.rating;
-    $.ajax({
-        url: $(this).attr('href'),
-        type: 'POST',
-        dataType: 'json',
-        data: {plr_playlist: {{ $playlist->pl_id }}, plr_rating:rating, _token: "{{ csrf_token() }}"},
-        success: function (data) {
-            location.reload();
-        }
-    });
-  });
-
-});
 </script>
 @endsection
 
 @section('meta')
+  <meta property="fb:app_id" content="{{ env('FACEBOOK_CLIENT_ID') }}" />
   <meta property="og:url"           content="{{ Request::url() }}" />
 	<meta property="og:type"          content="website" />
 	<meta property="og:title"         content="{{ $playlist->pl_title }}" />

@@ -1,21 +1,45 @@
 <div class="post">
   <div class="post-content">
     <div class="row">
-      <div class="col-md-2 col-sm-4 col-xs-4 text-center">
+      <div class="col-md-2 text-center">
         <div class="image-cropper">
-          <img class="rounded" src="{{ url($owner->avatar) }}" >
+          <img class="rounded" src="{{ !empty($owner->avatar) ? $owner->avatar : asset(config('playligo.avatar_default')) }}" >
         </div>
         {{ $owner->name }}
       </div>
-      <div class="col-md-10 col-sm-8 col-sx-8">
-        <div class="entry-meta">
-          <ul class="list-inline">
-            <li class="publish-date"><a href="#"><i class="fa fa-clock-o"></i> {{ date(config('playligo.date_display_format'), strtotime($playlist->created_at)) }} </a></li>
-            <li class="views"><a href="#"><i class="fa fa-eye"></i>{{ $playlist->pl_view }} views</a></li>
-            <li class="publish-date"><div id="rating" class="plRating pull-left"></div> <div class="pull-left">{{ $playlist->pl_rating }} ({{ $playlist->pl_rating_count }} @lang('playlist.pl_rating_count'))</div> <div id="newRating" class="plNewRating pull-left" href="{{ url('playlist/rating/add') }}"></div></li>
-          </ul>
+      <div class="col-md-10">
+        <div class="row meta-list">
+          <div class="col-md-3 col-sm-3 col-xs-3">
+            <i class="fa fa-clock-o"></i> {{ date(config('playligo.date_display_format'), strtotime($playlist->created_at)) }}
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-3">
+            <i class="fa fa-eye"></i>{{ $playlist->pl_view }} views
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-3">
+            <select class="plRating">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+          <div class="col-md-2 col-sm-2 col-xs-2">
+            {{ Form::button('Rate', ['type'=>'button', 'class'=>'btn-xs btn-primary btn ratingPopUp_open']) }}
+            <div id="ratingPopUp" class="well text-center">
+              Enter your rating
+              <select class="newPlRating">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
+          </div>
         </div>
         <div class="entry-content">
+          <h5>{{ $playlist->pl_title }}</h5>
           {{ $playlist->pl_description }}
         </div>
       </div>

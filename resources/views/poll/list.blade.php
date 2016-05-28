@@ -17,7 +17,7 @@
 				<tr>
 					<th>{{ trans('poll.pol_title') }}</th>
 					<th>{{ trans('poll.pol_votes') }}</th>
-          <th>{{ trans('form.created_at') }}</th>
+          <th>{{ trans('poll.pol_expiry') }}</th>
 					<th>{{ trans('form.action_column') }}</th>
 				</tr>
 			</thead>
@@ -26,11 +26,11 @@
 			<tr>
           <td>{{ $pol->pol_title }}</td>
 					<td>{{ $pol->pol_votes }}</td>
-          <td>{{ $pol->created_at }}</td>
+          <td>{{ $pol->pol_expiry }}</td>
           <td class="action_column">
-              <a href="{{ url('poll/edit/' . $pol->pol_id) }}" title="{{ trans('form.action_edit') }}"><i class="fa fa-edit"></i></a>
-              <a href="{{ url('poll/delete/' . $pol->pol_id) }}" title="{{ trans('form.action_delete') }}" class="btn-modal"><i class="fa fa-trash"></i></a>
-							<a href="{{ url('public_poll/' . $pol->pol_id) }}" title="{{ trans('form.action_view') }}"><i class="fa fa-eye"></i></a>
+              <a href="{{ url('poll/edit/' . $pol->pol_id) }}" title="{{ trans('form.action_edit') }}">{{ Form::button('<i class="fa fa-edit"></i> '.trans('form.btn_edit'), ['class'=>'btn btn-primary btn-small']) }}</a>
+              <a href="{{ url('poll/delete/' . $pol->pol_id) }}" title="{{ trans('form.action_delete') }}" class="btn-modal">{{ Form::button('<i class="fa fa-trash"></i> '.trans('form.btn_delete'), ['class'=>'btn btn-primary btn-small']) }}</a>
+							<a href="{{ url('public_poll/' . $pol->pol_id) }}" title="{{ trans('form.action_view') }}">{{ Form::button('<i class="fa fa-eye"></i> '.trans('form.btn_view_live'), ['class'=>'btn btn-primary btn-small']) }}</a>
           </td>
 			</tr>
 			@endforeach

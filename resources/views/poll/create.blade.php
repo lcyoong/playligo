@@ -12,13 +12,20 @@
 	</div>
 
 	<div class="section">
-		{{ Form::open(['url'=>url('poll/create'), 'method'=>'post', 'class'=>'']) }}
+		{{ Form::open(['url'=>url('poll/create'), 'method'=>'post', 'class'=>'submit-ajax']) }}
 		{{ Form::hidden('pol_user', auth()->user()->id) }}
 		<div class="row">
 				<div class="col-md-6">
 						<div class="form-group">
 	          	{{ Form::label('pol_title', trans('poll.pol_title'), ['class'=>'control-label']) }}
           		{{ Form::text('pol_title', old('pol_title'), ['class'=>'form-control']) }}
+          	</div>
+						<div class="form-group">
+	          	{{ Form::label('pol_expiry', trans('poll.pol_expiry'), ['class'=>'control-label']) }}
+							<div class="input-group">
+	          		{{ Form::text('pol_expiry', date('d-m-Y'), ['class'=>'form-control datepicker']) }}
+								<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+							</div>
           	</div>
 						<div class="form-group">
 	          	{{ Form::label('pol_description', trans('poll.pol_description'), ['class'=>'control-label']) }}
@@ -35,4 +42,9 @@
 @endsection
 
 @section('script')
+<script>
+$('.datepicker').datepicker({
+	dateFormat: 'dd-mm-yy',
+});
+</script>
 @endsection

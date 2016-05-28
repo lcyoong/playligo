@@ -12,6 +12,7 @@ return [
     'name'                    => 'Name',
     'tel_no'                  => 'Tel No',
     'email'                   => 'Email',
+    'status'                  => 'Status',
     'password'                => 'Password',
     'password_confirmation'   => 'Confirm Password',
 
@@ -24,5 +25,6 @@ return [
     'forgot_password'         => 'Forgot password',
 
     'list'                    => 'Users List',
+    'edit'                    => 'Edit User',
 
 ];

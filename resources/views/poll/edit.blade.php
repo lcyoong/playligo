@@ -22,7 +22,7 @@
 				<li class="comments"><i class="fa fa-comment-o"></i><a href="#">189</a></li> -->
 			</ul>
 		</div>
-		{{ Form::open(['url'=>url('poll/edit'), 'method'=>'post', 'class'=>'']) }}
+		{{ Form::open(['url'=>url('poll/edit'), 'method'=>'post', 'class'=>'submit-ajax']) }}
 		{{ Form::hidden('pol_id', $poll->pol_id, ['id'=>'pol_id']) }}
 		<div class="row">
 				<div class="col-md-6">
@@ -42,24 +42,45 @@
           		{{ Form::textarea('pol_description', $poll->pol_description, ['class'=>'form-control', 'rows'=>5]) }}
           	</div>
 						<div class="form-group">
-								{{ Form::button(trans('form.btn_submit'), ['type'=>'submit', 'class'=>'btn btn-primary']) }}
+								{{ Form::button(trans('form.btn_save'), ['type'=>'submit', 'class'=>'btn btn-primary']) }}
 						</div>
 				</div>
 				<div class="col-md-6">
 					<div id="sort_list" class="video-post-list">
 						<h5>Total votes: {{ $poll->pol_votes }}</h5>
-						<ul class="ui-sortable list-group">
+						<ul class="ui-sortable list-group poll_playlist_group">
 							@foreach($poll_playlists as $pl)
-							<?php $snippet = unserialize($pl->vc_snippet); ?>
-							<li class="poll_playlist_group" id="{{ $pl->polp_id }}">
+							<li class="list-group-item" id="{{ $pl->polp_id }}">
+								<div class="row">
+									<div class="col-md-3">
+										<div class="play_image_container">
+											<a class="play_video" href="{{ url('/public_playlist/popup/' . $pl->pl_id) }}" class="btn-modal"><img src="{{ $pl->pl_thumb_path or asset(config('playligo.video_thumb_default')) }}" class="img-rounded" width="100%"></a>
+											<div class="play_button"><i class="fa fa-play-circle-o"></i></div>
+										</div>
+									</div>
+									<div class="col-md-7">
+										<div class="selected_video_title">{{ $pl->pl_title }}</div>
+										<div class="progress">
+											<div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40"
+											aria-valuemin="0" aria-valuemax="100" style="width:{{ $poll->pol_votes > 0 ? round(($pl->polp_vote / $poll->pol_votes) * 100) : 0 }}%;">
+												{{ $poll->pol_votes > 0 ? round(($pl->polp_vote / $poll->pol_votes) * 100) : 0 }}%
+											</div>
+										</div>
+									</div>
+									<div class="col-md-2 text-center">
+										<div class="vote_count">{{ number_format($pl->polp_vote) }}</div>
+										<a href="{{ url('poll/playlist/' . $pl->polp_id . '/delete') }}" class="btn-modal"><i class="fa fa-times-circle"></i></a>
+									</div>
+								</div>
+							</li>
+							<!-- <li class="poll_playlist_group" id="{{ $pl->polp_id }}">
 								<div class="post video-post small-post">
 									<div class="entry-header">
 										<div class="entry-thumbnail embed-responsive embed-responsive-16by9">
-											<a href="{{ url('public_playlist/popup/' . $pl->pl_id) }}" class="btn-modal"><img src="{{ $snippet->thumbnails->medium->url }}" width="100%"></a>
+											<a href="{{ url('public_playlist/popup/' . $pl->pl_id) }}" class="btn-modal"><img src="{{ $pl->pl_thumb_path or asset(config('playligo.video_thumb_default')) }}" width="100%"></a>
 										</div>
 									</div>
 									<div class="post-content">
-										<!-- <div class="video-catagory"><a href="#">World</a></div> -->
 										<h2 class="entry-title pull-left">
 											<div class="row">
 												<div class="col-md-9">
@@ -67,7 +88,7 @@
 														{{ $pl->pl_title }}
 														<div class="progress">
 														  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40"
-														  aria-valuemin="0" aria-valuemax="100" style="width:{{ $poll->pol_votes > 0 ? round(($pl->polp_vote / $poll->pol_votes) * 100) : 0 }}%">
+														  aria-valuemin="0" aria-valuemax="100" style="width:{{ $poll->pol_votes > 0 ? round(($pl->polp_vote / $poll->pol_votes) * 100) : 0 }}%;">
 														    {{ $poll->pol_votes > 0 ? round(($pl->polp_vote / $poll->pol_votes) * 100) : 0 }}%
 														  </div>
 														</div>
@@ -80,13 +101,7 @@
 										</h2>
 									</div>
 								</div>
-								<!-- <div class="row">
-									<div class="col-md-2">
-											<i class="fa fa-sort"></i>
-											<a href="{{ url('poll/playlist/' . $pl->polp_id . '/delete') }}" class="btn-modal"><i class="fa fa-times-circle"></i></a>
-									</div>
-								</div> -->
-							</li>
+							</li> -->
 							@endforeach
 						</ul>
 					</div>

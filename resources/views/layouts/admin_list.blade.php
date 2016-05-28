@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 
 @section('content_admin')
-<div class="container">
 	<div class="page-breadcrumbs">
 		<h1 class="section-title">{{ $page_title or ''  }}</h1>
 		<!-- <div class="world-nav cat-menu">
@@ -16,9 +15,8 @@
 	@endif
 
 	@yield('content_list')
-	
+
 	<div class="section">
 		Total : {{ $total_record or 0 }} record(s)
 	</div>
-</div>
 @endsection

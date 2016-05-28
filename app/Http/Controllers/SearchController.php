@@ -27,16 +27,37 @@ class SearchController extends Controller
 
     public function index()
     {
-        return view('search.search');
+      $page_title = trans('meta_data.search_funnel_title');
+
+      $page_desc = trans('meta_data.search_funnel_desc');
+
+      $page_img = asset('img/playligo_home_background_glacier.jpg');
+
+      return view('search.search', compact('page_title', 'page_desc', 'page_img'));
     }
 
     public function searchKeywords(SearchLocation $request)
     {
-        session()->put('search_location', ucwords($request->input('location')));
+      session()->put('search_location', ucwords($request->input('location')));
 
-        $location = session()->get('search_location');
+      if ($request->ajax() || $request->wantsJson()) {
+        return response()->json(['redirect'=> url('new_search_keywords')]);
+      } else {
+        return redirect('new_search_keywords');
+      }
+    }
 
-        return view('search.search_keywords', compact('location'));
+    public function displaySearchKeywords(Request $request)
+    {
+      $location = session()->get('search_location');
+
+      $page_title = trans('meta_data.search_funnel_title') . ' | ' . $location;
+
+      $page_desc = trans('meta_data.search_funnel_desc');
+
+      $page_img = asset('img/playligo_home_background_glacier.jpg');
+
+      return view('search.search_keywords', compact('location', 'page_title', 'page_desc', 'page_img'));
     }
 
     public function autoGen(Request $request)
@@ -70,7 +91,9 @@ class SearchController extends Controller
           $plk->create(['plk_playlist' => $playlist->pl_id, 'plk_key' => $key_used['value'], 'plk_weight'=> $key_used['weight'], 'plk_next_token'=> $key_used['next_token']]);
         }
 
-        return redirect('public_playlist/' . $playlist->pl_id)->with('status', trans('messages.store_successful'));;
+        return response()->json(['redirect' => 'public_playlist/' . $playlist->pl_id, 'message'=> trans('messages.autogen_successful')]);
+
+        // return redirect('public_playlist/' . $playlist->pl_id)->with('status', trans('messages.store_successful'));;
 
         // return view('search.auto_playlist', compact('resultsets', 'location', 'default_playlist_title', 'auto_playlist', 'playlist'));
     }
@@ -189,6 +212,7 @@ class SearchController extends Controller
                   'type'=>'video',
                   'part'=>'id, snippet',
                   'videoDuration' => 'short',
+                  'order' => 'rating',
                   'maxResults'=>$max_result];
 
             if ($more) {
@@ -319,10 +343,12 @@ class SearchController extends Controller
       session()->forget('selected');
 
       foreach($resultsets as $set) {
-        foreach ($set as $video) {
-          $playlist[] = $video;
+        if (!empty($set)) {
+          foreach ($set as $video) {
+            $playlist[] = $video;
 
-          session()->push('selected', $video->id->videoId);
+            session()->push('selected', $video->id->videoId);
+          }
         }
       }
 
@@ -330,22 +356,31 @@ class SearchController extends Controller
 
     }
 
-    public function suggestRegion(Request $request)
-    {
-      $repoCoun = new Country;
+    // public function suggestRegion(Request $request)
+    // {
+    //   $repoCoun = new Country;
+    //
+    //   $continents = $repoCoun->continents();
+    //
+    //   return view('search.suggest_continent', compact('continents'));
+    // }
 
-      $continents = $repoCoun->continents();
-
-      return view('search.suggest_continent', compact('continents'));
-    }
-
+    // Location selection - based on region
     public function suggestLocation(Request $request, $region)
     {
+      $page_title = trans('meta_data.search_funnel_title') . ' | ' . $region;
+
+      $page_desc = trans('meta_data.search_funnel_desc');
+
+      $page_img = asset('img/playligo_home_background_glacier.jpg');
+
       $repoCit = new City;
 
       $cities = $repoCit->byRegion($region)->get();
 
-      return view('search.suggest_location', compact('cities'));
+      $chunk_size = config('playligo.max_tags_per_cloud');
+
+      return view('search.suggest_location', compact('cities', 'region', 'page_title', 'page_desc', 'page_img', 'chunk_size'));
     }
 
 }

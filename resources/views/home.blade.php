@@ -3,13 +3,15 @@
 @section('content')
 <div class="text-center home-content">
   <div class="home-content-inner">
-    <h1>Inspire Your Getaway</h1>
-    <h2>Watch travel playlists before going...</h2>
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-          <a href="{{ url('search') }}#suggest">{{ Form::button('Show Me', ['class'=>'btn btn-primary']) }}</a>&nbsp;&nbsp;&nbsp;
-          <a href="{{ url('search') }}">{{ Form::button("I'm thinking of...", ['class'=>'btn btn-primary']) }}</a>
-        </div>
+    <h1>Be inspired. Decide with confidence.</h1>
+    <h2 style="margin-bottom: 40px">Watch short curated destination video playlists before you go.</h2>
+    <div class="section">
+      <div class="row">
+          <div class="col-md-10 col-md-offset-1">
+            <a href="{{ url('search') }}#discover">{{ Form::button(trans('form.btn_discover'), ['class'=>'btn btn-primary input-lg']) }}</a>&nbsp;&nbsp;&nbsp;
+            <a href="{{ url('search') }}">{{ Form::button(trans('form.btn_search'), ['class'=>'btn btn-primary input-lg']) }}</a>
+          </div>
+      </div>
     </div>
   </div>
 </div>

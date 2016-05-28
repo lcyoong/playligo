@@ -2,14 +2,14 @@
       <div class="navbar" role="banner">
         <div class="container">
           <a class="secondary-logo" href="{{ url('/') }}">
-            <img class="img-responsive" src="{{ asset('img/logo.png') }}" alt="logo">
+            <img class="img-responsive" src="{{ asset('img/logo_playligo_md.png') }}" alt="logo">
           </a>
         </div>
         <div class="topbar">
           <div class="container">
             <div id="topbar" class="navbar-header">
               <a class="navbar-brand" href="{{ url('/') }}">
-                <img class="img-responsive" src="{{ asset('img/logo.png') }}" alt="logo">
+                <img class="img-responsive" src="{{ asset('img/logo_playligo_md.png') }}" alt="logo">
               </a>
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -25,6 +25,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="{{ url('/home') }}">Home</a></li>
                 <li><a href="{{ url('/search') }}">Search</a></li>
+                <li><a href="{{ url('/public_playlist') }}">Playlists</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

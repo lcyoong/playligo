@@ -27,7 +27,7 @@ class PollPlaylistController extends Controller
 
         $this->polpRepo->create($input);
 
-        return redirect()->back()->with('status', trans('messages.store_successful'));
+        return response()->json(['message'=> trans('messages.store_successful')]);
     }
 
     public function delete(PollPlaylist $playlist)
@@ -46,7 +46,9 @@ class PollPlaylistController extends Controller
     {
         session()->flash('status', trans('messages.vote_successful'));
 
-        return $this->polpRepo->addVote($playlist->polp_id);
+        $instance = $this->polpRepo->addVote($playlist->polp_id);
+
+        return response()->json(['message'=> trans('messages.vote_successful')]);
         // return back()->with('status', trans('messages.vote_successful'));
     }
 

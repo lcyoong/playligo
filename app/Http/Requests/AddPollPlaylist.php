@@ -23,9 +23,10 @@ class AddPollPlaylist extends Request
      */
     public function rules()
     {
+        $input = $this->input();
         return [
-            'polp_playlist' => 'required|exists:playlists,pl_id',
-            'polp_poll' => 'required|exists:polls,pol_id',
+          'polp_poll' => 'required|exists:polls,pol_id',
+          'polp_playlist' => 'required|exists:playlists,pl_id|unique:poll_playlists,polp_playlist,NULL,polp_id,polp_poll,'.$input['polp_poll'],
         ];
     }
 }

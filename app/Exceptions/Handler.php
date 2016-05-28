@@ -45,6 +45,16 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-        return parent::render($request, $e);
+      if ($request->ajax() || $request->wantsJson()) {
+        if (get_class($e) == 'Exception') {
+          return response()->json(['message'=>$e->getMessage()], 422);
+        }
+      }
+
+      // if ($e instanceof ModelNotFoundException) {
+      //     $e = new NotFoundHttpException($e->getMessage(), $e);
+      // }
+
+      return parent::render($request, $e);
     }
 }

@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'facebook_id', 'avatar'
+        'name', 'email', 'password', 'facebook_id', 'avatar', 'status', 'remarks',
     ];
 
     /**
@@ -56,4 +56,12 @@ class User extends Authenticatable
 
       return compact('playlist_count', 'poll_count');
     }
+
+    public static function boot()
+    {
+        User::creating(function ($post) {
+          $post['status'] = 1;
+        });
+    }
+
 }

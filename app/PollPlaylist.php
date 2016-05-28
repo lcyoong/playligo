@@ -17,9 +17,9 @@ class PollPlaylist extends Model
 
     public function scopeWithPlaylist($query)
     {
-        $query->join('playlists', 'pl_id', '=', 'polp_playlist')
-              ->leftJoin('playlist_videos', 'plv_playlist', '=', 'pl_id')->groupBy('plv_playlist')
-              ->leftJoin('video_caches', 'plv_video_id', '=', 'vc_id');
+        $query->join('playlists', 'pl_id', '=', 'polp_playlist');
+              // ->leftJoin('playlist_videos', 'plv_playlist', '=', 'pl_id')->groupBy('plv_playlist')
+              // ->leftJoin('video_caches', 'plv_video_id', '=', 'vc_id');
     }
 
     public function reorder($id, $pol_id, $start_pos, $end_pos)

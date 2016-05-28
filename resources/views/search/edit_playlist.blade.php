@@ -6,6 +6,7 @@
     <div class="row">
         <div class="col-md-8">
               @foreach($resultsets as $key => $result)
+              @if(!empty($result))
               <div class="scroll">
                 <h5><span class="label label-danger">{{ $key }}</span></h5>
                   @foreach(array_chunk($result, 4) as $item_set)
@@ -26,8 +27,9 @@
                       @endforeach
                       </div>
                   @endforeach
-                  <a href="{{ url('/edit_playlist/'.$playlist->pl_id.'/more?search_key=' . $key) }}">{{ Form::button(trans('form.btn_load_more'), ['type'=>'button', 'class'=>'form-control btn btn-primary']) }}</a>
+                  <a href="{{ url('/edit_playlist/'.$playlist->pl_id.'/more?search_key=' . str_replace(' ', '+', $key)) }}">{{ Form::button(trans('form.btn_load_more'), ['type'=>'button', 'class'=>'form-control btn btn-primary']) }}</a>
               </div>
+              @endif
               @endforeach
         </div>
 

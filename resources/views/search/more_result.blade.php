@@ -1,4 +1,5 @@
 @foreach($resultsets as $key => $result)
+@if(!empty($result))
 <div>
   @foreach(array_chunk($result, 4) as $item_set)
       <div class="row">
@@ -19,5 +20,6 @@
       </div>
   @endforeach
 </div>
+<a href="{{ url('/edit_playlist/'.$playlist->pl_id.'/more?search_key=' . str_replace(' ', '+', $key)) }}">{{ Form::button(trans('form.btn_load_more'), ['type'=>'button', 'class'=>'form-control btn btn-primary']) }}</a>
+@endif
 @endforeach
-<a href="{{ url('/edit_playlist/'.$playlist->pl_id.'/more?search_key=' . $key) }}">{{ Form::button(trans('form.btn_load_more'), ['type'=>'button', 'class'=>'form-control btn btn-primary']) }}</a>

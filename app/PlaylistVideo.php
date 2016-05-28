@@ -9,7 +9,7 @@ class PlaylistVideo extends Model
 {
     protected $table = 'playlist_videos';
     protected $primaryKey = 'plv_id';
-    protected $fillable = ['plv_playlist', 'plv_video_id', 'plv_status', 'plv_order'];
+    protected $fillable = ['plv_playlist', 'plv_video_id', 'plv_status', 'plv_order', 'plv_snippet'];
 
     public function massCreate($playlist_id, $videos)
     {
@@ -37,6 +37,8 @@ class PlaylistVideo extends Model
             $this->where('plv_playlist', '=', $pl_id)->where('plv_order', '<', $start_pos)->where('plv_order', '>=', $end_pos)->increment('plv_order');
         }
         $this->where('plv_id', '=', $id)->update(['plv_order' => $end_pos]);
+
+        Playlist::find($pl_id)->updateThumbPath();
         DB::commit();
     }
 
@@ -48,7 +50,18 @@ class PlaylistVideo extends Model
     public static function boot()
     {
         PlaylistVideo::creating(function ($post) {
-          $post['plv_order'] = $post->lastOrder($post['plv_playlist']);
+          $post->plv_order = $post->lastOrder($post['plv_playlist']);
+
+          $post->plv_snippet = VideoCache::find($post->plv_video_id)->vc_snippet;
         });
+
+        PlaylistVideo::saved(function ($post) {
+          Playlist::find($post->plv_playlist)->updateThumbPath();
+        });
+
+        PlaylistVideo::deleted(function ($post) {
+          Playlist::find($post->plv_playlist)->updateThumbPath();
+        });
+
     }
 }

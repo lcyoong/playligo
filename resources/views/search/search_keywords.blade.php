@@ -1,13 +1,13 @@
 @extends('layouts.app')
-
 @section('content')
 <div class="text-center search-keywords">
   <div class="search-keywords-inner">
+    <div class="section">
       <h1><span class="label label-success">{{ $location }}</span></h1>
       <div class="row">
-          <div class="col-md-10 col-md-offset-1">
-              <h2>Do you have specific places to visit? Any specific food and things to do? How would you describe this trip? Enter each keyword/phase in a box below...</h2>
-              {{ Form::open(['url'=>'autogen', 'method'=>'get']) }}
+          <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
+              <h2>Have some attractions in mind? <br/>Interested in a peculiar local food or particular fun things to do? <br/>How will you describe this trip?</h2>
+              {{ Form::open(['url'=>'autogen', 'method'=>'get', 'class'=>'submit-ajax-get']) }}
               {{ Form::hidden('location', $location) }}
               <div class="row">
                   <div class="col-md-4">
@@ -49,6 +49,7 @@
               {{ Form::close() }}
           </div>
       </div>
+    </div>
   </div>
 </div>
 @endsection

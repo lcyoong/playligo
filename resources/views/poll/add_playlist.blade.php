@@ -1,6 +1,6 @@
 @extends('layouts.modal')
 @section('content')
-{{ Form::open(['url'=>'poll/add', 'action'=>'POST']) }}
+{{ Form::open(['url'=>'poll/add', 'action'=>'POST', 'class'=>'submit-ajax']) }}
 		{{ Form::hidden('polp_playlist', $playlist->pl_id) }}
 		<h4>@lang('poll.add_playlist')</h4>
 		<div class="form-group">

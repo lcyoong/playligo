@@ -12,7 +12,7 @@
     								<a href="{{ url('login/facebook') }}" class="facebook-login"><i class="fa fa-facebook"></i> Login with Facebook</a>
     							</div>
                   <div class="devider text-center">Or</div>
-                  {{ Form::open(['method'=>'post', 'url'=>url('/login')]) }}
+                  {{ Form::open(['method'=>'post', 'url'=>url('/login'), 'class'=>'submit-ajax']) }}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                           {{ Form::label(trans('user.email')) }}

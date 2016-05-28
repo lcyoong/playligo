@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\ModelTrait;
 use App\PollPlaylist;
+use App\PollVoter;
 
 class Poll extends Model
 {
@@ -22,6 +23,11 @@ class Poll extends Model
   public function voters()
   {
       return $this->hasMany('App\PollVoter', 'pov_poll', 'pol_id')->select('poll_voters.*')->withUser()->orderBy('pov_id', 'desc');
+  }
+
+  public function scopeGetPublicVoters($query)
+  {
+    return $query->isPublic->voters;
   }
 
   public function scopeFilterOwner($query, $owner = null)
@@ -50,6 +56,11 @@ class Poll extends Model
   public function scopeWithOwner($query)
   {
       return $query->join('users', 'id', '=', 'pol_user');
+  }
+
+  public function scopeIsPublic($query)
+  {
+      return $query->where('pol_expiry', '<', 'curdate()');
   }
 
   public function owner()

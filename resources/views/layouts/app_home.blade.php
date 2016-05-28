@@ -40,12 +40,8 @@
 		<div class="footer-menu">
 			<div class="container">
 				<ul class="nav navbar-nav">
-					<li><a href="#">Home</a></li>
+					<li><a href="{{ url('home') }}">Home</a></li>
 					<li><a href="#">About</a></li>
-					<li><a href="#">Products</a></li>
-					<li><a href="#">Career</a></li>
-					<li><a href="#">Advertisement</a></li>
-					<li><a href="#">Team</a></li>
 					<li><a href="#">Contact Us</a></li>
 				</ul>
 			</div>

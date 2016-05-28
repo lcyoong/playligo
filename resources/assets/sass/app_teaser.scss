@@ -10,6 +10,7 @@
 }
 
 .homepage-main h1{
+  margin-top: 60px;
     margin-bottom: 40px;
     color: #ffffff;
     text-shadow: 2px 2px 2px #333333;
@@ -18,11 +19,12 @@
 .homepage-main h2{
     margin-bottom: 40px;
     color: #ff9900;
-    text-shadow: 2px 2px 2px #333333;
+    text-shadow: 1px 1px 1px #333333;
 }
 
 .homepage-main h4{
     color: #ffffff;
+    font-size: 15px;
     text-shadow: 2px 2px 2px #333333;
 }
 
@@ -32,9 +34,17 @@ img.img-center{
 }
 
 .button-homepage{
-    background-color: #ff6600;
+    background-color: #8dc63f;
     width: 100%;
 }
+//
+// .button-homepage:hover{
+//     background-color: #ff6600;
+// }
+//
+// .btn-primary:hover, .btn-primary:focus{
+//   // background-color: #ff6600;
+// }
 
 .form-homepage{
     margin-top: 0px;

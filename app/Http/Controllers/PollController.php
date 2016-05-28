@@ -61,7 +61,8 @@ class PollController extends Controller
 
       $this->polRepo->create($input);
 
-      return redirect('poll')->with('status', trans('messages.store_successful'));
+      return response()->json(['redirect' => url('poll'), 'message'=> trans('messages.store_successful')]);
+      // return redirect('poll')->with('status', trans('messages.store_successful'));
     }
 
     public function store_add(Request $request)
@@ -109,7 +110,9 @@ class PollController extends Controller
 
         $this->polpRepo->create($input);
 
-        return redirect('poll/successful/'.$input['polp_poll'])->with('status', trans('messages.poll_add_successful'));
+        return response()->json(['redirect' => url('poll'), 'message'=> trans('messages.poll_add_successful')]);
+
+        // return redirect('poll/successful/'.$input['polp_poll'])->with('status', trans('messages.poll_add_successful'));
     }
 
     public function edit(Poll $poll)
@@ -129,7 +132,9 @@ class PollController extends Controller
 
         $this->polRepo->find($request->input('pol_id'))->update($input);
 
-        return redirect()->back()->with('status', trans('messages.store_successful'));
+        return response()->json(['message'=> trans('messages.store_successful')]);
+
+        // return redirect()->back()->with('status', trans('messages.store_successful'));
     }
 
     public function sortItem(Request $request)

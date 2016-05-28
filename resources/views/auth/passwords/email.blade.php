@@ -8,13 +8,7 @@
             <div class="panel panel-default ragister-account account-login">
                 <div class="panel-body">
                   <h1 class="section-title title">@lang('user.title_reset_password')</h1>
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ Form::open(['method'=>'post', 'url'=>url('/password/email')]) }}
+                    {{ Form::open(['method'=>'post', 'url'=>url('/password/email'), 'class'=>'submit-ajax']) }}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                           {{ Form::label(trans('user.email')) }}

@@ -161,6 +161,7 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
         Alaouy\Youtube\YoutubeServiceProvider::class,
+        App\Providers\FormErrorServiceProvider::class,
 
     ],
 
@@ -213,6 +214,7 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
         'Youtube'   => Alaouy\Youtube\YoutubeFacades::class,
+        'FormError' => App\Playligo\Facades\FormErrorFacade::class,
 
     ],
 

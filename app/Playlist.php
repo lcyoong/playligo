@@ -12,11 +12,12 @@ class Playlist extends Model
 
     protected $table = 'playlists';
     protected $primaryKey = 'pl_id';
-    protected $fillable = ['pl_user', 'pl_title', 'pl_description', 'pl_status', 'pl_location', 'pl_rating', 'pl_rating_count'];
+    protected $fillable = ['pl_user', 'pl_title', 'pl_description', 'pl_status', 'pl_location', 'pl_rating', 'pl_rating_count', 'pl_thumb_path'];
 
     public function videos()
     {
-        return $this->hasMany('App\PlaylistVideo', 'plv_playlist', 'pl_id')->leftJoin('video_caches', 'vc_id', '=', 'plv_video_id')->orderBy('plv_order', 'asc');
+        // return $this->hasMany('App\PlaylistVideo', 'plv_playlist', 'pl_id')->leftJoin('video_caches', 'vc_id', '=', 'plv_video_id')->orderBy('plv_order', 'asc');
+        return $this->hasMany('App\PlaylistVideo', 'plv_playlist', 'pl_id')->orderBy('plv_order', 'asc');
     }
 
     public function keys()
@@ -63,15 +64,55 @@ class Playlist extends Model
         return $this->find($pl_id)->update(['pl_rating'=>$repoPlr->latestRating($pl_id), 'pl_rating_count'=> $repoPlr->latestCount($pl_id)]);
     }
 
-    public function mostViewed($exclude = [], $limit = 5)
+    public function mostViewed($exclude = [])
     {
-      return $this->whereNotIn('pl_id', $exclude)->withVideo()->orderBy('pl_view', 'desc')->limit($limit)->get();
+      return $this->whereNotIn('pl_id', $exclude)->withVideo()->orderBy('pl_view', 'desc');
     }
 
     public function scopeWithVideo($query)
     {
         $query->leftJoin('playlist_videos', 'plv_playlist', '=', 'pl_id')->groupBy('plv_playlist')
               ->leftJoin('video_caches', 'plv_video_id', '=', 'vc_id');
+    }
+
+    public function scopeLatest($query)
+    {
+      $query->orderBy('pl_id', 'desc');
+    }
+
+    public function updateThumbPath()
+    {
+      $video = $this->videos->first();
+
+      if ($video->plv_snippet) {
+        $snippet = unserialize($video->plv_snippet);
+
+        $this->update(['pl_thumb_path' => $snippet->thumbnails->medium->url ]);
+      }
+    }
+
+    public function scopeSearch($query, $str)
+    {
+      $str = str_replace(' ', '+', $str);
+
+      $str_term = explode('+', $str);
+
+      foreach ($str_term as $term) {
+        $query->where('pl_title', 'like', '%'.$term.'%');
+      }
+    }
+
+    public static function boot()
+    {
+      Playlist::updating(function ($post) {
+        $video = Playlist::find($post->pl_id)->videos->first();
+
+        if ($video) {
+          $snippet = unserialize($video->plv_snippet);
+
+          $post->pl_thumb_path = $snippet->thumbnails->medium->url;
+        }
+      });
     }
 
 }

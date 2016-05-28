@@ -1,4 +1,4 @@
-@extends('layouts.list_admin')
+@extends('layouts.admin_list')
 @section('content_list')
 <div class="section">
 <div class="row">

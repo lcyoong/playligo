@@ -23,17 +23,19 @@ class LogEmail extends Model
                   'loem_priority' => 1,
                   'loem_recipient_name' => $subscriber->sub_name,
                   ]);
-
-      $this->mailNow($loem);
+      dd(asset('file/the-ultimate-travel-checklist.pdf'));
+      $this->mailNow($loem, asset('file/the-ultimate-travel-checklist.pdf'));
     }
 
-    public function mailNow($log_email)
+    public function mailNow($log_email, $pathToFile = '')
     {
       $content = $log_email->loem_content;
 
       Mail::send('email.template', compact('content'), function ($m) use($log_email){
         // $m->from(config('playligo.email'), config('playligo.app_name'));
         $m->to($log_email->loem_email, $log_email->loem_recipient_name)->subject($log_email->loem_title);
+
+        if (!empty($pathToFile)) $m->attach($pathToFile);
       });
 
       if( count(Mail::failures()) == 0 ) {
