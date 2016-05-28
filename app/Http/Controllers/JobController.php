@@ -22,7 +22,7 @@ class JobController extends Controller
 
     public function updatePlThumb()
     {
-      $plvlist = Playlist::whereNull('plv_snippet')->get();
+      $plvlist = PlaylistVideo::whereNull('plv_snippet')->get();
 
       foreach ($plvlist as $plv) {
         $plv->update(['plv_snippet' => VideoCache::find($plv->plv_video_id)->vc_snippet]);
