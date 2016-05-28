@@ -13,19 +13,23 @@ class JobController extends Controller
 {
     public function updateSnippet()
     {
-      $plvlist = PlaylistVideo::whereNull('plv_snippet')->get();
+      $plvlist = PlaylistVideo::where('plv_snippet', '=', '')->get();
+
+      echo $plvlist->count();
 
       foreach ($plvlist as $plv) {
-        $plv->update(['plv_snippet' => VideoCache::find($plv->plv_video_id)->vc_snippet]);
+        echo $plv->update(['plv_snippet' => VideoCache::find($plv->plv_video_id)->vc_snippet]);
       }
     }
 
     public function updatePlThumb()
     {
-      $plvlist = PlaylistVideo::whereNull('plv_snippet')->get();
+      $pllist = Playlist::whereNull('pl_thumb_path')->join('playlist_videos', 'plv_playlist', '=', 'pl_id')->groupBy('plv_playlist')->get();
 
-      foreach ($plvlist as $plv) {
-        $plv->update(['plv_snippet' => VideoCache::find($plv->plv_video_id)->vc_snippet]);
+      echo $pllist->count();
+
+      foreach ($pllist as $pl) {
+        echo $pl->update(['pl_thumb_path' => unserialize($pl->plv_snippet)->thumbnails->medium->url]);
       }
     }
 
