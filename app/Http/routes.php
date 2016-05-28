@@ -125,6 +125,7 @@ Route::group(['middleware' => 'web'], function () {
         Route::post('/admin/poll/search', 'PollController@search');
 
         Route::get('/job/update_snippet', 'JobController@updateSnippet');
+        Route::get('/job/update_thumb', 'JobController@updatePlThumb');
 
       });
 
