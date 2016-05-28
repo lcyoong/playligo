@@ -23,7 +23,7 @@ class LogEmail extends Model
                   'loem_priority' => 1,
                   'loem_recipient_name' => $subscriber->sub_name,
                   ]);
-      dd(asset('file/the-ultimate-travel-checklist.pdf'));
+      // dd(asset('file/the-ultimate-travel-checklist.pdf'));
       $this->mailNow($loem, asset('file/the-ultimate-travel-checklist.pdf'));
     }
 
