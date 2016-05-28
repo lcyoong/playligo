@@ -35,7 +35,9 @@ class LogEmail extends Model
         // $m->from(config('playligo.email'), config('playligo.app_name'));
         $m->to($log_email->loem_email, $log_email->loem_recipient_name)->subject($log_email->loem_title);
 
-        if (!empty($pathToFile)) $m->attach($pathToFile);
+        if (!empty($pathToFile)) {
+            $m->attach($pathToFile, ['mime' => 'application/pdf']);
+        }
       });
 
       if( count(Mail::failures()) == 0 ) {
