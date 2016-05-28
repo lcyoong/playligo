@@ -31,7 +31,7 @@ class LogEmail extends Model
     {
       $content = $log_email->loem_content;
 
-      Mail::send('email.template', compact('content'), function ($m) use($log_email){
+      Mail::send('email.template', compact('content'), function ($m) use($log_email, $pathToFile){
         // $m->from(config('playligo.email'), config('playligo.app_name'));
         $m->to($log_email->loem_email, $log_email->loem_recipient_name)->subject($log_email->loem_title);
 
