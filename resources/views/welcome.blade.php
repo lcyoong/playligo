@@ -39,7 +39,7 @@
     <div id="explainer_video_section" class="text-center">
       <!-- <a href="{{ url('home/video_popup') }}" class="btn-modal"><img src="{{ asset('img/playvideo.jpg') }}"></a> -->
       <a href="{{ url('explainer_popup') }}" class="btn-modal"><div id="explainer_standin"></div></a>
-      <img class="img-responsive" src="{{ asset('img/playligo-phone-mockup-2.png') }}"/>
+      <img class="img-responsive" src="{{ asset('img/phone-mockup-2.png') }}"/>
     </div>
     <!-- <div id="explainer_video_section" class="text-center">
       <iframe id="explainer_video" width="373" height="240" src="https://www.youtube.com/embed/NDbsSGZB0hQ" frameborder="0" allowfullscreen></iframe>
