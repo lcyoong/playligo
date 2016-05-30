@@ -11,6 +11,7 @@
               {{ Form::hidden('location', $location) }}
               <div class="form-group">
                 <input name="search_keys" id="tags" value="{{ $default }}" class="form-control"/>
+                Note: You may click on the keyword to edit, enter comma to create new keyword, drag the keywords to sort.
               </div>
               <!-- <div class="row">
                   <div class="col-md-4">

@@ -553,7 +553,7 @@ img.img-center {
   background-color: #ff6600;
   width: 100%; }
 
-.btn-primary:hover, .btn-primary:focus {
+.homepage-main .btn-primary:hover, .btn-primary:focus {
   background-color: #ff6600; }
 
 .form-homepage {
