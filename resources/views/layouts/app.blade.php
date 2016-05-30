@@ -10,6 +10,7 @@
     @yield('meta')
 
     <!-- Fonts -->
+    <link rel='shortcut icon' href='{{ asset('img/favicon-32x32.png') }}' type='image/x-icon'/ >
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
     <!-- <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'> -->
     <link href='https://fonts.googleapis.com/css?family=Signika+Negative:400,300,600,700' rel='stylesheet' type='text/css'>
@@ -60,6 +61,7 @@
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.1.1/jquery.rateyo.min.js"></script> -->
     <!-- <script type="text/javascript" src="{{ URL::asset('js/jquery.rateyo.js')}}"></script> -->
     <script type="text/javascript" src="{{ URL::asset('js/jquery-ui.min.js')}}"></script>
+    <script type="text/javascript" src="{{ URL::asset('js/moment.js')}}"></script>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
     <script type="text/javascript" src="{{ URL::asset('js/playligo-main.js')}}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/main.js')}}"></script>

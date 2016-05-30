@@ -112,10 +112,15 @@
 </div>
 @endsection
 
+@section('style')
+<link href="{{ asset('css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet">
+@endsection
+
 @section('script')
+<script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
 <script>
-$('.datepicker').datepicker({
-	dateFormat: 'dd-mm-yy',
+$('.datepicker').datetimepicker({
+	format: 'DD-MM-YYYY',
 });
 
 $("#sort_list ul").sortable({ opacity: 0.6, cursor: 'move',

@@ -23,5 +23,6 @@ return array(
 
     'video_thumb_default'                       => 'img/logo.png',
     'avatar_default'                            => 'img/default_avatar.jpg',
+    'min_rating_show_index'                     => 3,
 
 );
