@@ -17,7 +17,7 @@
     <!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.1.1/jquery.rateyo.min.css"> -->
-    <!-- <link href="{{ asset('css/jquery-ui.min.css') }}" rel="stylesheet"> -->
+    <link href="{{ asset('css/jquery-ui.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('css/presets/preset3.css') }}" rel="stylesheet">
     <link href="{{ asset('css/responsive.css') }}" rel="stylesheet">
@@ -59,7 +59,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.1.1/jquery.rateyo.min.js"></script> -->
     <!-- <script type="text/javascript" src="{{ URL::asset('js/jquery.rateyo.js')}}"></script> -->
-    <!-- <script type="text/javascript" src="{{ URL::asset('js/jquery-ui.min.js')}}"></script> -->
+    <script type="text/javascript" src="{{ URL::asset('js/jquery-ui.min.js')}}"></script>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
     <script type="text/javascript" src="{{ URL::asset('js/playligo-main.js')}}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/main.js')}}"></script>

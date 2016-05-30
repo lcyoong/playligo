@@ -5,6 +5,14 @@
     <h1><span class="label label-success">Destination: {{ $playlist->pl_location }}</span></h1>
     <div class="row">
         <div class="col-md-8">
+          {{ Form::open(['url' => url('edit_keywords/' . $playlist->pl_id), 'class'=>'submit-ajaxx', 'method'=>'POST']) }}
+          <div class="input-group">
+            <input name="search_keys" id="tags" value="{{ $keys_string }}" class="form-control"/>
+            <span class="input-group-btn">
+              {{ Form::button(trans('form.btn_search'), ['type'=>'submit', 'class'=>'btn btn-primary']) }}
+            </span>
+          </div>
+          {{ Form::close() }}
               @foreach($resultsets as $key => $result)
               @if(!empty($result))
               <div class="scroll">
@@ -54,7 +62,15 @@
 </div>
 @endsection
 
+@section('style')
+<link href="{{ asset('css/jquery.tag-editor.css') }}" rel="stylesheet">
+<style>
+.tag-editor{padding: 10px 10px;}
+</style>
+@endsection
+
 @section('script')
+<script src="{{ asset('js/jquery.tag-editor.min.js') }}"></script>
 <script src="{{ asset('/js/jquery.jscroll.min.js') }}"></script>
 <script>
 $('.scroll').jscroll({
@@ -64,6 +80,10 @@ $('.scroll').jscroll({
 
 $(document).ready(function() {
   getLatestSelected();
+
+  $('#tags').tagEditor({
+    maxTags: {{ config('playligo.max_keyword_tags') }},
+  });
 
 	$('body').on('click', '.add_video_button', function (event) {
 			event.preventDefault();

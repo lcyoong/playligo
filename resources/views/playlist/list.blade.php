@@ -15,8 +15,8 @@
 		<table class="table table-striped table-hover">
 			<thead>
 				<tr>
-					<th class="" colspan="2">{{ trans('playlist.pl_title') }}</th>
-					<th class="">{{ trans('form.action_column') }}</th>
+					<th class="col-md-8 col-sm-6 col-xs-6" colspan="2">{{ trans('playlist.pl_title') }}</th>
+					<th class="col-md-4 col-sm-6 col-xs-6">{{ trans('form.action_column') }}</th>
 				</tr>
 			</thead>
 			<tbody>

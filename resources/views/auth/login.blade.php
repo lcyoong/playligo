@@ -9,7 +9,10 @@
                 <div class="panel-body">
                   <h1 class="section-title title">@lang('user.title_login')</h1>
                   <div class="login-options text-center">
+                    <!-- {{ Form::open(['class' => 'submit-ajax-get', 'method'=>'get', 'url' => url('login/facebook')]) }} -->
+                    <!-- {{ Form::button('<i class="fa fa-facebook"></i> Login with Facebook', ['class' => 'facebook-login', 'type'=>'submit']) }} -->
     								<a href="{{ url('login/facebook') }}" class="facebook-login"><i class="fa fa-facebook"></i> Login with Facebook</a>
+                    <!-- {{ Form::close() }} -->
     							</div>
                   <div class="devider text-center">Or</div>
                   {{ Form::open(['method'=>'post', 'url'=>url('/login'), 'class'=>'submit-ajax']) }}

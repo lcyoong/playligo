@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\LogEmail;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -50,13 +51,17 @@ class AuthController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+    protected function validator(array $data, $fb = false)
     {
-        return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
-        ]);
+      $rules = [
+          'name' => 'required|max:255',
+          'email' => 'required|email|max:255|unique:users',
+          'password' => 'required|min:6|confirmed',
+      ];
+
+      if ($fb) unset($rules['password']);
+
+      return Validator::make($data, $rules);
     }
 
     /**
@@ -89,9 +94,16 @@ class AuthController extends Controller
         // Attach role to user
         $user->attachRole(config('entrust.member_role_id'));
 
+        // Send autoresponder
+        $email = new LogEmail;
+
+        $email->sendNewUser($user);
+
         Auth::guard($this->getGuard())->login($user);
 
-        return redirect($this->redirectPath());
+        return response()->json(['redirect' => $this->redirectPath(), 'message'=> 'Successful sign up! Signing in...']);
+
+        // return redirect($this->redirectPath());
     }
 
     /**
@@ -153,10 +165,21 @@ class AuthController extends Controller
             'avatar' => $facebookUser->avatar
         ];
 
+        $validator = $this->validator($input, true);
+
+        if ($validator->fails()) {
+          throw new \Exception($validator->errors(), 422);
+        }
+
         $user = User::create($input);
 
         // Attach role to user
         $authUser->attachRole(config('entrust.member_role_id'));
+
+        // Send autoresponder
+        $email = new LogEmail;
+
+        $email->sendNewUser($user);
 
         return $user;
 
@@ -193,7 +216,7 @@ class AuthController extends Controller
         }
 
         if ($request->ajax() || $request->wantsJson()) {
-          return response()->json(['redirect' => $this->redirectPath(), 'message'=> 'Redirecting...']);
+          return response()->json(['redirect' => $this->redirectPath(), 'message'=> 'Signing in...']);
         } else {
           return redirect()->intended($this->redirectPath());
         }

@@ -10,6 +10,7 @@ use App\VideoCache;
 use App\Playlist;
 use App\PlaylistVideo;
 use App\PlaylistKey;
+use App\LogEmail;
 use App\Country;
 use App\City;
 use Auth;
@@ -57,14 +58,17 @@ class SearchController extends Controller
 
       $page_img = asset('img/playligo_home_background_glacier.jpg');
 
-      return view('search.search_keywords', compact('location', 'page_title', 'page_desc', 'page_img'));
+      $default = implode(",", config('youtube.generic_keywords'));
+
+      return view('search.search_keywords', compact('location', 'page_title', 'page_desc', 'page_img', 'default'));
     }
 
     public function autoGen(Request $request)
     {
         $input = $request->input();
 
-        $keys = array_get($input, 'search_key');
+        // $keys = array_get($input, 'search_key');
+        $keys = explode(",", array_get($input, 'search_keys'));
 
         $location = array_get($input, 'location');
 
@@ -72,7 +76,7 @@ class SearchController extends Controller
 
         $resultsets = $this->fetchVideos($location, $keys, false, 0.5, true, $keys_used);
 
-        $default_playlist_title = $location . ' ' . implode(' , ', array_column($keys_used, 'value')) . ' video playlist by ' . auth()->user()->name;
+        $default_playlist_title = $location . ' ' . implode(', ', array_column($keys_used, 'value')) . ' video playlist by ' . auth()->user()->name;
 
         $auto_playlist = $this->autoGenPlaylist($resultsets);
 
@@ -90,6 +94,12 @@ class SearchController extends Controller
         foreach ($keys_used as $key_used) {
           $plk->create(['plk_playlist' => $playlist->pl_id, 'plk_key' => $key_used['value'], 'plk_weight'=> $key_used['weight'], 'plk_next_token'=> $key_used['next_token']]);
         }
+
+        // Email notification
+        $email = new LogEmail;
+
+        $email->sendNewPlaylist($playlist);
+
 
         return response()->json(['redirect' => 'public_playlist/' . $playlist->pl_id, 'message'=> trans('messages.autogen_successful')]);
 
@@ -125,7 +135,9 @@ class SearchController extends Controller
 
         // $default_playlist_title = $location . ' ' . implode(' , ', $keys_used) . ' video playlist by ' . auth()->user()->name;
 
-        return view('search.edit_playlist', compact('playlist', 'selected', 'keys', 'resultsets'));
+        $keys_string = implode(',', $keys);
+
+        return view('search.edit_playlist', compact('playlist', 'selected', 'keys', 'resultsets', 'keys_string'));
     }
 
     public function editPlaylistMore(Playlist $playlist, Request $request)
@@ -139,6 +151,25 @@ class SearchController extends Controller
         $resultsets = $this->fetchVideos($playlist->pl_location, $keys, true, 1, false);
 
         return view('search.more_result', compact('resultsets', 'selected', 'playlist'));
+    }
+
+    public function editKeywords(Playlist $playlist, Request $request)
+    {
+      $keys = explode(",", $request->input('search_keys'));
+
+      $resultsets = $this->fetchVideos($playlist->pl_location, $keys, false, 0.5, true, $keys_used);
+
+      // Delete current playlist keys
+      $playlist->keys()->delete();
+
+      // Create playlist keys
+      $plk = new PlaylistKey;
+
+      foreach ($keys_used as $key_used) {
+        $plk->create(['plk_playlist' => $playlist->pl_id, 'plk_key' => $key_used['value'], 'plk_weight'=> $key_used['weight'], 'plk_next_token'=> $key_used['next_token']]);
+      }
+
+      return back();
     }
 
 
@@ -184,21 +215,21 @@ class SearchController extends Controller
         }
 
         // Generic keywords
-        if (count($keys) < config('youtube.key_quota') && $use_default) {
-
-            $generic_keys = array_slice(config('youtube.generic_keywords'), 0, config('youtube.key_quota') - count($keys));
-
-            foreach ($generic_keys as $key) {
-                if (!empty($key)) {
-                    // $result = array_merge($result, $this->fetchVideosByKeyword($location, $key, config('youtube.generic_key_weight'), $more));
-                    $key_result = $this->fetchVideosByKeyword($location, $key, $result_multiplier * config('youtube.generic_key_weight'), $more);
-
-                    $result[$key] = $key_result['results'];
-
-                    $keys_used[] = ['value'=>$key, 'weight'=>0.5, 'next_token' => $key_result['info']['nextPageToken']];
-                }
-            }
-        }
+        // if (count($keys) < config('youtube.key_quota') && $use_default) {
+        //
+        //     $generic_keys = array_slice(config('youtube.generic_keywords'), 0, config('youtube.key_quota') - count($keys));
+        //
+        //     foreach ($generic_keys as $key) {
+        //         if (!empty($key)) {
+        //             // $result = array_merge($result, $this->fetchVideosByKeyword($location, $key, config('youtube.generic_key_weight'), $more));
+        //             $key_result = $this->fetchVideosByKeyword($location, $key, $result_multiplier * config('youtube.generic_key_weight'), $more);
+        //
+        //             $result[$key] = $key_result['results'];
+        //
+        //             $keys_used[] = ['value'=>$key, 'weight'=>0.5, 'next_token' => $key_result['info']['nextPageToken']];
+        //         }
+        //     }
+        // }
 
         $this->vcRepo->massCreate($result);
 
@@ -325,7 +356,9 @@ class SearchController extends Controller
 
         $snippet = unserialize($video->vc_snippet);
 
-        return view('search.preview', compact('video', 'snippet'));
+        $title = $snippet->title;
+
+        return view('search.preview', compact('video', 'snippet', 'title'));
     }
 
     private function moveElement(&$array, $a, $b) {

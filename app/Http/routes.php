@@ -66,6 +66,7 @@ Route::group(['middleware' => 'web'], function () {
       Route::get('/edit_playlist/{playlist}', 'SearchController@editPlaylist');
       Route::get('/edit_playlist/{playlist}/more', 'SearchController@editPlaylistMore');
       Route::get('/edit_playlist/load_selected/{playlist}', 'SearchController@getSelected');
+      Route::post('/edit_keywords/{playlist}', 'SearchController@editKeywords');
       Route::get('/results/more', 'SearchController@resultsMore');
       // Route::get('/results', 'SearchController@results');
       // Route::get('/results/more', 'SearchController@resultsMore');

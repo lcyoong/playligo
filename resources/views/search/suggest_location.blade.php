@@ -2,13 +2,15 @@
 
 @section('content')
 <div class="container">
-  <div class="section">
+  <div class="section text-center">
     <h1>Let's explore {{ $region }}!</h1>
+    <a href="{{ url('search#discover') }}"><span class="label label-info">Try another region?</span></a>
   </div>
-  {{ count($cities) }}
+  <!-- {{ count($cities) }} -->
+  <div class="section text-center">
   <?php $divider = $cities[count($cities)-1]->cit_hotels; ?>
   @foreach($cities->chunk($chunk_size) as $index => $city_set)
-  <a class="switchSet" set="{{ $index }}" href="#">Set {{ $index + 1 }}</a>
+  <a class="switchSet" set="{{ $index }}" href="#"><span class="label label-success">Set {{ $index + 1 }}</span></a>
   <div id="tags{{ $index }}" class="tags">
     <ul>
       @foreach($city_set as $city)
@@ -21,8 +23,10 @@
     </ul>
   </div>
   @endforeach
+  </div>
 
-  <div class="section">
+  <div class="section text-center">
+    Click on one of the locations to begin.
     <div class="row">
       <div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
         <div id="canvasSection">

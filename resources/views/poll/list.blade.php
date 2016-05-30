@@ -16,7 +16,6 @@
 			<thead>
 				<tr>
 					<th>{{ trans('poll.pol_title') }}</th>
-					<th>{{ trans('poll.pol_votes') }}</th>
           <th>{{ trans('poll.pol_expiry') }}</th>
 					<th>{{ trans('form.action_column') }}</th>
 				</tr>
@@ -24,8 +23,11 @@
 			<tbody>
 			@foreach ($polls as $pol)
 			<tr>
-          <td>{{ $pol->pol_title }}</td>
-					<td>{{ $pol->pol_votes }}</td>
+          <td>{{ $pol->pol_title }}
+						<div>
+							<span class="label2 label-success"><i class="fa fa-thumbs-o-up"></i> {{ $pol->pol_votes }} votes</span>
+						</div>
+					</td>
           <td>{{ $pol->pol_expiry }}</td>
           <td class="action_column">
               <a href="{{ url('poll/edit/' . $pol->pol_id) }}" title="{{ trans('form.action_edit') }}">{{ Form::button('<i class="fa fa-edit"></i> '.trans('form.btn_edit'), ['class'=>'btn btn-primary btn-small']) }}</a>

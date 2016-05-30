@@ -5,14 +5,11 @@
     <div class="section">
       <h1><span class="label label-success">{{ $location }}</span></h1>
       <div class="row">
-          <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
-              <h2>Got a travel itinerary? Enter specific attractions, places, things to do, accommodations and food in the box below. <br/>Start visualizing your trip now!</h2>
-              {{ Form::open(['url'=>url('autogen'), 'method'=>'get', 'class'=>'submit-ajax-get']) }}
+          <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
+              <h2>Have some attractions in mind? <br/>Interested in a peculiar local food or particular fun things to do? <br/>How will you describe this trip?</h2>
+              {{ Form::open(['url'=>'autogen', 'method'=>'get', 'class'=>'submit-ajax-get']) }}
               {{ Form::hidden('location', $location) }}
-              <div class="form-group">
-                <input name="search_keys" id="tags" value="{{ $default }}" class="form-control"/>
-              </div>
-              <!-- <div class="row">
+              <div class="row">
                   <div class="col-md-4">
                     <div class="form-group">
                       {{ Form::text('search_key[1]', old('search_key[1]'), ['class'=>'form-control', 'placeholder'=> 'e.g. Adventure' ]) }}
@@ -45,7 +42,7 @@
                       {{ Form::text('search_key[6]', old('search_key[6]'), ['class'=>'form-control', 'placeholder'=> '' ]) }}
                     </div>
                   </div>
-              </div> -->
+              </div>
               {{ Form::button(trans('form.btn_back'), ['type'=>'submit', 'class'=>'btn cancel-button btn-primary', 'goto'=>url('/search')]) }}
               {{ Form::button(trans('form.btn_search'), ['type'=>'submit', 'class'=>'btn btn-primary']) }}
               {{ Form::button(trans('form.btn_skip'), ['type'=>'submit', 'class'=>'btn btn-primary']) }}
@@ -55,22 +52,4 @@
     </div>
   </div>
 </div>
-@endsection
-
-@section('style')
-<link href="{{ asset('css/jquery.tag-editor.css') }}" rel="stylesheet">
-<style>
-.tag-editor{padding: 10px 10px;}
-</style>
-@endsection
-
-@section('script')
-<script src="{{ asset('js/jquery.tag-editor.min.js') }}"></script>
-<script>
-$(document).ready(function() {
-  $('#tags').tagEditor({
-    maxTags: {{ config('playligo.max_keyword_tags') }},
-  });
-});
-</script>
 @endsection

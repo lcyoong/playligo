@@ -7,7 +7,7 @@
             <div class="panel panel-default ragister-account">
                 <div class="panel-body">
                   <h1 class="section-title title">@lang('user.title_register')</h1>
-                    <form role="form" method="POST" action="{{ url('/register') }}">
+                    <form role="form" method="POST" action="{{ url('/register') }}" class="submit-ajax">
                         {!! csrf_field() !!}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
