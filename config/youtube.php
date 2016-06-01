@@ -5,7 +5,7 @@
 
 return array(
     'KEY'                 => 'AIzaSyAtxhYKi-qhWM5GezmcalUo30Fq4MF6C5Q',
-    'generic_keywords'    => ['attractions', 'food', 'shopping', 'accommodations'],
+    'generic_keywords'    => ['trip', 'attractions', 'food', 'shopping', 'accommodations', 'aerial'],
     'key_quota'           => 5,
     'user_key_weight'     => 8,
     'generic_key_weight'  => 4,

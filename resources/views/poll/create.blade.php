@@ -23,7 +23,7 @@
 						<div class="form-group">
 	          	{{ Form::label('pol_expiry', trans('poll.pol_expiry'), ['class'=>'control-label']) }}
 							<div class="input-group">
-	          		{{ Form::text('pol_expiry', date('d-m-Y'), ['class'=>'form-control datepicker']) }}
+	          		{{ Form::text('pol_expiry', date('d-m-Y', strtotime('+14 days')), ['class'=>'form-control datepicker']) }}
 								<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 							</div>
           	</div>
