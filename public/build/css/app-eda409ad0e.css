@@ -495,7 +495,7 @@ h5 .section-title {
   position: relative; }
 
 .play_button {
-  font-size: 3em;
+  font-size: 2.5em;
   color: #ffffff;
   position: absolute;
   top: 50%;
@@ -519,6 +519,34 @@ h5 .section-title {
 
 .text-sm {
   font-size: 0.8em; }
+
+.btn-transparent {
+  background-color: transparent;
+  border: 1px solid #6fa806;
+  color: #6fa806;
+  padding: 3px 7px; }
+
+.inline-instruction {
+  font-size: 12px; }
+
+.invisible {
+  visibility: hidden; }
+
+.poll-thumbnail .entry-header {
+  background-color: #fcfcfc;
+  padding: 20px 0px; }
+
+.poll-thumbnail .image-cropper {
+  margin: 0 auto; }
+
+.poll-thumbnail .avatar-text {
+  text-align: center; }
+
+.poll-thumbnail .post-content {
+  text-align: center; }
+
+.notransition img {
+  transition: none !important; }
 
 #home-layout {
   background-image: url("../../img/santorini-bg-blue.png");

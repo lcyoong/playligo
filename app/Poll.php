@@ -63,6 +63,16 @@ class Poll extends Model
       return $query->where('pol_expiry', '<', 'curdate()');
   }
 
+  public function scopeLatest($query)
+  {
+    $query->orderBy('pol_id', 'desc');
+  }
+
+  public function mostVoted($exclude = [])
+  {
+    return $this->whereNotIn('pol_id', $exclude)->orderBy('pol_votes', 'desc');
+  }
+
   public function owner()
   {
       return $this->belongsTo('App\User', 'pol_user');
@@ -73,6 +83,17 @@ class Poll extends Model
     $total = PollPlaylist::where('polp_poll', '=', $pol_id)->sum('polp_vote');
 
     return $this->find($pol_id)->update(['pol_votes' => $total ]);
+  }
+
+  public function scopeSearch($query, $str)
+  {
+    $str = str_replace(' ', '+', $str);
+
+    $str_term = explode('+', $str);
+
+    foreach ($str_term as $term) {
+      $query->where('pol_title', 'like', '%'.$term.'%');
+    }
   }
 
   public static function boot()

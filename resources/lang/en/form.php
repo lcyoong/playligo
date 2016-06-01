@@ -53,9 +53,15 @@ return [
     'action_add_poll'               => 'Add to Poll',
 
     'playlist_search_caption'       => '100+ Video Playlists to inspire your getaway',
+    'poll_search_caption'           => '100+ Playlist Polls to inspire your getaway',
     'eg_search_playlist'            => 'Search Playlists',
     'playlist_latest'               => 'Latest Playlists',
     'playlist_most_viewed'          => 'Most Viewed Playlists',
-    'playlist_result'               => 'Search Result',
+    'playlist_result'               => 'Playlists Search Result',
+    'poll_latest'                   => 'Latest Polls',
+    'poll_most_viewed'              => 'Most Viewed Polls',
+    'poll_most_voted'               => 'Most Voted Polls',
+    'eg_search_poll'                => 'Search Polls',
+    'poll_result'                   => 'Polls Search Result',
 
 ];

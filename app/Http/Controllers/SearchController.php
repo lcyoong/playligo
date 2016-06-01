@@ -74,7 +74,7 @@ class SearchController extends Controller
 
         // $location = session()->get('search_location');
 
-        $resultsets = $this->fetchVideos($location, $keys, false, 0.5, true, $keys_used);
+        $resultsets = $this->fetchVideos($location, $keys, false, 0.25, true, $keys_used);
 
         $default_playlist_title = $location . ' ' . implode(', ', array_column($keys_used, 'value')) . ' video playlist by ' . auth()->user()->name;
 
@@ -114,6 +114,8 @@ class SearchController extends Controller
 
         // $location = $playlist->pl_location;
 
+        $owner = $playlist->owner;
+
         $selected = array_column($playlist->videos->toArray(), 'plv_video_id');
 
         $pl_keys = $playlist->keys;
@@ -137,7 +139,7 @@ class SearchController extends Controller
 
         $keys_string = implode(',', $keys);
 
-        return view('search.edit_playlist', compact('playlist', 'selected', 'keys', 'resultsets', 'keys_string'));
+        return view('search.edit_playlist', compact('playlist', 'selected', 'keys', 'resultsets', 'keys_string', 'owner'));
     }
 
     public function editPlaylistMore(Playlist $playlist, Request $request)
@@ -243,6 +245,7 @@ class SearchController extends Controller
                   'type'=>'video',
                   'part'=>'id, snippet',
                   'videoDuration' => 'short',
+                  'safeSearch' => 'strict',
                   'order' => 'rating',
                   'maxResults'=>$max_result];
 
@@ -312,7 +315,7 @@ class SearchController extends Controller
         // ksort($videos);
         $videos = $playlist->videos;
 
-        return view('search.selected_videos', compact('videos'));
+        return view('search.selected_videos', compact('videos', 'playlist'));
     }
 
     // public function getSelected()
@@ -409,7 +412,9 @@ class SearchController extends Controller
 
       $repoCit = new City;
 
-      $cities = $repoCit->byRegion($region)->get();
+      $min_hotels = ($region == 'Africa' || $region == 'Oceania') ? 150 : 0;
+
+      $cities = $repoCit->byRegion($region, $min_hotels)->get();
 
       $chunk_size = config('playligo.max_tags_per_cloud');
 

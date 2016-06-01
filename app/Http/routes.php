@@ -42,12 +42,16 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/', 'HomeController@welcome');
     Route::get('/login/{provider}', 'Auth\AuthController@getSocialAuth');
     Route::get('/login/callback/{provider}', 'Auth\AuthController@getSocialAuthCallback');
-    Route::get('public_poll/{poll}', 'HomeController@poll');
     Route::get('load_playlist/{playlist}', 'PlaylistController@loadPlaylist');
     Route::get('public_playlist', 'HomeController@allPlaylist');
     Route::get('public_playlist/latest/more', 'HomeController@latestPlaylist');
     Route::get('public_playlist/mostviewed/more', 'HomeController@mostViewedPlaylist');
+    Route::get('public_poll', 'HomeController@allPoll');
+    Route::get('public_poll/latest/more', 'HomeController@latestPoll');
+    Route::get('public_poll/mostvoted/more', 'HomeController@mostVotedPoll');
     Route::get('public_playlist/search', 'HomeController@searchPlaylist');
+    Route::get('public_poll/search', 'HomeController@searchPoll');
+    Route::get('public_poll/{poll}', 'HomeController@poll');
     Route::get('public_playlist/{playlist}', 'HomeController@playlistPage');
     Route::get('public_playlist/popup/{playlist}', 'HomeController@playlistPopUp');
     Route::get('login_ajax', 'Auth\AuthController@ajaxLogin');
@@ -56,6 +60,11 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/explainer_popup', 'HomeController@explainerPopUp');
 
     Route::group(['middleware' => 'auth'], function () {
+
+      Route::get('/password/edit', 'Auth\PasswordController@edit');
+      Route::post('/password/edit', 'Auth\PasswordController@update');
+      Route::get('/profile/edit', 'UserController@editOwn');
+      Route::post('/profile/edit', 'UserController@update');
 
       Route::get('/search', 'SearchController@index');
       Route::get('/suggest_location', 'SearchController@suggestRegion');

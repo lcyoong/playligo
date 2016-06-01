@@ -80,6 +80,21 @@ class HomeController extends Controller
     return view('public.playlist', compact('latest', 'mostViewed', 'page_title', 'page_desc'));
   }
 
+  public function allPoll()
+  {
+    $polRepo = new Poll;
+
+    $latest = $polRepo->withOwner()->latest()->getPaginated(8);
+
+    $mostVoted = $polRepo->mostVoted()->withOwner()->getPaginated(8);
+
+    $page_title = 'Latest Polls, Most Voted Polls | Playligo';
+
+    $page_desc = 'Latest Polls, Most Voted Polls';
+
+    return view('public.poll', compact('latest', 'mostVoted', 'page_title', 'page_desc'));
+  }
+
   public function latestPlaylist(Request $request)
   {
     $page = $request->input('page');
@@ -100,6 +115,28 @@ class HomeController extends Controller
     $mostViewed = $plRepo->mostViewed()->getPaginated(8);
 
     return view('public.playlist.mostviewed_more', compact('mostViewed', 'page'));
+  }
+
+  public function latestPoll(Request $request)
+  {
+    $page = $request->input('page');
+
+    $polRepo = new Poll;
+
+    $latest = $polRepo->withOwner()->latest()->getPaginated(8);
+
+    return view('public.poll.latest_more', compact('latest', 'page'));
+  }
+
+  public function mostVotedPoll(Request $request)
+  {
+    $page = $request->input('page');
+
+    $polRepo = new Poll;
+
+    $mostVoted = $polRepo->mostVoted()->withOwner()->getPaginated(8);
+
+    return view('public.poll.mostvoted_more', compact('mostVoted', 'page'));
   }
 
   // Playlist page
@@ -125,10 +162,12 @@ class HomeController extends Controller
 
     $page_desc = $playlist->pl_desc;
 
+    $playlist_keys = implode(', ', array_column($playlist->keys()->get()->toArray(), 'plk_key'));
+
     // $page_img = unserialize($videos[0]->vc_snippet)->thumbnails->high->url;
     $page_img = unserialize($videos[0]->plv_snippet)->thumbnails->high->url;
 
-    return view('public.playlist_page', compact('playlist', 'videos', 'owner', 'mostViewed', 'page_title', 'page_desc', 'page_img', 'recent_votes', 'my_rating'));
+    return view('public.playlist_page', compact('playlist', 'videos', 'owner', 'mostViewed', 'page_title', 'page_desc', 'page_img', 'recent_votes', 'my_rating', 'playlist_keys'));
   }
 
   public function playlistPopUp(Playlist $playlist)
@@ -195,10 +234,31 @@ class HomeController extends Controller
       $result = null;
     }
 
-    $page_title = $q . ' search result | Playligo';
+    $page_title = $q . ' playlists search result | Playligo';
 
-    $page_desc = $q . ' search result';
+    $page_desc = $q . ' playlists search result';
 
     return view('public.playlist_result', compact('result', 'q', 'page_title', 'page_desc'));
   }
+
+  public function searchPoll(Request $request)
+  {
+    $polRepo = new Poll;
+
+    $q = $request->input('q');
+
+    if ($q) {
+      $result = $polRepo->search($q)->withOwner()->getPaginated(20);
+      $result->setPath('search?q=' . $q);
+    } else {
+      $result = null;
+    }
+
+    $page_title = $q . ' polls search result | Playligo';
+
+    $page_desc = $q . ' polls search result';
+
+    return view('public.poll_result', compact('result', 'q', 'page_title', 'page_desc'));
+  }
+
 }

@@ -57,12 +57,15 @@ class UserController extends Controller
 
     public function update(EditUser $request)
     {
-        $input = $request->all();
+      $input = $request->all();
 
-        User::find($input['id'])->update($input);
+      $user = User::find($input['id']);
 
-        return response()->json(['message'=> trans('messages.store_successful')]);
-        // return redirect()->back()->with('status', trans('messages.store_successful'));
+      $this->authorize('update', $user);
+
+      $user->update($input);
+
+      return response()->json(['message'=> trans('messages.store_successful')]);
     }
 
     public function popUp(User $user)

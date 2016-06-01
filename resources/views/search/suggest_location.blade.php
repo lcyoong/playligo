@@ -3,8 +3,7 @@
 @section('content')
 <div class="container">
   <div class="section text-center">
-    <h1>Let's explore {{ $region }}!</h1>
-    <a href="{{ url('search#discover') }}"><span class="label label-info">Try another region?</span></a>
+    <h1>Let's explore {{ $region }}! <a href="{{ url('search#discover') }}"><span class="label label-info">Try another region?</span></a></h1>
   </div>
   <!-- {{ count($cities) }} -->
   <div class="section text-center">
@@ -63,7 +62,7 @@ $(document).ready(function() {
 
 function prepareCanvas(tagid)
 {
-  $('#myCanvasContainer').fadeIn(3000, function(){
+  $('#myCanvasContainer').fadeIn(1000, function(){
     $("#myCanvas").attr("width", $("#canvasSection").width());
       if(!$('#myCanvas').tagcanvas({
         textColour: '#333333',

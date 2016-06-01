@@ -40,7 +40,8 @@
         </div>
         <div class="entry-content">
           <h5>{{ $playlist->pl_title }}</h5>
-          {{ $playlist->pl_description }}
+          <div>{{ $playlist->pl_description }}</div>
+          Tags: {{$playlist_keys}}
         </div>
       </div>
     </div>

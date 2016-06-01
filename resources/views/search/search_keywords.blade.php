@@ -66,6 +66,7 @@
 @endsection
 
 @section('script')
+<script src="{{ asset('/js/jquery.caret.min.js') }}"></script>
 <script src="{{ asset('js/jquery.tag-editor.min.js') }}"></script>
 <script>
 $(document).ready(function() {

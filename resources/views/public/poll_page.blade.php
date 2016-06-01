@@ -79,23 +79,26 @@
 
       </div>
       <div class="col-md-4">
-        <ul class="list-group">
-        @foreach ($voters as $voter)
-        <li class="list-group-item">
-          <div class="row">
-            <div class="col-md-3 col-sm-3 col-xs-3">
-              <div class="image-cropper">
-                <img class="rounded" src="{{ !empty($voter->avatar) ? $voter->avatar : asset(config('playligo.avatar_default')) }}" >
+        <div class="section">
+          <h5 class="section-title title">Latest Votes</h5>
+          <ul class="list-group">
+          @foreach ($voters as $voter)
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-3 col-sm-3 col-xs-3">
+                <div class="image-cropper">
+                  <img class="rounded" src="{{ !empty($voter->avatar) ? $voter->avatar : asset(config('playligo.avatar_default')) }}" >
+                </div>
+              </div>
+              <div class="col-md-9 col-sm-9 col-xs-9">
+                <div class="voter_description">{{ $voter->name }} voted <a href="{{ url('public_poll/' . $voter->pov_poll) }}">{{ $pl_titles[$voter->pov_poll_playlist] or '' }}</a></div>
+                <!-- <div class="date_time"><i class="fa fa-clock-o"></i> {{ $voter->created_at }}</div> -->
               </div>
             </div>
-            <div class="col-md-9 col-sm-9 col-xs-9">
-              <div class="voter_description">{{ $voter->name }} voted <a href="{{ url('public_poll/' . $voter->pov_poll) }}">{{ $pl_titles[$voter->pov_poll_playlist] or '' }}</a></div>
-              <!-- <div class="date_time"><i class="fa fa-clock-o"></i> {{ $voter->created_at }}</div> -->
-            </div>
-          </div>
-        </li>
-        @endforeach
-        </ul>
+          </li>
+          @endforeach
+          </ul>
+        </div>
         <div id="playlist_videos">
         </div>
       </div>

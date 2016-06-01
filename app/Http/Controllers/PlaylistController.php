@@ -97,7 +97,7 @@ class PlaylistController extends Controller
 
         $this->plRepo->find($request->input('pl_id'))->update($input);
 
-        return redirect()->back()->with('status', trans('messages.store_successful'));
+        return response()->json(['message'=> trans('messages.store_successful')]);
     }
 
     public function successful(Playlist $playlist)
