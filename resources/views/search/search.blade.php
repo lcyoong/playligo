@@ -20,12 +20,10 @@
   </div>
 </div>
 
-<a name="discover">
 <div class="container">
     <div class="section">
       <div class="text-center suggest_heading">
-        <h1 style="font-size: 60px;"><i class="fa fa-lightbulb-o"></i></h1>
-        <h2>Some Suggestions</h2>
+        <h2><i class="fa fa-lightbulb-o"></i> Start exploring a region now!</h2>
       </div>
       <div class="row">
         <div class="col-md-4 col-xs-6">
@@ -145,7 +143,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4 col-xs-6">
+        <div class="col-md-4 col-xs-6 col-md-offset-4">
           <div class="suggest_region" id="suggest_mide">
             <div class="suggest_region_gradient">
               <div class="suggest_region_inner">

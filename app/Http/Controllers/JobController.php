@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Playlist;
 use App\PlaylistVideo;
 use App\VideoCache;
+use App\Poll;
 
 use App\Http\Requests;
 
@@ -30,6 +31,17 @@ class JobController extends Controller
 
       foreach ($pllist as $pl) {
         echo $pl->update(['pl_thumb_path' => unserialize($pl->plv_snippet)->thumbnails->medium->url]);
+      }
+    }
+
+    public function updatePollPlaylistCount()
+    {
+      $polls = Poll::get();
+
+      echo $polls->count();
+
+      foreach ($polls as $poll) {
+        echo $poll->updatePlaylistCount($poll->pol_id);
       }
     }
 

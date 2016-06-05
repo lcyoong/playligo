@@ -58,6 +58,8 @@ class PollPlaylist extends Model
           $poll = new Poll;
 
           $poll->updateVotes($post->polp_poll);
+
+          $poll->updatePlaylistCount($post->polp_poll);
         });
 
         PollPlaylist::deleted(function ($post) {
@@ -65,6 +67,8 @@ class PollPlaylist extends Model
           $poll = new Poll;
 
           $poll->updateVotes($post->polp_poll);
+
+          $poll->updatePlaylistCount($post->polp_poll);
         });
 
     }

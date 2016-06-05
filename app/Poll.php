@@ -13,7 +13,7 @@ class Poll extends Model
 
   protected $table = 'polls';
   protected $primaryKey = 'pol_id';
-  protected $fillable = ['pol_user', 'pol_title', 'pol_description', 'pol_status', 'pol_votes', 'pol_expiry'];
+  protected $fillable = ['pol_user', 'pol_title', 'pol_description', 'pol_status', 'pol_votes', 'pol_expiry', 'pol_playlist_count'];
 
   public function playlists()
   {
@@ -65,12 +65,12 @@ class Poll extends Model
 
   public function scopeLatest($query)
   {
-    $query->orderBy('pol_id', 'desc');
+    $query->where('pol_playlist_count', '>', 0)->orderBy('pol_id', 'desc');
   }
 
   public function mostVoted($exclude = [])
   {
-    return $this->whereNotIn('pol_id', $exclude)->orderBy('pol_votes', 'desc');
+    return $this->where('pol_playlist_count', '>', 0)->whereNotIn('pol_id', $exclude)->orderBy('pol_votes', 'desc');
   }
 
   public function owner()
@@ -83,6 +83,13 @@ class Poll extends Model
     $total = PollPlaylist::where('polp_poll', '=', $pol_id)->sum('polp_vote');
 
     return $this->find($pol_id)->update(['pol_votes' => $total ]);
+  }
+
+  public function updatePlaylistCount($pol_id)
+  {
+    $count = PollPlaylist::where('polp_poll', '=', $pol_id)->count();
+
+    return $this->find($pol_id)->update(['pol_playlist_count' => $count ]);
   }
 
   public function scopeSearch($query, $str)

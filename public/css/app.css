@@ -548,6 +548,12 @@ h5 .section-title {
 .notransition img {
   transition: none !important; }
 
+.page_announcement {
+  font-size: 3em;
+  text-align: center;
+  margin: 2em 0px;
+  font-weight: lighter; }
+
 #home-layout {
   background-image: url("../../img/santorini-bg-blue.png");
   background-repeat: no-repeat;

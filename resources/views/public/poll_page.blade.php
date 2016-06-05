@@ -19,7 +19,7 @@
   </div>
 
   <div class="section">
-    <h4>Vote for your favorite destination or playlist by  clicking on the “love” button…</h4>
+    <h4>Vote for your favorite by  clicking on the “love” button…</h4>
     <div class="row">
       <div class="col-md-8">
         <ul class="list-group poll_playlist_group">

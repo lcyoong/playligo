@@ -136,6 +136,7 @@ Route::group(['middleware' => 'web'], function () {
 
         Route::get('/job/update_snippet', 'JobController@updateSnippet');
         Route::get('/job/update_thumb', 'JobController@updatePlThumb');
+        Route::get('/job/update_poll_playlist_count', 'JobController@updatePollPlaylistCount');
 
       });
 
