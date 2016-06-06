@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\ModelTrait;
 use App\PlaylistVideo;
+use DB;
 
 class Playlist extends Model
 {
@@ -67,6 +68,16 @@ class Playlist extends Model
     public function mostViewed($exclude = [])
     {
       return $this->whereNotIn('pl_id', $exclude)->withVideo()->orderBy('pl_view', 'desc');
+    }
+
+    public function random($exclude = [])
+    {
+      return $this->whereNotIn('pl_id', $exclude)->withVideo()->orderBy('pl_view', 'desc');
+    }
+
+    public function scopeSelectAll($query)
+    {
+      $query->select('playlists.*');
     }
 
     public function scopeWithVideo($query)

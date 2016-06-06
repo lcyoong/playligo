@@ -455,6 +455,9 @@ h5 .section-title {
   border-radius: 3px; }
 
 @media screen and (min-width: 992px) {
+  .post-content {
+    height: 180px;
+    overflow: hidden; }
   .selected_video_title {
     font-size: 0.8em; }
   .post.medium-post .entry-title {
@@ -462,6 +465,9 @@ h5 .section-title {
     overflow: hidden; } }
 
 @media screen and (max-width: 767px) {
+  .post-content {
+    height: 160px;
+    overflow: hidden; }
   #navigation .container .navbar-brand {
     margin-left: 0px; } }
 

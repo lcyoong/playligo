@@ -39,7 +39,6 @@
           </div>
         </div>
         <div class="entry-content">
-          <h5>{{ $playlist->pl_title }}</h5>
           <div>{{ $playlist->pl_description }}</div>
           Tags: {{$playlist_keys}}
         </div>

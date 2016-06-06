@@ -35,8 +35,8 @@ return [
     'select_any'                    => '-- Select --',
 
     'search_description'            => 'Start Your Next Journey....',
-    'enter_first_destination'       => 'Please enter a destination...',
-    'eg_destination'                => 'e.g. Hanoi',
+    'enter_first_destination'       => 'Visualize a destination now...',
+    'eg_destination'                => 'e.g. Bali, Indonesia',
     'add_to_playlist'               => 'Add to playlist',
     'selected_videos'               => 'Selected videos',
     'playlist_title_placeholder'    => 'My awesome playlist',
