@@ -30,7 +30,8 @@ return [
     'btn_preview_playlist'          => 'Preview Playlist',
     'btn_edit_playlist'             => 'Edit Playlist',
     'btn_skip'                      => 'Skip',
-    'btn_discover'                  => 'Discover',
+    'btn_discover'                  => 'DISCOVER',
+    'btn_search_hero'               => 'SEARCH',
 
     'select_any'                    => '-- Select --',
 

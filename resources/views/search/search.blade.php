@@ -1,25 +1,29 @@
-@extends('layouts.app')
+@extends('layouts.app_search')
 
 @section('content')
-<div class="main-search text-center section">
-  <div class="main-search-inner">
-      <div class="row">
-        <div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
-            <h1>{{ trans('form.enter_first_destination') }}</h1>
-            {{ Form::open(['url'=>'search_keywords', 'method'=>'get', 'class'=>'submit-ajax-get']) }}
-            <div class="input-group">
-              {{ Form::text('location', old('location'), ['class'=>'form-control', 'placeholder'=> trans('form.eg_destination')]) }}
-              <span class="input-group-btn">
-                {{ Form::button(trans('form.btn_search'), ['type'=>'submit', 'class'=>'btn btn-primary form-control']) }}
-              </span>
-            </div>
+<div class="search-hero">
+  @include('layouts.partials.menu_search')
+  <div class="main-search text-center">
+    <div class="main-search-inner">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
+              <h1>{{ trans('form.enter_first_destination') }}</h1>
+              {{ Form::open(['url'=>'search_keywords', 'method'=>'get', 'class'=>'submit-ajax-get']) }}
+              <div class="input-group">
+                {{ Form::text('location', old('location'), ['class'=>'form-control', 'placeholder'=> trans('form.eg_destination')]) }}
+                <span class="input-group-btn">
+                  {{ Form::button(trans('form.btn_search'), ['type'=>'submit', 'class'=>'btn btn-primary form-control']) }}
+                </span>
+              </div>
 
-            {{ Form::close() }}
-        </div>
+              {{ Form::close() }}
+          </div>
+      </div>
     </div>
   </div>
 </div>
 
+<a id="discover"></a>
 <div class="container">
     <div class="section">
       <div class="text-center suggest_heading">

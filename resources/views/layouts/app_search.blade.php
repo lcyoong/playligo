@@ -1,14 +1,8 @@
 @extends('layouts.master_app')
 
 @section('master_content')
-<div id="main-wrapper" class="homepage">
-  @include('layouts.partials.menu')
-<div class="container">
-  @include('layouts.partials.messagebag')
-</div>
-<div id="content-wrapper">
+<div class="search-container">  
   @yield('content')
-</div>
 </div><!--/#main-wrapper-->
 <footer id="footer">
   <div class="footer-menu">
@@ -20,10 +14,11 @@
       </ul>
     </div>
   </div>
-<div class="footer-bottom">
-  <div class="container text-center">
-    <p><a href="#">Playligo </a>&copy; {{ date('Y') }} </p>
+  <div class="footer-bottom">
+    <div class="container text-center">
+      <p><a href="#">Playligo </a>&copy; {{ date('Y') }} </p>
+    </div>
   </div>
-</div>
 </footer>
+
 @endsection

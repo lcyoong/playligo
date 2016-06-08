@@ -292,10 +292,14 @@ h5 .section-title{
 }
 
 .homepage-container{
-  background-image: url("../../img/playligo_home_background_glacier.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
+  // background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0), rgba(45,45,45,1));
+  // background: -o-linear-gradient(top, rgba(255, 255, 255, 0), rgba(45,45,45,1)); /* For Opera 11.1 to 12.0 */
+  // background: -moz-linear-gradient(top, rgba(255, 255, 255, 0), rgba(45,45,45,1)); /* For Firefox 3.6 to 15 */
+  // background: linear-gradient(to top, rgba(255, 255, 255, 0), rgba(45,45,45,1)); /* Standard syntax (must be last) */
+  // background-image: url("../../img/playligo_home_background_glacier.jpg");
+  // background-repeat: no-repeat;
+  // background-size: cover;
+  // background-position: center center;
   min-height: 600px;
 }
 
@@ -304,12 +308,39 @@ h5 .section-title{
 }
 
 .homepage-container a{
-  color: #cfcfcf;
+  color: #ffffff;
 }
 
 .homepage-container h1{
   margin-bottom: 30px;
   font-size: 60px;
+}
+
+.search-container #navigation{
+  background: transparent;
+}
+
+.search-container .navbar{
+  border-bottom: 0px;
+}
+
+.search-hero{
+  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0), rgba(45,45,45,1));
+  background: -o-linear-gradient(top, rgba(255, 255, 255, 0), rgba(45,45,45,1)); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(top, rgba(255, 255, 255, 0), rgba(45,45,45,1)); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to top, rgba(255, 255, 255, 0), rgba(45,45,45,1)); /* Standard syntax (must be last) */
+  background-image: url("../../img/playligo_search_background_traveller.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.search-container{
+  min-height: 600px;
+}
+
+.search-container a{
+  color: #ffffff;
 }
 
 .home-content{
@@ -325,10 +356,6 @@ h5 .section-title{
 }
 
 .main-search{
-  background-image: url("../../img/playligo_search_background_traveller.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
   display: table;
   overflow: hidden;
   min-height: 500px;
@@ -579,10 +606,10 @@ h5 .section-title{
 }
 
 @media screen and (min-width: 992px) {
-  .post-content{
-    height: 180px;
-    overflow: hidden;
-  }
+  // .post-content{
+  //   height: 170px;
+  //   overflow: hidden;
+  // }
 
   .selected_video_title{
       font-size: 0.8em;
@@ -728,4 +755,64 @@ h5 .section-title{
   text-align: center;
   margin: 2em 0px;
   font-weight: lighter;
+}
+
+.fullscreen-bg {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -100;
+}
+
+.fullscreen-bg__video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: auto;
+    height: auto;
+    min-width: 100%;
+    min-height: 100%;
+    -webkit-transform: translate(-50%, -50%);
+       -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+	    transform: translate(-50%, -50%);
+}
+
+@media (max-width: 767px) {
+    .fullscreen-bg {
+        background: url('http://dev2.slicejack.com/fullscreen-video-demo/img/videoframe.jpg') center center / cover no-repeat;
+    }
+
+    .fullscreen-bg__video {
+        display: none;
+    }
+}
+
+
+.fa-lg{
+  font-size: 6em;
+}
+
+.semi-transparent{
+  opacity: 0.9;
+  filter: alpha(opacity=90); /* msie */
+}
+
+.btn-transparent-hero{
+  background-color: transparent;
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  padding: 10px 20px;
+  -webkit-border-radius: 30%;
+  -moz-border-radius: 30%;
+  border-radius: 3px;
+  letter-spacing: 2px;
+}
+
+.btn-transparent-hero:hover{
+  background-color: #ffffff;
+  color: #6fa806;
 }
