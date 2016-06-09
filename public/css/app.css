@@ -217,7 +217,8 @@ h5 .section-title {
   margin: 0 auto; }
 
 .homepage-container #navigation {
-  background: transparent; }
+  background: transparent;
+  z-index: -1; }
 
 .homepage-container .navbar {
   border-bottom: 0px; }
@@ -589,7 +590,8 @@ h5 .section-title {
   min-width: 100%;
   min-height: 100%;
   -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%); }
+  transform: translate(-50%, -50%);
+  z-index: -1000; }
 
 @media (max-width: 767px) {
   .fullscreen-bg {

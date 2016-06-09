@@ -174,7 +174,7 @@ class AuthController extends Controller
         $user = User::create($input);
 
         // Attach role to user
-        $authUser->attachRole(config('entrust.member_role_id'));
+        $user->attachRole(config('entrust.member_role_id'));
 
         // Send autoresponder
         $email = new LogEmail;

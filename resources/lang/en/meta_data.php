@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'search_funnel_title'             => 'Playligo - Search or discover your next travel destination easily!',
-    'search_funnel_desc'              => 'Watch Travel Playlists Before Going...',
+    'search_funnel_title'             => "Playligo - Visualize your travel itinerary in minutes with Playligo's inspirational video playlist tool!",
+    'search_funnel_desc'              => "Use Playligo's video playlist tool and visualize your travel itinerary in minutes!",
 
 ];

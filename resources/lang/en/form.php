@@ -53,8 +53,8 @@ return [
     'action_delete'         => 'Delete',
     'action_add_poll'               => 'Add to Poll',
 
-    'playlist_search_caption'       => '100+ Video Playlists to inspire your getaway',
-    'poll_search_caption'           => '100+ Playlist Polls to inspire your getaway',
+    'playlist_search_caption'       => 'Visualize your travel now!',
+    'poll_search_caption'           => 'Visualize your travel now!',
     'eg_search_playlist'            => 'Search Playlists',
     'playlist_latest'               => 'Latest Playlists',
     'playlist_most_viewed'          => 'Most Viewed Playlists',
