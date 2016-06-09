@@ -23,8 +23,6 @@
               <li><a href="{{ url('/login') }}">Login</a></li>
               <li><a href="{{ url('/register') }}">Register</a></li>
           @else
-              <li><a href="{{ url('/playlist') }}">My Playlists</a></li>
-              <li><a href="{{ url('/poll') }}">My Polls</a></li>
               @if (auth()->user()->hasRole('admin'))
               <li><a href="{{ url('/admin') }}"><i class="fa fa-gears"></i> Admin</a></li>
               @endif
@@ -36,6 +34,8 @@
                   </a>
 
                   <ul class="dropdown-menu" role="menu">
+                    <li><a href="{{ url('/playlist') }}">My Playlists</a></li>
+                    <li><a href="{{ url('/poll') }}">My Polls</a></li>
                     <li><a href="{{ url('/profile/edit') }}">Edit profile</a></li>
                     <li><a href="{{ url('/password/edit') }}">Change password</a></li>
                     <li><a href="{{ url('/logout') }}">Logout</a></li>
