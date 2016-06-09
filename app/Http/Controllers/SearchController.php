@@ -58,7 +58,14 @@ class SearchController extends Controller
 
       $page_img = asset('img/playligo_home_background_glacier.jpg');
 
-      $default = implode(",", config('youtube.generic_keywords'));
+      // $default = implode(",", config('youtube.generic_keywords'));
+      $default_set = [];
+
+      foreach (config('youtube.generic_keywords_set') as $set) {
+        $default_set[] = $set[rand(0, count($set) - 1)];
+      }
+
+      $default = implode(",", $default_set);
 
       return view('search.search_keywords', compact('location', 'page_title', 'page_desc', 'page_img', 'default'));
     }
