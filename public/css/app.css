@@ -259,7 +259,7 @@ h5 .section-title {
   color: #ffffff; }
 
 .home-content {
-  min-height: 500px;
+  height: 600px;
   width: 100%;
   display: table;
   overflow: hidden; }
