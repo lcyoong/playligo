@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="fullscreen-bg">
-    <video loop muted autoplay poster="img/videoframe.jpg" class="fullscreen-bg__video">
+    <video loop muted autoplay poster="{{ asset('img/playligo-mobile-background.jpg') }}" class="fullscreen-bg__video">
       <source src="{{ asset('video/playligo-visualize-your-travel-short.webm') }}" type="video/webm">
       <source src="{{ asset('video/playligo-visualize-your-travel-short.mp4') }}" type="video/mp4">
     </video>
