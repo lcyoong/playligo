@@ -284,11 +284,6 @@ function getLatestSelected()
 @endsection
 
 @section('meta')
-  <meta property="fb:app_id" content="{{ env('FACEBOOK_CLIENT_ID') }}" />
-  <meta property="og:url"           content="{{ Request::url() }}" />
-	<meta property="og:type"          content="website" />
-	<meta property="og:title"         content="{{ $playlist->pl_title }}" />
-	<meta property="og:description"   content="{{ $playlist->pl_description }}" />
   @if ($playlist->pl_rating < config('playligo.min_rating_show_index'))
   <!-- <meta name="robots" content="noindex, follow"> -->
   @endif
