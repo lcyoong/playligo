@@ -290,7 +290,7 @@ function getLatestSelected()
 	<meta property="og:title"         content="{{ $playlist->pl_title }}" />
 	<meta property="og:description"   content="{{ $playlist->pl_description }}" />
   @if ($playlist->pl_rating < config('playligo.min_rating_show_index'))
-  <meta name="robots" content="noindex, follow">
+  <!-- <meta name="robots" content="noindex, follow"> -->
   @endif
 	<!-- <meta property="og:image"         content="http://www.your-domain.com/path/image.jpg" /> -->
 @endsection

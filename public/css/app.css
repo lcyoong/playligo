@@ -579,7 +579,8 @@ h5 .section-title {
   bottom: 0;
   left: 0;
   overflow: hidden;
-  z-index: -100; }
+  z-index: -100;
+  background: url("../../img/playligo-mobile-background.jpg") center center/cover no-repeat; }
 
 .fullscreen-bg__video {
   position: absolute;

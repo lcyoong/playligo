@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="fullscreen-bg">
-    <video loop muted autoplay poster="{{ asset('img/playligo-mobile-background.jpg') }}" class="fullscreen-bg__video">
+    <video loop muted autoplay class="fullscreen-bg__video">
       <source src="{{ asset('video/playligo-visualize-your-travel-short.webm') }}" type="video/webm">
       <source src="{{ asset('video/playligo-visualize-your-travel-short.mp4') }}" type="video/mp4">
     </video>
@@ -24,8 +24,8 @@
 <div class="text-center home-content">
   <div class="home-content-inner">
     <div class="section"><a href="#" class="play"><i class="fa semi-transparent fa-lg fa-play-circle"></i></a></div>
-    <h1>Be inspired. Decide with confidence.</h1>
-    <h2 style="margin-bottom: 40px">Watch short curated destination video playlists before you go.</h2>
+    <h1>Visualize your travel itinerary</h1>
+    <h2 style="margin-bottom: 40px">With Playligo's inspirational video playlist tool</h2>
     <div class="section">
       <div class="row">
           <div class="col-md-10 col-md-offset-1">
