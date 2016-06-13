@@ -5,10 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @include('layouts.partials.meta')
-    <title>{{ $page_title or config('playligo.title') }}</title>
-
     @yield('meta')
-
+    <title>{{ $page_title or config('playligo.title') }}</title>
+    
     <!-- Fonts -->
     <link rel='shortcut icon' href='{{ asset('img/favicon-32x32.png') }}' type='image/x-icon'/ >
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
