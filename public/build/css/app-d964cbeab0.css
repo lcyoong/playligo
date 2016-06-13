@@ -271,7 +271,7 @@ h5 .section-title {
 .main-search {
   display: table;
   overflow: hidden;
-  min-height: 500px;
+  height: 500px;
   width: 100%;
   color: #ffffff; }
 
@@ -290,7 +290,7 @@ h5 .section-title {
   background-position: center center;
   display: table;
   overflow: hidden;
-  min-height: 200px;
+  height: 200px;
   width: 100%;
   color: #ffffff; }
 
@@ -304,7 +304,7 @@ h5 .section-title {
 
 .suggest_region {
   width: 100%;
-  min-height: 220px;
+  height: 220px;
   border-radius: 3px;
   color: #ffffff;
   margin-bottom: 20px;
