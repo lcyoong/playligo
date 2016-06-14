@@ -74,9 +74,9 @@
 
       <div class="col-md-4">
         <div class="section">
-          <h5 class="section-title title">Suggested Playlists</h5>
+          <h5 class="section-title title">Latest Playlists</h5>
           <ul class="list-group poll_playlist_group">
-            @foreach ($random as $plmv)
+            @foreach ($latest as $plmv)
             <?php $video_snippet = unserialize($plmv->plv_snippet) ?>
             <li class="list-group-item">
               <div class="row">

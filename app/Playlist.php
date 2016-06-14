@@ -86,9 +86,9 @@ class Playlist extends Model
               ->leftJoin('video_caches', 'plv_video_id', '=', 'vc_id');
     }
 
-    public function scopeLatest($query)
+    public function scopeLatest($query, $exclude = [])
     {
-      $query->orderBy('pl_id', 'desc');
+      $query->whereNotIn('pl_id', $exclude)->orderBy('pl_id', 'desc');
     }
 
     public function updateThumbPath()

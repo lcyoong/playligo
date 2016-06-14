@@ -18,8 +18,8 @@ return array(
     'max_keyword_tags'                          => 50,
     'date_display_format'                       => 'M d, Y',
 
-    'title'                                     => 'Playligo',
-    'desc'                                      => 'Watch short curated destination video playlists before you travel',
+    'title'                                     => "Playligo - Visualize your travel itinerary in minutes with Playligo's inspirational video playlist tool!",
+    'desc'                                      => "Use Playligo's video playlist tool and visualize your travel itinerary in minutes!",
 
     'video_thumb_default'                       => 'img/logo.png',
     'avatar_default'                            => 'img/default_avatar.jpg',

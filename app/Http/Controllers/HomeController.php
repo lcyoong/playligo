@@ -151,7 +151,8 @@ class HomeController extends Controller
     $playlist->increment('pl_view');
 
     // $mostViewed = $playlist->mostViewed([$playlist->pl_id])->limit(5)->get();
-    $random = $playlist->random([$playlist->pl_id])->limit(5)->get();
+    // $random = $playlist->random([$playlist->pl_id])->limit(5)->get();
+    $latest = $playlist->latest([$playlist->pl_id])->limit(5)->get();
 
     $videos = $playlist->videos;
 
@@ -172,7 +173,7 @@ class HomeController extends Controller
     // $page_img = unserialize($videos[0]->vc_snippet)->thumbnails->high->url;
     $page_img = unserialize($videos[0]->plv_snippet)->thumbnails->high->url;
 
-    return view('public.playlist_page', compact('playlist', 'videos', 'owner', 'random', 'page_title', 'page_desc', 'page_img', 'recent_votes', 'my_rating', 'playlist_keys'));
+    return view('public.playlist_page', compact('playlist', 'videos', 'owner', 'latest', 'page_title', 'page_desc', 'page_img', 'recent_votes', 'my_rating', 'playlist_keys'));
   }
 
   public function playlistPopUp(Playlist $playlist)
