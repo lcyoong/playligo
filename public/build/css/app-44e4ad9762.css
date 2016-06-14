@@ -247,7 +247,7 @@ h5 .section-title {
   /* For Firefox 3.6 to 15 */
   background: linear-gradient(to top, rgba(255, 255, 255, 0), #2d2d2d);
   /* Standard syntax (must be last) */
-  background-image: url("../../img/playligo_search_background_traveller.jpg");
+  background-image: url("../../img/playligo_search_background_misty_mountain.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center; }
@@ -389,7 +389,7 @@ h5 .section-title {
   color: #ffffff;
   min-height: 500px;
   width: 100%;
-  background-image: url("../../img/playligo_search_background_sky.jpg");
+  background-image: url("../../img/playligo_search_background_sky_water.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center; }
@@ -580,7 +580,7 @@ h5 .section-title {
   left: 0;
   overflow: hidden;
   z-index: -100;
-  background: url("../../img/playligo-mobile-background.jpg") center center/cover no-repeat; }
+  background: url("../../img/playligo_mobile_background.jpg") center center/cover no-repeat; }
 
 .fullscreen-bg__video {
   position: absolute;
