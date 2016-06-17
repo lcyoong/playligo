@@ -10,7 +10,7 @@
       <div class="col-md-10">
         <div class="row meta-list">
           <div class="col-md-3 col-sm-3 col-xs-3">
-            <i class="fa fa-clock-o"></i> {{ date(config('playligo.date_display_format'), strtotime($playlist->created_at)) }}
+            <i class="fa fa-clock-o"></i> {{ Carbon::parse($playlist->created_at)->diffForHumans() }}
           </div>
           <div class="col-md-3 col-sm-3 col-xs-3">
             <i class="fa fa-eye"></i>{{ $playlist->pl_view }} views

@@ -22,7 +22,7 @@
     <div class="entry-meta">
 			<ul class="list-inline">
 				<li class="posted-by"><i class="fa fa-user"></i> by <a href="#">{{ $owner->name }}</a></li>
-				<li class="publish-date"><a href="#"><i class="fa fa-clock-o"></i> {{ $playlist->created_at }} </a></li>
+				<li class="publish-date"><a href="#"><i class="fa fa-clock-o"></i> {{ Carbon::parse($playlist->created_at)->diffForHumans() }} </a></li>
 				<li class="views"><a href="#"><i class="fa fa-eye"></i> {{ $playlist->pl_view }} views</a></li>
 			</ul>
 		</div>

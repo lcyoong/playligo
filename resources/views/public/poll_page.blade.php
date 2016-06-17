@@ -11,7 +11,7 @@
     <div class="entry-meta">
 			<ul class="list-inline">
 				<li class="posted-by"><i class="fa fa-user"></i> by <a href="#">{{ $owner->name }}</a></li>
-				<li class="publish-date"><a href="#"><i class="fa fa-clock-o"></i> {{ $poll->created_at }} </a></li>
+				<li class="publish-date"><a href="#"><i class="fa fa-clock-o"></i> {{ Carbon::parse($poll->created_at)->diffForHumans() }} </a></li>
 				<li class="views"><a href="#"><i class="fa fa-eye"></i> {{ $poll->pol_view }} views</a></li>
         <li class="views"><a href="#"><i class="fa fa-thumbs-o-up"></i> {{ $poll->pol_votes }} votes</a></li>
 			</ul>

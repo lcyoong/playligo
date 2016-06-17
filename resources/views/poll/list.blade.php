@@ -26,9 +26,10 @@
           <td>{{ $pol->pol_title }}
 						<div>
 							<span class="label2 label-success"><i class="fa fa-thumbs-o-up"></i> {{ $pol->pol_votes }} votes</span>
+							<span class="label2 label-success"><i class="fa fa-clock-o"></i> {{ Carbon::parse($pol->created_at)->diffForHumans() }}</span>
 						</div>
 					</td>
-          <td>{{ $pol->pol_expiry }}</td>
+          <td>{{ Carbon::parse($pol->pol_expiry)->diffForHumans() }}</td>
           <td class="action_column">
               <a href="{{ url('poll/edit/' . $pol->pol_id) }}" title="{{ trans('form.action_edit') }}">{{ Form::button('<i class="fa fa-edit"></i> '.trans('form.btn_edit'), ['class'=>'btn btn-primary btn-small']) }}</a>
               <a href="{{ url('poll/delete/' . $pol->pol_id) }}" title="{{ trans('form.action_delete') }}" class="btn-modal">{{ Form::button('<i class="fa fa-trash"></i> '.trans('form.btn_delete'), ['class'=>'btn btn-primary btn-small']) }}</a>

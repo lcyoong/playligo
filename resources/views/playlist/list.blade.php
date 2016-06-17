@@ -30,6 +30,7 @@
 					<div>
 						<span class="label2 label-success"><i class="fa fa-eye"></i> {{ $pl->pl_view }} views</span>
 						<span class="label2 label-success"><i class="fa fa-star"></i> {{ $pl->pl_rating }}</span>
+						<span class="label2 label-success"><i class="fa fa-clock-o"></i> {{Carbon::parse($pl->created_at)->diffForHumans()}}</span>						
 					</div>
 				</td>
         <td class="action_column">
