@@ -7,7 +7,7 @@
     @include('layouts.partials.meta')
     @yield('meta')
     <title>{{ $page_title or config('playligo.title') }}</title>
-    
+
     <!-- Fonts -->
     <link rel='shortcut icon' href='{{ asset('img/favicon-32x32.png') }}' type='image/x-icon'/ >
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
@@ -72,6 +72,15 @@
 
     </script>
     <!--End of Google Analytics Script-->
+
+    <script>
+    $('body').on('click', '.popupchat', function(event){
+      event.preventDefault();
+      $zopim(function() {
+        $zopim.livechat.window.show();
+      });
+    });
+    </script>
 
     @yield('script')
 
