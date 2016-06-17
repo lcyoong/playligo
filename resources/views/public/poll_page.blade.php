@@ -92,7 +92,7 @@
               </div>
               <div class="col-md-9 col-sm-9 col-xs-9">
                 <div class="voter_description">{{ $voter->name }} voted <a href="{{ url('public_poll/' . $voter->pov_poll) }}">{{ $pl_titles[$voter->pov_poll_playlist] or '' }}</a></div>
-                <!-- <div class="date_time"><i class="fa fa-clock-o"></i> {{ $voter->created_at }}</div> -->
+                <div class="date_time">{{ Carbon::parse($voter->created_at)->diffForHumans() }}</div>
               </div>
             </div>
           </li>

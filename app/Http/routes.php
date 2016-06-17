@@ -55,9 +55,10 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('public_playlist/{playlist}', 'HomeController@playlistPage');
     Route::get('public_playlist/popup/{playlist}', 'HomeController@playlistPopUp');
     Route::get('login_ajax', 'Auth\AuthController@ajaxLogin');
-    Route::get('/search/preview/{id}', 'SearchController@preview');
+    // Route::get('/search/preview/{id}', 'SearchController@preview');
     Route::post('/subscribe', 'HomeController@subscribe');
     Route::get('/explainer_popup', 'HomeController@explainerPopUp');
+    Route::get('/about', 'PageController@about');
 
     Route::group(['middleware' => 'auth'], function () {
 

@@ -2,6 +2,8 @@
 
 namespace App\Playligo\FormError;
 
+use Carbon\Carbon;
+
 use Illuminate\Support\HtmlString;
 
 class ErrorBuilder
@@ -31,6 +33,11 @@ class ErrorBuilder
 	public function block_ajax($field)
 	{
 		return $this->toHtmlString('<span id="err_msg_'.$field.'"></span>');
+	}
+
+	public function human_time_diff($input)
+	{
+		return $this->toHtmlString(Carbon::createFromTimestamp(strtotime($input))->diffForHumans());
 	}
 
     /**

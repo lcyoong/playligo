@@ -97,18 +97,19 @@
           </div>
 
           <div class="section">
-            <h5 class="section-title title">Recent Poll Votes</h5>
+            <h5 class="section-title title">Latest Polls</h5>
             <ul class="list-group">
-            @foreach ($recent_votes as $vote)
+            @foreach ($latest_polls as $poll)
             <li class="list-group-item">
               <div class="row">
               <div class="col-md-3 col-sm-3 col-xs-3">
                 <div class="image-cropper">
-                  <img class="rounded" src="{{ !empty($vote->avatar) ? $vote->avatar : asset(config('playligo.avatar_default')) }}" >
+                  <img class="rounded" src="{{ !empty($poll->avatar) ? $poll->avatar : asset(config('playligo.avatar_default')) }}" >
                 </div>
               </div>
               <div class="col-md-9 col-sm-9 col-xs-9">
-                {{ $vote->name }} voted for {{ $vote->pl_title }}
+                {{ $poll->pol_title }}
+                <div class="date_time">{{ Carbon::parse($poll->created_at)->diffForHumans() }}</div>
               </div>
             </div>
             </li>

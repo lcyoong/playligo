@@ -563,6 +563,9 @@ h5 .section-title {
 .poll-thumbnail .post-content {
   text-align: center; }
 
+.poll-thumbnail .date_time {
+  text-align: center; }
+
 .notransition img {
   transition: none !important; }
 
@@ -619,6 +622,16 @@ h5 .section-title {
 .btn-transparent-hero:hover {
   background-color: #ffffff;
   color: #6fa806; }
+
+.about {
+  font-weight: lighter;
+  text-align: justify; }
+
+.about h1 {
+  margin: 1em 0px; }
+
+.about p {
+  margin-bottom: 1.5em; }
 
 #home-layout {
   background-image: url("../../img/santorini-bg-blue.jpg");

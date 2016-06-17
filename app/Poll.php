@@ -14,6 +14,7 @@ class Poll extends Model
   protected $table = 'polls';
   protected $primaryKey = 'pol_id';
   protected $fillable = ['pol_user', 'pol_title', 'pol_description', 'pol_status', 'pol_votes', 'pol_expiry', 'pol_playlist_count'];
+  // protected $dates = ['created_at', 'updated_at'];
 
   public function playlists()
   {
@@ -55,7 +56,7 @@ class Poll extends Model
 
   public function scopeWithOwner($query)
   {
-      return $query->join('users', 'id', '=', 'pol_user');
+      return $query->addSelect('name', 'avatar', 'email')->join('users', 'id', '=', 'pol_user');
   }
 
   public function scopeIsPublic($query)
@@ -65,12 +66,12 @@ class Poll extends Model
 
   public function scopeLatest($query)
   {
-    $query->where('pol_playlist_count', '>', 0)->orderBy('pol_id', 'desc');
+    $query->addSelect('polls.*')->where('pol_playlist_count', '>', 0)->orderBy('pol_id', 'desc');
   }
 
   public function mostVoted($exclude = [])
   {
-    return $this->where('pol_playlist_count', '>', 0)->whereNotIn('pol_id', $exclude)->orderBy('pol_votes', 'desc');
+    return $this->addSelect('polls.*')->where('pol_playlist_count', '>', 0)->whereNotIn('pol_id', $exclude)->orderBy('pol_votes', 'desc');
   }
 
   public function owner()

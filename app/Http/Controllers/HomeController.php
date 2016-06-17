@@ -12,6 +12,7 @@ use App\LogEmail;
 use Illuminate\Http\Request;
 use App\Http\Requests\AddSubscriber;
 use Mail;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -156,11 +157,14 @@ class HomeController extends Controller
 
     $videos = $playlist->videos;
 
-    $pvRepo = new PollVoter;
+    // $pvRepo = new PollVoter;
+    $polRepo = new Poll;
 
     $plrRepo = new PlaylistRating;
 
-    $recent_votes = $pvRepo->withPublicPoll()->withUser()->withPlaylist()->take(5)->get();
+    // $recent_votes = $pvRepo->withPublicPoll()->withUser()->withPlaylist()->take(5)->get();
+
+    $latest_polls = $polRepo->withOwner()->latest()->limit(5)->get();
 
     $my_rating = $plrRepo->myRating($playlist->pl_id, auth()->check() ? auth()->user()->id : 0);
 
@@ -173,7 +177,7 @@ class HomeController extends Controller
     // $page_img = unserialize($videos[0]->vc_snippet)->thumbnails->high->url;
     $page_img = unserialize($videos[0]->plv_snippet)->thumbnails->high->url;
 
-    return view('public.playlist_page', compact('playlist', 'videos', 'owner', 'latest', 'page_title', 'page_desc', 'page_img', 'recent_votes', 'my_rating', 'playlist_keys'));
+    return view('public.playlist_page', compact('playlist', 'videos', 'owner', 'latest', 'page_title', 'page_desc', 'page_img', 'latest_polls', 'my_rating', 'playlist_keys'));
   }
 
   public function playlistPopUp(Playlist $playlist)

@@ -37,6 +37,7 @@
                 <div class="avatar-text">
                   {{ $latest_item->name }}
                 </div>
+                <div class="date_time">{{ Carbon::parse($latest_item->created_at)->diffForHumans() }}</div>
 							</div>
 						</div>
 						<div class="post-content">

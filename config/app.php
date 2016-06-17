@@ -215,6 +215,7 @@ return [
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
         'Youtube'   => Alaouy\Youtube\YoutubeFacades::class,
         'FormError' => App\Playligo\Facades\FormErrorFacade::class,
+        'Carbon' => 'Carbon\Carbon',
 
     ],
 
