@@ -18,10 +18,12 @@
           <div class="col-md-3 col-sm-3 col-xs-3">{{ FormError::rating('plRating', 0) }}</div>
           <div class="col-md-2 col-sm-2 col-xs-2">
             {{ Form::button('Rate', ['type'=>'button', 'class'=>'btn-xs btn-primary btn ratingPopUp_open']) }}
+            @if(auth()->check())
             <div id="ratingPopUp" class="well text-center">
               Enter your rating
               {{ FormError::rating('newPlRating', 0) }}
             </div>
+            @endif
           </div>
         </div>
         <div class="entry-content">

@@ -240,6 +240,12 @@
 
 $(document).ready(function() {
   // getLatestSelected();
+  @if(!auth()->check())
+  $('body').on('click', '.ratingPopUp_open', function (event) {
+    window.location = "{{ url('search') }}";
+		return false;
+	});
+  @endif
 
   $('#ratingPopUp').popup({
     transition: 'all 0.3s',

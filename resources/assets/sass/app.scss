@@ -607,6 +607,23 @@ h5 .section-title{
 .img-rounded{
   border-radius: 3px;
 }
+@media (min-width: 992px) and (max-width: 1199px) {
+
+  .selected_video_title{
+      font-size: 0.8em;
+  }
+
+  .post.medium-post .entry-title{
+    height: 80px;
+    overflow: hidden;
+  }
+
+  .homepage-container h1{
+    margin-bottom: 30px;
+    font-size: 48px;
+  }
+
+}
 
 @media screen and (min-width: 992px) {
   // .post-content{
@@ -623,6 +640,11 @@ h5 .section-title{
     overflow: hidden;
   }
 
+  .homepage-container h1{
+    margin-bottom: 30px;
+    font-size: 48px;
+  }
+
 }
 
 @media screen and (max-width: 767px) {
@@ -635,6 +657,11 @@ h5 .section-title{
     margin-left: 0px;
   }
 
+  .homepage-container h1{
+    margin-bottom: 30px;
+    font-size: 48px;
+  }
+
 }
 
 @media screen and (min-width: 768px) {
@@ -645,6 +672,11 @@ h5 .section-title{
   .post.medium-post .entry-title{
     height: 80px;
     overflow: hidden;
+  }
+
+  .homepage-container h1{
+    margin-bottom: 30px;
+    font-size: 48px;
   }
 
 }
