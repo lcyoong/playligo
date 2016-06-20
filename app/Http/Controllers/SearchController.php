@@ -253,7 +253,7 @@ class SearchController extends Controller
                   'part'=>'id, snippet',
                   'videoDuration' => 'short',
                   'safeSearch' => 'strict',
-                  'order' => 'rating',
+                  // 'order' => 'rating',
                   'maxResults'=>$max_result];
 
             if ($more) {
