@@ -21,6 +21,7 @@ return [
     'store_successful'                        => 'Saved successfully!',
     'vote_successful'                         => 'Your vote is counted. Thanks!',
     'subscribe_successful'                    => 'You are now subscribed to Playligo!',
-    'autogen_successful'                      => 'The playlist is successfully created!'
+    'autogen_successful'                      => 'The playlist is successfully created!',
+    'enter_invite_successful'                 => 'Welcome into the magical realm...',
 
 ];

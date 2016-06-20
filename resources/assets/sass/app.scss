@@ -176,7 +176,9 @@ div.description {
     background: rgba(0,0,0,0.9);
     color: #ffffff;
     font-size: 12px;
-    text-align:justify;;
+    line-height: 12px;
+    text-align:justify;
+    overflow-y: hidden;
 }
 
 div.description_content{

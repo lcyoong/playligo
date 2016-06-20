@@ -39,7 +39,8 @@ Route::group(['middleware' => 'web'], function () {
     // });
 
     Route::auth();
-    Route::get('/', 'HomeController@welcome');
+    // Route::get('/', 'HomeController@welcome');
+    Route::get('/', 'HomeController@prelaunch');
     Route::get('/login/{provider}', 'Auth\AuthController@getSocialAuth');
     Route::get('/login/callback/{provider}', 'Auth\AuthController@getSocialAuthCallback');
     Route::get('load_playlist/{playlist}', 'PlaylistController@loadPlaylist');
@@ -59,6 +60,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/subscribe', 'HomeController@subscribe');
     Route::get('/explainer_popup', 'HomeController@explainerPopUp');
     Route::get('/about', 'PageController@about');
+    Route::post('/enter_prelaunch', 'InviteController@enter');
 
     Route::group(['middleware' => 'auth'], function () {
 

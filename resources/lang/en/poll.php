@@ -15,6 +15,7 @@ return [
     'pol_user'               => 'Owner',
     'pol_votes'              => 'Votes',
     'pol_expiry'              => 'Expiry Date',
+    'pol_expiry_alt'         => 'Make this poll private until',
 
     'list'                   => 'Polls',
     'edit_title'             => 'Edit Poll',

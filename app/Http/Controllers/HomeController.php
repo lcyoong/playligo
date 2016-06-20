@@ -153,7 +153,7 @@ class HomeController extends Controller
 
     // $mostViewed = $playlist->mostViewed([$playlist->pl_id])->limit(5)->get();
     // $random = $playlist->random([$playlist->pl_id])->limit(5)->get();
-    $latest = $playlist->latest([$playlist->pl_id])->limit(5)->get();
+    $latest = $playlist->latest([$playlist->pl_id])->limit(3)->get();
 
     $videos = $playlist->videos;
 
@@ -164,7 +164,7 @@ class HomeController extends Controller
 
     // $recent_votes = $pvRepo->withPublicPoll()->withUser()->withPlaylist()->take(5)->get();
 
-    $latest_polls = $polRepo->withOwner()->latest()->limit(5)->get();
+    $latest_polls = $polRepo->withOwner()->latest()->limit(3)->get();
 
     $my_rating = $plrRepo->myRating($playlist->pl_id, auth()->check() ? auth()->user()->id : 0);
 
@@ -175,7 +175,10 @@ class HomeController extends Controller
     $playlist_keys = implode(', ', array_column($playlist->keys()->get()->toArray(), 'plk_key'));
 
     // $page_img = unserialize($videos[0]->vc_snippet)->thumbnails->high->url;
-    $page_img = unserialize($videos[0]->plv_snippet)->thumbnails->high->url;
+    $page_img = null;
+    if (count($videos) > 0) {
+      $page_img = unserialize($videos[0]->plv_snippet)->thumbnails->high->url;
+    }
 
     return view('public.playlist_page', compact('playlist', 'videos', 'owner', 'latest', 'page_title', 'page_desc', 'page_img', 'latest_polls', 'my_rating', 'playlist_keys'));
   }
@@ -229,6 +232,14 @@ class HomeController extends Controller
     $play = 1;
 
     return view('welcome', compact('play'));
+  }
+
+  // Prelaunch page
+  public function prelaunch(Request $request)
+  {
+    $play = 1;
+
+    return view('prelaunch', compact('play'));
   }
 
   public function searchPlaylist(Request $request)

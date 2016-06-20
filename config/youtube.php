@@ -13,7 +13,7 @@ return array(
                                   4 => ['shopping', 'market', 'mall', 'shopping mall'],
                                   5 => ['nightlife', 'bars', 'pubs', 'massage', 'spa'],
                                   6 => ['accommodations', 'hotels', 'boutique hotels', '5 star hotels', '4 stars hotels', 'villas', 'apartment hotels', 'vacation rentals'],
-                                  7 => ['festivals', 'art', 'historial sites', 'museum'],
+                                  7 => ['festivals', 'art', 'historical sites', 'museum'],
                                   8 => ['local transport', 'farm stay', 'zoo', 'park'],
                                   ],
     'key_quota'           => 5,

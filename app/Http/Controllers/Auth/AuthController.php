@@ -33,7 +33,8 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/home';
+    protected $redirectAfterLogout = '/home';
 
     /**
      * Create a new authentication controller instance.
@@ -72,11 +73,14 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+      $invite_code = session()->get('invite_code', '');
+
+      return User::create([
+          'name' => $data['name'],
+          'email' => $data['email'],
+          'invite_code' => $invite_code,
+          'password' => bcrypt($data['password']),
+      ]);
     }
 
     public function register(Request $request)
