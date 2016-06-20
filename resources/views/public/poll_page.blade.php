@@ -125,6 +125,9 @@ $(document).ready(function() {
 
   $('body').on('click', '.vote_playlist', function (event) {
 			event.preventDefault();
+      @if(!auth()->check())
+      window.location = "{{ url('search') }}";
+      @else
       $.ajax({
           url: $(this).attr('href'),
           type: 'POST',
@@ -143,6 +146,7 @@ $(document).ready(function() {
           error: function(data){
     			}
       });
+      @endif
 			return false;
 	});
 });
