@@ -61,6 +61,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/explainer_popup', 'HomeController@explainerPopUp');
     Route::get('/about', 'PageController@about');
     Route::post('/enter_prelaunch', 'InviteController@enter');
+    Route::get('/invite/{code}', 'HomeController@invite');
 
     Route::group(['middleware' => 'auth'], function () {
 

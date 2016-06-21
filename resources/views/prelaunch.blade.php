@@ -14,7 +14,7 @@
       </div>
       <div class="col-md-7">
         <div class="form-group">
-        {{ Form::text('inv_code', '', ['class'=>'form-control input-lg', 'placeholder'=>'Invite Code']) }}
+        {{ Form::text('inv_code', !empty($code) ? $code : '', ['class'=>'form-control input-lg', 'placeholder'=>'Invite Code']) }}
         </div>
       </div>
     </div>

@@ -282,4 +282,11 @@ class HomeController extends Controller
     return view('public.poll_result', compact('result', 'q', 'page_title', 'page_desc'));
   }
 
+  public function invite($code)
+  {
+    $play = 1;
+
+    return view('prelaunch', compact('play', 'code'));
+  }
+
 }
