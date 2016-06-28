@@ -15,7 +15,7 @@
 
   		<nav id="mainmenu" class="navbar-right collapse navbar-collapse">
   			<ul class="nav navbar-nav">
-          <li><a href="{{ url('/home') }}">Home</a></li>
+          <li><a href="{{ url('/') }}">Home</a></li>
           <li><a href="{{ url('/search') }}">Explore</a></li>
           <li><a href="{{ url('/public_playlist') }}">Playlists</a></li>
           <li><a href="{{ url('/public_poll') }}">Polls</a></li>
