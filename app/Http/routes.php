@@ -40,7 +40,8 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::auth();
     // Route::get('/', 'HomeController@welcome');
-    Route::get('/', 'HomeController@prelaunch');
+    // Route::get('/', 'HomeController@prelaunch');
+    Route::get('/', 'HomeController@index');
     Route::get('/login/{provider}', 'Auth\AuthController@getSocialAuth');
     Route::get('/login/callback/{provider}', 'Auth\AuthController@getSocialAuthCallback');
     Route::get('load_playlist/{playlist}', 'PlaylistController@loadPlaylist');
