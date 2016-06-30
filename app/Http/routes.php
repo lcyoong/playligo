@@ -54,7 +54,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('public_playlist/search', 'HomeController@searchPlaylist');
     Route::get('public_poll/search', 'HomeController@searchPoll');
     Route::get('public_poll/{poll}', 'HomeController@poll');
-    Route::get('public_playlist/{playlist}/{dummy?}', 'HomeController@playlistPage');
+    Route::get('public_playlist/{playlist}', 'HomeController@playlistPage');
     Route::get('public_playlist/popup/{playlist}', 'HomeController@playlistPopUp');
     Route::get('login_ajax', 'Auth\AuthController@ajaxLogin');
     Route::get('/search/preview/{id}', 'SearchController@preview');

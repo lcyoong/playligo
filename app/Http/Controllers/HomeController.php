@@ -63,8 +63,10 @@ class HomeController extends Controller
 
     $page_desc = $poll->pol_desc;
 
+    $url_refresh = md5(date('YmdHis'));
+
     if ($poll_playlists->count() > 0) {
-      return view('public.poll_page', compact('poll', 'voters', 'poll_playlists', 'pl_titles', 'page_title', 'page_desc', 'voted', 'owner'));
+      return view('public.poll_page', compact('poll', 'voters', 'poll_playlists', 'pl_titles', 'page_title', 'page_desc', 'voted', 'owner', 'url_refresh'));
     } else {
       return view('public.poll_page_blank', compact('poll', 'page_title', 'page_desc', 'voted', 'owner'));
     }
