@@ -115,6 +115,7 @@
             </li>
             @endforeach
             </ul>
+            <a href="{{ url('public_poll') }}">@lang('form.show_more')</a>
           </div>
 
         </div>

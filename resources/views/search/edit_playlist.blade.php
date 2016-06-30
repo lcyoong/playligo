@@ -18,7 +18,7 @@
 				<li class="views"><i class="fa fa-eye"></i> {{ $playlist->pl_view }} views</li>
 			</ul>
 		</div>
-    <h3><span class="label label-info">{{ $playlist->pl_location }}</span> <span class="inline_edit_title">{{ $playlist->pl_title }}</span></h3>
+    <h3><span class="label label-info"><i class="fa fa-map-marker"></i> {{ $playlist->pl_location }}</span> <div class="inline_edit_title"><i class="fa fa-edit"></i> {{ $playlist->pl_title }}</div> </h3>
   </div>
 
   <div class="section">
@@ -266,7 +266,7 @@ $.fn.inlineEdit = function(replaceWith, connectWith) {
 
             if ($(this).val() != "") {
                 connectWith.val($(this).val()).change();
-                elem.text($(this).val());
+                elem.innerHTML = '<i class="fa fa-edit"></i> ' + $(this).val();
             }
 
             $(this).remove();
