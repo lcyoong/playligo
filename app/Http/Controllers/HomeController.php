@@ -180,7 +180,9 @@ class HomeController extends Controller
       $page_img = unserialize($videos[0]->plv_snippet)->thumbnails->high->url;
     }
 
-    return view('public.playlist_page', compact('playlist', 'videos', 'owner', 'latest', 'page_title', 'page_desc', 'page_img', 'latest_polls', 'my_rating', 'playlist_keys'));
+    $url_refresh = true;
+
+    return view('public.playlist_page', compact('playlist', 'videos', 'owner', 'latest', 'page_title', 'page_desc', 'page_img', 'latest_polls', 'my_rating', 'playlist_keys', 'url_refresh'));
   }
 
   public function playlistPopUp(Playlist $playlist)
