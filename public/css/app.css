@@ -257,6 +257,9 @@ h5 .section-title {
 .search-container {
   min-height: 600px; }
 
+.search-container .navbar-nav a {
+  color: #999999; }
+
 .search-container a {
   color: #ffffff; }
 
