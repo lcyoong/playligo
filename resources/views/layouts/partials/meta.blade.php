@@ -1,4 +1,4 @@
-<meta property="og:url"                content="{{ request()->url() }}@if(!empty($url_refresh)){{ '?fbrefresh=CAN_BE_ANYTHING' }}@endif" />
+<meta property="og:url"                content="{{ request()->url() }}@if(!empty($url_refresh))?fbrefresh={{ $url_refresh }}@endif" />
 <meta property="og:type"               content="website" />
 <meta property="og:title"              content="{{ $page_title or config('playligo.title') }}" />
 <meta property="og:description"        content="{{ $page_desc or config('playligo.desc') }}" />
