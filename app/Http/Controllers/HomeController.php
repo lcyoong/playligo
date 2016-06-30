@@ -59,9 +59,9 @@ class HomeController extends Controller
 
     $pl_titles = array_column($poll_playlists->toArray(), 'pl_title', 'polp_id');
 
-    $page_title = $poll->pl_title;
+    $page_title = $poll->pol_title;
 
-    $page_desc = $poll->pl_desc;
+    $page_desc = $poll->pol_desc;
 
     if ($poll_playlists->count() > 0) {
       return view('public.poll_page', compact('poll', 'voters', 'poll_playlists', 'pl_titles', 'page_title', 'page_desc', 'voted', 'owner'));
