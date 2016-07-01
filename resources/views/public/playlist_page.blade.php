@@ -257,7 +257,7 @@ $(document).ready(function() {
 
   @if(!auth()->check())
   $('body').on('click', '.ratingPopUp_open', function (event) {
-    window.location = "{{ url('search') }}";
+    window.location = "{{ url('login') }}";
 		return false;
 	});
   @endif

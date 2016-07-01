@@ -126,7 +126,7 @@ $(document).ready(function() {
   $('body').on('click', '.vote_playlist', function (event) {
 			event.preventDefault();
       @if(!auth()->check())
-      window.location = "{{ url('search') }}";
+      window.location = "{{ url('login') }}";
       @else
       $.ajax({
           url: $(this).attr('href'),
