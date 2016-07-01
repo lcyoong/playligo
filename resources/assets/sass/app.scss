@@ -343,6 +343,7 @@ h5 .section-title{
 }
 
 .search-container .navbar-nav a{
+  // text-shadow: 1px 1px #999999;
   color: #999999;
 }
 
@@ -585,7 +586,8 @@ h5 .section-title{
     background-color: #b9e14d;
     width: 100%;
     // min-height: 100px;
-    padding: 10px 0px;
+    vertical-align: middle;
+    padding: 15px 0px;
     text-align: center;
 }
 
@@ -879,4 +881,8 @@ h5 .section-title{
   border: 1px dashed #cfcfcf;
   padding: 5px 10px;
   border-radius: 3px;
+}
+
+.inline_huge{
+  font-size: 1.8em;
 }

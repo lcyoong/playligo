@@ -57,6 +57,11 @@ class User extends Authenticatable
       return compact('playlist_count', 'poll_count');
     }
 
+    public function owns($related, $field = 'user_id')
+    {
+        return $this->id == $related->$field;
+    }
+
     public static function boot()
     {
         User::creating(function ($post) {

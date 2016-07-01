@@ -87,12 +87,18 @@ class PollController extends Controller
 
     public function delete(Poll $poll)
     {
+        $this->authorize('update', $poll);
+
         return view('poll.delete', compact('poll'));
     }
 
     public function destroy(Request $request)
     {
-        $this->polRepo->find($request->input('pol_id'))->delete();
+        $poll = $this->polRepo->find($request->input('pol_id'));
+        
+        $this->authorize('update', $poll);
+
+        $poll->delete();
 
         return back()->with('status', trans('messages.delete_successful'));
     }
@@ -117,6 +123,8 @@ class PollController extends Controller
 
     public function edit(Poll $poll)
     {
+        $this->authorize('update', $poll);
+
         $owner = $poll->owner;
 
         $poll_playlists = $poll->playlists;
@@ -130,7 +138,11 @@ class PollController extends Controller
     {
         $input = $request->all();
 
-        $this->polRepo->find($request->input('pol_id'))->update($input);
+        $poll = $this->polRepo->find($request->input('pol_id'));
+
+        $this->authorize('update', $poll);
+
+        $poll->update($input);
 
         return response()->json(['message'=> trans('messages.store_successful')]);
 

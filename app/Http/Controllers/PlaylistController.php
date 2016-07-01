@@ -74,12 +74,18 @@ class PlaylistController extends Controller
 
     public function delete(Playlist $playlist)
     {
+        $this->authorize('update', $playlist);
+
         return view('playlist.delete', compact('playlist'));
     }
 
     public function destroy(Request $request)
     {
-        $this->plRepo->find($request->input('pl_id'))->delete();
+        $playlist = $this->plRepo->find($request->input('pl_id'));
+
+        $this->authorize('update', $playlist);
+
+        $playlist->delete();
 
         return back()->with('status', trans('messages.delete_successful'));
     }

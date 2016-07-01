@@ -452,7 +452,8 @@ h5 .section-title {
   overflow: hidden;
   background-color: #b9e14d;
   width: 100%;
-  padding: 10px 0px;
+  vertical-align: middle;
+  padding: 15px 0px;
   text-align: center; }
 
 .action_section_inner {
@@ -661,6 +662,9 @@ h5 .section-title {
   border: 1px dashed #cfcfcf;
   padding: 5px 10px;
   border-radius: 3px; }
+
+.inline_huge {
+  font-size: 1.8em; }
 
 #home-layout {
   background-image: url("../../img/santorini-bg-blue.jpg");

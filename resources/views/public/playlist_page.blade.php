@@ -1,18 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-@if(auth()->check() && $playlist->pl_user == auth()->user()->id)
-<div class="section action_section">
-  <div class="action_section_inner">
-    <div class="container">
-      <h3>What's Next?</h3>
-      <a href="{{ url('playlist/edit/' . $playlist->pl_id) }}">{{ Form::button(trans('form.btn_edit_playlist'), ['class'=>'btn btn-primary']) }}</a>&nbsp;&nbsp;
-      <a href="{{ url('poll/add/'. $playlist->pl_id) }}" class="btn-modal">{{ Form::button(trans('form.btn_add_to_poll'), ['class'=>'btn btn-primary']) }}</a>&nbsp;&nbsp;
-    </div>
-  </div>
-</div>
-@endif
-
 <div class="container">
   <div class="page-breadcrumbs">
     <h1 class="section-title">{{ $playlist->pl_title }}</h1>
@@ -130,6 +118,26 @@
     </div>
 
 <!-- </div> -->
+@if(auth()->check() && $playlist->pl_user == auth()->user()->id)
+<div class="action_section">
+  <div class="action_section_inner">
+    <div class="container">
+      <span class="inline_huge">What's Next?</span>
+      <a href="{{ url('playlist/edit/' . $playlist->pl_id) }}">{{ Form::button(trans('form.btn_edit_playlist'), ['class'=>'btn btn-primary']) }}</a>&nbsp;&nbsp;
+      <a href="{{ url('poll/add/'. $playlist->pl_id) }}" class="btn-modal">{{ Form::button(trans('form.btn_add_to_poll'), ['class'=>'btn btn-primary']) }}</a>&nbsp;&nbsp;
+    </div>
+  </div>
+</div>
+@else
+<div class="action_section">
+  <div class="action_section_inner">
+    <div class="container">
+      <a href="{{ url('search') }}">{{ Form::button('Build your own travel playlist', ['class'=>'btn btn-primary']) }}</a>&nbsp;&nbsp;
+    </div>
+  </div>
+</div>
+@endif
+
 @endsection
 
 @section('style')
@@ -139,6 +147,7 @@
 
 @section('script')
 <script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"></script>
+<script src="{{ asset('js/jquery-scrolltofixed.js') }}"></script>
 <script src="{{ asset('js/jquery.barrating.min.js') }}"></script>
 <script type="text/javascript">
    $(function() {
@@ -241,6 +250,11 @@
 
 $(document).ready(function() {
   // getLatestSelected();
+  $('.action_section').scrollToFixed({
+    bottom: 0,
+    limit: $('.action_section').offset().top,
+  });
+
   @if(!auth()->check())
   $('body').on('click', '.ratingPopUp_open', function (event) {
     window.location = "{{ url('search') }}";

@@ -117,6 +117,7 @@ class SearchController extends Controller
 
     public function editPlaylist(Playlist $playlist)
     {
+        $this->authorize('update', $playlist);
         // $keys = $request->input('search_key');
 
         // $location = $playlist->pl_location;
