@@ -63,6 +63,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/about', 'PageController@about');
     Route::post('/enter_prelaunch', 'InviteController@enter');
     Route::get('/invite/{code}', 'HomeController@invite');
+    Route::get('/search', 'SearchController@index');
 
     Route::group(['middleware' => 'auth'], function () {
 
@@ -71,7 +72,7 @@ Route::group(['middleware' => 'web'], function () {
       Route::get('/profile/edit', 'UserController@editOwn');
       Route::post('/profile/edit', 'UserController@update');
 
-      Route::get('/search', 'SearchController@index');
+      // Route::get('/search', 'SearchController@index');
       Route::get('/suggest_location', 'SearchController@suggestRegion');
       Route::get('/suggest_location/{region}', 'SearchController@suggestLocation');
       Route::get('/search_keywords', 'SearchController@searchKeywords');

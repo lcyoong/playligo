@@ -21,9 +21,13 @@ class PollController extends Controller
 
     public function __construct(Poll $polRepo, PollPlaylist $polpRepo)
     {
-        $this->polRepo = $polRepo;
-        $this->polpRepo = $polpRepo;
-        $this->parm['search'] = 'src_poll';
+      parent::__construct();
+
+      $this->polRepo = $polRepo;
+
+      $this->polpRepo = $polpRepo;
+      
+      $this->parm['search'] = 'src_poll';
     }
 
     public function index(Request $request)
@@ -95,7 +99,7 @@ class PollController extends Controller
     public function destroy(Request $request)
     {
         $poll = $this->polRepo->find($request->input('pol_id'));
-        
+
         $this->authorize('update', $poll);
 
         $poll->delete();

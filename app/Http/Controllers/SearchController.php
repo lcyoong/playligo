@@ -23,7 +23,9 @@ class SearchController extends Controller
 
     public function __construct(VideoCache $vcRepo)
     {
-        $this->vcRepo = $vcRepo;
+      parent::__construct();
+
+      $this->vcRepo = $vcRepo;
     }
 
     public function index()

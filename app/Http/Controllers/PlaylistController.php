@@ -21,9 +21,13 @@ class PlaylistController extends Controller
 
     public function __construct(Playlist $plRepo, PlaylistVideo $plvRepo)
     {
-        $this->plRepo = $plRepo;
-        $this->plvRepo = $plvRepo;
-        $this->parm['search'] = 'src_playlist';
+      parent::__construct();
+
+      $this->plRepo = $plRepo;
+
+      $this->plvRepo = $plvRepo;
+      
+      $this->parm['search'] = 'src_playlist';
     }
 
     public function index(Request $request)

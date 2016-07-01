@@ -23,7 +23,8 @@ class HomeController extends Controller
    */
   public function __construct()
   {
-    session()->put('last_page', request()->url());
+    // session()->put('last_page', request()->url());
+    parent::__construct();
   }
 
   /**
