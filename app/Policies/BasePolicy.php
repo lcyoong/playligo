@@ -23,6 +23,6 @@ class BasePolicy
         if ($user->hasRole('admin')) {
             return true;
         }
-        return false;
+        // return false;
     }
 }

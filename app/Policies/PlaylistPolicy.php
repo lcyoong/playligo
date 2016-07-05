@@ -6,7 +6,7 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 use App\User;
 use App\Playlist;
 
-class PlaylistPolicy
+class PlaylistPolicy extends BasePolicy
 {
     use HandlesAuthorization;
 

@@ -6,7 +6,7 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 use App\User;
 use App\Playlist;
 
-class PollPolicy
+class PollPolicy extends BasePolicy
 {
     use HandlesAuthorization;
 

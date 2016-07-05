@@ -26,7 +26,7 @@ class PollController extends Controller
       $this->polRepo = $polRepo;
 
       $this->polpRepo = $polpRepo;
-      
+
       $this->parm['search'] = 'src_poll';
     }
 
@@ -41,7 +41,7 @@ class PollController extends Controller
     {
       $search = session()->get($this->parm['search']);
 
-        $polls = $this->polRepo->filter($search)->withOwner()->getPaginated();
+        $polls = $this->polRepo->select('polls.*')->filter($search)->withOwner()->getPaginated();
 
         $total_record = $polls->total();
 
