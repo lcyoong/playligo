@@ -93,7 +93,7 @@
 </style>
 @endsection
 
-@section('script')
+@section('head_script')
 <script src="//www.google-analytics.com/cx/api.js?experiment=eTpspAW4SPW4RPzbGGnhlw"></script>
 <script>
 // Ask Google Analytics which variation to show the user.
@@ -107,14 +107,11 @@ var pageVariations = [
     $('#video').attr("src", "https://player.vimeo.com/video/174772811?api=1");
   },
 ];
+</script>
+@endsection
 
-// Wait for the DOM to load, then execute the view for the chosen variation.
-// $(document).ready(
-//   // Execute the chosen view
-//   pageVariations[chosenVariation]
-// );
-
-
+@section('script')
+<script>
 // Scroll to the very bottom to see the stuff we wrote, the big giant blocks are:
 // froogaloop
 // and
