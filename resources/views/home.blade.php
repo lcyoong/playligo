@@ -94,7 +94,26 @@
 @endsection
 
 @section('script')
+<script src="//www.google-analytics.com/cx/api.js?experiment=eTpspAW4SPW4RPzbGGnhlw"></script>
 <script>
+// Ask Google Analytics which variation to show the user.
+var chosenVariation = cxApi.chooseVariation();
+
+// Define JavaScript for each page variation of this experiment.
+var pageVariations = [
+  function() {},  // Original: Do nothing. This will render the default HTML.
+  function() {    // Variation 1: Banner Image
+    $('#video').attr("src", "https://player.vimeo.com/video/174772811?api=1");
+  },
+];
+
+// Wait for the DOM to load, then execute the view for the chosen variation.
+// $(document).ready(
+//   // Execute the chosen view
+//   pageVariations[chosenVariation]
+// );
+
+
 // Scroll to the very bottom to see the stuff we wrote, the big giant blocks are:
 // froogaloop
 // and
@@ -468,6 +487,9 @@ var Froogaloop = (function(){
 // Our Script
 ////////////////////////////////////////
 $(document).ready(function(){
+  // Execute the chosen view
+  pageVariations[chosenVariation];
+
   // Initiate FitVid.js
   $(".video-container").fitVids();
 

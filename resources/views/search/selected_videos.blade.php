@@ -5,7 +5,6 @@
   <div id="sort_list">
     <ul class="list-group playlist-scroll">
       @foreach ($videos as $video)
-      @if(!empty($video->plv_snippet))
       <?php $video_snippet = unserialize($video->plv_snippet) ?>
       <li class="list-group-item row" id="{{ $video->plv_id }}">
         <div class="col-md-4 col-sm-2 col-xs-4">
@@ -22,9 +21,6 @@
             <a plv_id="{{ $video->plv_id }}" id="{{ $video->plv_video_id }}" class="remove_video_button" href="{{ url('playlist/video/instant_delete') }}"><i class="fa fa-times-circle fa-4"></i></a>
         </div>
       </li>
-      @else
-      <li class="list-group-item row" id="{{ $video->plv_id }}">Error</li>
-      @endif
       @endforeach
     </ul>
   </div>
