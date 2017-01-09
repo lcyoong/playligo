@@ -43,7 +43,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-      $this->redirectoTo = config('app.url');
+      $this->redirectTo = config('app.url');
 
       $this->middleware($this->guestMiddleware(), ['except' => ['logout', 'ajaxLogin']]);
     }
