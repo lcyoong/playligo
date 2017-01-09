@@ -8,12 +8,14 @@
             <div class="panel panel-default ragister-account account-login">
                 <div class="panel-body">
                   <h1 class="section-title title">@lang('user.title_login')</h1>
+                  @if(env('ENABLE_FB_LOGIN', false))
                   <div class="login-options text-center">
                     <!-- {{ Form::open(['class' => 'submit-ajax-get', 'method'=>'get', 'url' => url('login/facebook')]) }} -->
                     <!-- {{ Form::button('<i class="fa fa-facebook"></i> Login with Facebook', ['class' => 'facebook-login', 'type'=>'submit']) }} -->
     								<a href="{{ url('login/facebook') }}" class="facebook-login"><i class="fa fa-facebook"></i> Login with Facebook</a>
                     <!-- {{ Form::close() }} -->
     							</div>
+                  @endif
                   <div class="devider text-center">Or</div>
                   {{ Form::open(['method'=>'post', 'url'=>url('/login'), 'class'=>'submit-ajax']) }}
 
