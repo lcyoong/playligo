@@ -11,8 +11,9 @@ var elixir = require('laravel-elixir');
  |
  */
 
+elixir.config.publicDir = 'public';
+
 elixir(function(mix) {
-  elixir.config.publicDir = 'public';
     // mix.sass('app.scss');
     // mix.sass('app_teaser.scss');
     mix.sass(['app.scss', 'app_teaser.scss']);
