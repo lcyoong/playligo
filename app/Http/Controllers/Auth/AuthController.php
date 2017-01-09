@@ -33,7 +33,7 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = config('app.url');
+    protected $redirectTo = '/';
     protected $redirectAfterLogout = '/';
 
     /**
@@ -43,7 +43,9 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware($this->guestMiddleware(), ['except' => ['logout', 'ajaxLogin']]);
+      $this->redirectoTo = conf('app.url');
+      
+      $this->middleware($this->guestMiddleware(), ['except' => ['logout', 'ajaxLogin']]);
     }
 
     /**
