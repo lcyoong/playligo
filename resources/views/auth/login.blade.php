@@ -15,8 +15,8 @@
     								<a href="{{ url('login/facebook') }}" class="facebook-login"><i class="fa fa-facebook"></i> Login with Facebook</a>
                     <!-- {{ Form::close() }} -->
     							</div>
-                  @endif
                   <div class="devider text-center">Or</div>
+                  @endif
                   {{ Form::open(['method'=>'post', 'url'=>url('/login'), 'class'=>'submit-ajax']) }}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
